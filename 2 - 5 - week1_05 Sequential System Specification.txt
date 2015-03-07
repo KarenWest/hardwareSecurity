@@ -1,0 +1,199 @@
+We have seen this slide earlier.
+This one tells the difference
+between the combinational logic and
+the sequential logic.
+And we mentioned about that key
+differences, the sequential circuit,
+there is a memory unit, which stores
+the current contents of the, the system.
+And this current content of
+the system will come back here,
+affect the combinational logic, which is
+going to eventually impact the outputs.
+So, the outputs is not only
+dependent on the input.
+It also depends on the memory units.
+So, before we talk about
+how to specify and
+how to design sequential systems,
+the first thing we need to,
+we need to answer is, so
+how do we store the memory unit?
+So the basic memory unit is called
+a latch, which has two outputs, a Q and
+a Q prime, which are always
+complementary to each other.
+And depends on what kind of latches you
+are using, there are different ways to fit
+the latches, and here is a small
+example of a NOR Gate for latch.
+So, what we have here is we have an input
+R and S stands for set and reset.
+And these are the two outputs,
+Q and Q complement.
+And in the middle there are two NOR
+Gates, and then they are cross coupled.
+So let's see, I mean,
+what happens with this circuit.
+So if I set S to be 0 and R to be, I'm
+sorry if I set S to be 1 and R to be 0.
+And this one is going to produce
+an output of 0 for gate two.
+Now then these two 0 will come back here.
+So now I have two 0s to NOR gate number 1.
+And that, it will produce output of 1.
+And this 1 comes back.
+And the two 1's make this NOR
+gate a constant 0.
+So what we see here is,
+the circuit becomes stable.
+And then we have Q equal to 1 and
+Q 0, Q prime equal to 0,
+complement to each other.
+So now what do I do is, now let's assume
+that I change the signal of S to 0.
+So instantaneously,
+this 0 is going to change.
+So this 0 and the 1 here makes this
+1 still a 0 because I have a 1 here.
+1 and 0 make this NOR gate a 0.
+So because this 0 doesn't change,
+for this gate, nothing's changed.
+0 is here, and
+then 0 coming back, making a 1.
+So that means, if I change this to a 0,
+the system status doesn't change, 'kay?
+And you can analyze,
+once we further change this to a 1,
+other things will be different,
+because this 1, will change this to a 0,
+and then this 0, will, make this two 0s,
+change this one back to a 1.
+And this one coming back,
+make this one a stable 0.
+So the system will flip.
+The Q changes from 0, from 1 to 0.
+And then Q prime changes from 0 to 1.
+So what we have seen here is, so
+the output of this latch, Q and
+Q prime, depends on R and S.
+And however it can do becomes stabilized.
+Can store a value here, either 1 or 0.
+And one problem about this latch is
+the output changes as soon
+as the input changes.
+So, this is what we called
+asynchronous system and
+which may not be what we prefer.
+So, the flip-flops is a solution
+to solve this problem.
+It is very similar to a latch.
+But, however, it has a signal to
+control when output can change.
+So this is the RS Flip-Flop
+implemented using four NAND gates.
+And we're not going to go through details
+about how this one is implemented.
+We'll just show you the logical
+diagram for RS Flip-Flop.
+So what you see here is
+we have three inputs.
+SR, which we called
+the flip-flop input function.
+And there is this signal which is,
+normally, we call the cog pause.
+This is the cog signal.
+And for this systems,
+we want to make sure that at least
+one of the input our dies will be 0.
+We don't want to,
+to set and to reset at the same time,
+otherwise the system becomes unstable.
+And the systems have two output, Q and
+Q prime, which are supposed to be
+complement to each other all the time.
+And what will be the memory content?
+We'll assume that currently it has Q of t.
+And at time Q of t plus 1,
+what would this, this memory be?
+It is, depends on the input as an R,
+and also the current memory content
+following this formula here.
+S plus R prime times Q of t.
+And while we design sequential systems,
+we want to know that, how we can give,
+flip flop input functions values such that
+the flip flop would change as we want.
+So for example,
+consider this SR flip flop.
+Let's see,
+we want to change the Q from 0 to 1.
+How can we make that happen?
+So this table which is called
+excitation table tells you how you
+can make that happen.
+As soon as you set S equal to 1 and
+R equal to 0, you are going to set
+the flip flop, so next time the flip flop,
+it will have a 1.
+And to, for another example, if you want
+the system to stay at 1, 1, no change.
+What you do is you can set, reset.
+You code with 0,
+you're not going to reset.
+And then this set signal,
+you don't really care.
+And these are the excitation table for
+two of the three other popular flip flops.
+The D flip flop, flip flop, which the next
+content is the same as the data here,
+regardless of the previous value here.
+And then the toggle flip flop,
+which whenever the toggle signal is 1,
+the flip flop counted will be flipped.
+Otherwise it remains the same.
+And then the J K flip flop,
+which is similar to I's flip flop.
+So now let's use a small example to see
+how we can specify synchronous systems.
+We want to design a circuit with one
+input x and then three outputs, A, B, Cs.
+And the,
+the x will have one bit per clock cycle.
+When x equal to 0,
+the output remains no change.
+When x equal to 1, it's going to
+repeat the binary sequence 0, 1, 3,
+7, 6, 4, one at a time.
+So what we have here is we want to
+draw the state transition table.
+So in the state transition
+table what we have is,
+we have a big column of the current state,
+and
+then we want to go from the current state
+to see what will be the next state.
+And then the next state
+depends on the input value,
+so based on different input values,
+the next stage can be different.
+Like in this case, if x is 0,
+the statement remains, no change.
+So that is why these two columns,
+they are identical.
+And then, while x is 1, we go from 0 to 1.
+We go from 1 to 3, and so on.
+And we can represent exactly
+the same information with this we
+called the state transition graph.
+In a state transition
+graph we have states, and
+for each state we have outgoing
+edges which are the transitions.
+It tells you that from this state,
+given an input where this next state
+will be, and what will be output.
+So, it represents exactly the same
+information as the state transition table.
+[SOUND]
+

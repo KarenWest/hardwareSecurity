@@ -1,0 +1,231 @@
+So we have learned how to specify
+Boolean systems or digital systems, and
+we have learned how to implement it
+in many, many different ways, and
+now we want to talk about what
+will be the best way to implement,
+which people called the function
+simplification of function optimization.
+The goal of function
+optimization is trying to
+find an equivalent function with
+the minimum number of literals.
+So, for example, I have this function f,
+of three variables, x, y, z.
+And it is the sum of four terms.
+And from the definition, I can implement
+this function using basic logical gates.
+The inverters give me
+all these complements.
+And then these AND gate, four AND
+gates create these four terms.
+And then finally the OR
+gates add them up together.
+However, I take a look at this.
+I say okay, so these four terms,
+they can be paired up in red and green.
+So for example,
+in the green terms, these two terms,
+they shared at y prime, z prime.
+Y prime, z prime.
+The difference here is the first term
+is x prime, the second term is x.
+So when you do x prime plus x,
+we know this is one.
+So that means the two green terms
+is equivalent to y prime, z prime.
+And then similarly, the,
+the first, the two red terms can
+also be simplified into yz prime.
+So, now we have yz prime and
+y prime, z prime.
+So applying the same strategy again,
+we know this is z prime.
+So what this simplification
+procedure means.
+Just tells us that this function is
+equivalent to the compliment of z.
+Which means that I can implement
+the same thing by this part.
+Instead of getting f from here,
+I can get f from here, they're equivalent.
+So, from here we see why people
+are doing simplifications.
+Because compared to these two designs,
+this one here used far less hardware.
+And less hardware normally
+means lower power consumption,
+faster speed and the bottom line is,
+they implement the same functionality.
+So, in some sense, we,
+we said this is a better design.
+And how do people do
+function simplifications?
+So over the past several decades.
+So there are a lot of CAD tools has been
+developed to do functions simplifications.
+And the don't care conditions have played
+essential role in most of these tools.
+So now let's use a small example
+to see how don't care's can
+help us simplify functions.
+So let's consider a design of
+a 3-input encoder which is going to
+assign a 2-bit code to each of
+the three different input combinations,
+and here is the choose table for
+this system.
+We see the three different input
+combinations are zero zero one,
+zero one zero, and one zero zero.
+And their codes will be zero one,
+one zero, and one one.
+So one thing we realized is so
+we have 3-bits which means that there
+is a total of two to the power three.
+Eight different combinations of input.
+But however,
+the system specified only three.
+And what happens to the other
+five input combinations?
+They are the things we call
+don't care conditions,
+because the user doesn't care what, what
+will be the output in these five cases.
+So now we'll list fill,
+I mean implementations of this system.
+So the first one is the one I
+do the straightforward one.
+To implement a, I say a is
+the sum of these two conditions.
+So a complements times y
+times z complements, so
+make a one plus the second si, situation.
+X times y compliments,
+times z compliments.
+And if you also simplify this a little
+bit, you see x prime y, plus xy prime,
+which means this will be true if and
+only if x and
+y have different values,
+which is the definition of exclusive war.
+And similarly we can get
+the expression for b.
+So this is one solution.
+And however we can find
+another solution here,
+which is much simpler here
+using only two inverters.
+X is the compliment of z and
+b is the compliment of y.
+And if you take a look up here this
+does meet these two requirements.
+Whenever z is 1, a is 0.
+Whenever z is 0, z will be.
+Whenever z is 0, a will be 1,
+and for b it is the same.
+Whenever y is 0, b will be 1.
+Whenever y is 1, b will be 0.
+So this is a much better
+solution in some sense.
+And how we come up with this solution?
+What happens with other cases,
+other five don't care cases?
+So for these five don't care cases,
+because user doesn't care the outcome.
+So these codes can be arbitrary.
+We don't care either.
+By using this don't care in different
+ways we can get actually a lot of other
+implementations, and later we're going to
+talk about vulnerabilities behind, oh
+this, better implementation because they
+may not consider don't cares properly.
+So other than the don't cares that
+are missing from the two's table in
+the system specification,
+where else can we find don't cares?
+So this satisfiability don't
+care is one of the cases.
+So it is a part of the system where
+the input pattern will never occur.
+So let's see this here.
+We consider this NOR
+gate by definition of the NOR gate.
+This is a truth table format.
+And the, from this input here,
+we see the first input and
+the second input to the NOR gate,
+they are always complement to each other.
+Which mean that this case will not happen,
+this case will not happen.
+That also means that these outputs
+of the exclude, of the NOR
+gates, y will always be 0.
+It can never be one.
+So with this in mind, think about the,
+this exclusive XOR gate.
+The y input is, cannot be one.
+Which means for the exclusive XOR GATE,
+input combination x equal to one,
+y equal to one or x equal to zero,
+y equal to one will never happen.
+And we represent these two cases
+by xy which means x equal to one,
+y equal to one and x prime y which
+means x equal to zero, y equal to one.
+So this are the two don't care conditions
+for this exclusive XOR gate, because this
+two input combination can now be satisfied
+by the earlier part of the circuit.
+So that is why we call them
+satisfiability don't cares.
+So another source of don't cares is
+the ones called observability don't cares.
+So this is the input combinations or
+the input patterns that
+will not affect the output.
+So let's think in this case,
+y will be zero.
+What y, zero.
+This NAND gate will always give
+a one regardless of the value of,
+from this link.
+Which means that I don't really
+care what is the value here,
+I don't care the value here.
+As, as long as y is zero,
+this is always one.
+The changes on this part will
+not be observed from outside.
+So in particular use case.
+When x, when y is zero,
+no matter x is zero or
+one, I cannot observe the difference.
+So this is the one called
+observability don't cares, or ODC.
+So how this satisfy ability don't care and
+observability don't cares to
+help us to simplify circuit.
+So consider this an example.
+By analysis, we know that it has SDC
+of x equal to one, y equal to one.
+x equal to zero, y equal to one.
+And also by, by analyze the ODCs,
+we know there are two ODC conditions,
+x equal to one, y equal to zero and
+x equal to zero, y equal to zero.
+So, now if you put all
+this four things together,
+these are all the input
+combinations of x and y.
+And that they are all don't cares.
+Which means that this
+logical gate is redundant.
+All the possible input
+accommodations they are don't cares.
+It is irrelevant to the output here.
+Which in some sense means that
+we can ignore this gate and
+then the circuit remains the same.
+

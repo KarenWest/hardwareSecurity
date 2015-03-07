@@ -1,0 +1,285 @@
+We have started cache attacks and
+power analysis.
+In this lecture, we will talk about two
+other kinds of side channel attacks.
+Timing attacks and scan chain attacks,
+then we will conclude with some common
+countermeasures for side channel attacks.
+We will continue to use the RSA algorithm
+as an example to show these attacks.
+Here is a short review
+of the RSA algorithm.
+During the key generation phase,
+we pick two large prime numbers p and
+q, we take their product as n,
+and choose the encryption key,
+e to be relatively primed with
+e me p minus 1 time q minus 1.
+That we compute for
+the value of d such that e
+times d is equivalent to 1 mi
+p minus 1 times q, q minus 1.
+Given the value of p minus
+1 times q minus 1, and
+the secret times the key e,
+the value of d will be unique.
+Next time we will talk more about this and
+give a practical message to compute d.
+The pair e and n,
+will be used as the public key, and and
+the d, value of d will be
+kept as the private key.
+The security of RSA algorithm
+relies on the assumption that it
+is difficult to factor a large
+integer number, n, into p and q.
+To encrypt a message m we compute
+m to the power e mod n and
+use this as the cypher text we call c.
+To decrypt the cypher text c,
+we compute c to the power d mod n and
+this will give us the original message, m.
+If we use the naive square and
+the multiply all of them to increment
+the modular exponentiation, we know that
+there will be security vulnerabilities.
+Based on this observation,
+a timing attack was
+proposed to detect the exponent
+which is the private key.
+The attacker will guess some
+bits of the exponent and
+use this to predict the execution time for
+decryption.
+Then he will try to
+monitor the decryption and
+compare the actual runtime
+with his prediction.
+If the guess is correct, there will be
+some correlation in the execution time
+between the prediction and
+the real execution time.
+Otherwise the prediction
+will look like random.
+It is also suggested to start at
+the guess from the leading bits or
+the significant bits.
+And use the correlation for
+each guess to select new guesses for
+the next round,
+until the exponent is found.
+This is the Montgomery reduction
+method we have learned the last week.
+It is a fast implementation of
+modular multiplication, and
+it can be used to compute
+modular exponentiation.
+When T is less then N times R,
+we need to do this, we need to this sub
+the, this is Montgomery Reduction
+will fall between 0 and N.
+However for large T when T is larger
+then N times R we need to do this
+subtraction multiple times to get its
+Montgomery reduction to be less then N.
+Schindler observes that
+the probability of this
+subtraction step is proportional
+to the value of c mod q.
+If c is close to q,
+a lot of subtractions might be needed.
+If c mod q is 0,
+very few subtractions will be needed.
+Knowing this,
+an attacker can guess the value of q
+by monitoring the decryption time for
+different ciphertext c.
+When the decryption time is short,
+the ciphertext will be close to
+the multiple of q and
+this will help him to find the value of q.
+Remember that the security of
+the RSA algorithm is based on
+the hard integer factorization problem.
+When q is discovered the algorithm
+will be broken because when we
+have q we can divide M by
+q to find the value of P.
+Here is a more detailed description
+of how to find the value of p.
+Suppose a, 1024 bit RSA system is used.
+Our initial guess of q of g will be
+between 2 to the power of 51 and
+2 to the power 512, I'm sorry,
+will be between 2 to the power of 511 and
+2 to the power of 512.
+Then we will try both the possible
+guesses for the top few bits.
+Now suppose we know the top I
+minus 1 bits of q are 101001.
+To guess the next bit
+which is the ice bit,
+we set g equal to 1010010
+followed by all zeroes.
+And the g high to be 1010011
+followed by all zeroes.
+If q is less than g high,
+then the i speed of q must be 0.
+If g, if q, is greater then g high,
+then the i-th bit of q must be 1.
+So another question is how can we
+determine rather q is less than or
+greater than, than ghi.
+We measured the decryption time
+with two guesses, g and a ghi.
+If q is greater than ghi
+like in this case we know
+that the two decryption times will
+be relatively close to each other.
+However when q is less than g high
+because most attractions will
+be performed for the case of g.
+Then the case of g high, we will
+expect a much bigger gap like this.
+So by comparing the decryption time,
+we can determine the next bid for q.
+By, by checking whether, whether q is
+larger than or smaller than g high.
+Then use this information to de, decide
+whether the next bit for two is 0 or 1.
+Now, we show two types of scan
+chain attacks very briefly.
+This is the scan chain and
+it's test of control signal TC
+we have discussed last time.
+We call that one TC equal to 0,
+the system will be added
+to normal running mode when TC equal
+to 1 it will be at detached mode.
+Attackers can, can,
+can make a tag based on the observability
+of the scanned art board as follows.
+First, he will set TC equal to 0,
+and provide certain primary inputs
+to the system and let the system run for
+one or more clock cycles.
+Then he can change the TC signal to 1
+to have the system enter the test mode
+to capture the internal state of
+the system from the scan out port.
+And the attacker could repeat
+this process to collect as
+many information as he needed.
+So if this attack takes advantage of
+the of the ability of the Sget out port.
+The next one shows how attacker can
+take advantage of the controllability of
+the scan in port launch
+a different type of attack.
+So, this is another one based on the scan,
+another scan chain based attack
+that takes advantage after
+controllability of the scanning port.
+Notice that the only difference between
+these two is in the first step.
+If the attacker now can change the system
+to the test mode and use the scan import
+to inject what have whichever stage of
+the system to these scan flip flops.
+Note that this can also be used
+as a fault injection attack.
+Now, we discuss some com, common
+countermeasures for side channel attacks.
+Hiding based approaches, try to hide
+the secret information from the side
+channel so it will become more difficult
+for the attacker to extract use for data.
+Noise, noise generators can add noise
+to the side channel at execution time.
+For example,
+electron magnetic noise can be added.
+Additional power or delay can be
+added randomly to disguise the data
+dependence side channel information.
+On the other hand special logic units
+can also be used during the design
+phase to make the power with delay
+independent of the input data or
+the secret key to prevent
+side channel attacks.
+Adding as, asynchronous logic components
+in the design will also eliminate clock,
+and that will make many scan,
+scan, many, side, scan but
+many side channel attacks fail.
+Low power design techniques can reduce
+the power consumption of the system, and
+it can make the make the signals weaker.
+In some sense this will increase
+the difficulty for side channel attacks.
+Side channels can, can be shielded
+physically to prevent information leak.
+For example, upper level metal
+layer can prevent EM radiation and
+sound dampening materials can reduce
+acoustic ignition [NOISE] Another
+category of countermeasures is
+known as masking or blending.
+These approaches try to remove
+the correlation between input data or
+the secret key of from
+the side channel emissions.
+For instance at gate level, exclusive or
+in the output of a logical unit with
+some pre-selected data will make the real
+output will can mask the real output.
+It can also be applied at work level
+to give the logical units
+randomized input the data.
+However this will increase the design
+complexity because the internal design of
+the logical units now needs to be modified
+in order to generate the correct output.
+Design partitioning work
+separation can also help
+against the side channel attacks.
+Traditionally plan tags and
+the cipher tags should be
+separated in the memory which is
+known as the red black separation.
+On arm chip infrastructures like the power
+supply rails, clock networks and
+the testing facilities
+should also be separated for
+crypto our operations and
+other applications.
+The emergence 3D IC design add the split
+fabrication methods that we have discussed
+for IP protection can also be used to
+build separation at fabrication level.
+Finally physical sa,
+security can be used to keep the attackers
+away from the proximity, access, and
+possession of the system under attack.
+For example, acoustic shielding
+can protect acoustic emission.
+The secure construction
+zooming has been used for, for
+decades to prevent potential
+em emission attacks.
+We have seen many countermeasures
+from both hardware and
+software as well as system level design.
+Most of this will encourage that
+overhead with performance degradation.
+Sometimes a counter measure against
+the one type of stack strain of
+attack will make the system vulnerable to
+another type of stack strain of attack.
+Next time we will talk about counter
+measures directly from the design of
+the cryptography.
+So we don't have to change
+the well established de,
+de, the design and implementation process-
+

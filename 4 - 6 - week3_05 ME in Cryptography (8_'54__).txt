@@ -1,0 +1,221 @@
+So now we have seen what is the definition
+of modular exponentiation and
+a couple of simple ways to implement it.
+And in the couple,
+the next couple of slides,
+I'm going to show you two examples of how
+it can be applied for modern cryptography.
+And I'm sure that
+professor Jonathan Card has
+showed you more examples about this
+in his course on cryptography.
+The first example is on
+the Diffie-Hellman Key Exchange.
+In this case, there are two people,
+Alice and Bob.
+They want to talk to each other, but
+they want their message to be encrypted.
+So in that way they want
+to share the same key.
+So what Alice is going to do is she's
+going to find a random number x sub A.
+Then she's going to raise
+a base a to the power X sub A,
+and doing the modulo q operation.
+And she's going to call this one Y sub A.
+What Alice is going to do is,
+she's going to send Y sub A to Bob,
+the partner she's going to talk with.
+And then meanwhile keep X sub
+A as a secret for herself.
+On the other side Bob is
+going to do exactly the same.
+And which I highlighted
+everything to green,
+just trying to distinguish what Bob is
+doing compared to what Alice is doing.
+So Bob gets X sub B and
+then raise A to the power of X sub B,
+and call this result Y sub B.
+And he's going to send
+the Y sub B to Alice and
+then keep X sub B as a secret for himself.
+Now, Alice has Bob's Y sub B and
+she has his own X sub A.
+So how Alice is going to
+generate her shared key here?
+So here is the key generation protocol.
+So what Alice is going to do is,
+she's going to raise Y sub B,
+which is the message coming from Bob,
+to the power X sub A,
+which is the secret she keeps for herself.
+And I'm doing this things
+under the mod operation.
+And on the other side,
+Bob is going to do the same.
+And the y just gave them
+the same key share the key.
+This is the underline mass for
+this one to be true here.
+So from Alice side what she
+calculated is a to the power X sub B.
+Which is this Y sub B,
+raised to the power X sub A.
+Then from Bob's side, what he has
+computed is Y sub A to X sub B.
+And where Y sub A is actually
+a to the X sub A, and
+then raised to the power X sub B.
+So what you see here is, for
+this inequality on the left side,
+left hand side, you have a to
+the power X sub B times X sub A.
+On the right side you have a to
+the X sub A and then X sub B.
+And we know these two actually
+they are the same, so
+that is the reason in this way how they
+can share the same, the same key here.
+So however we're realizing this protocol,
+both Alice and
+Bob, they have to do this modular
+exponentiation many, many times.
+Here, here, and here.
+Both for them to generate to
+the message to send to each other and
+also trying to generate their key.
+So this is a very, very quick
+going operation for both parties.
+And the second example we're going
+to show is the, is the public key
+encryption scheme, called RSA,
+which is named under its three inventors.
+So this is an asymmetric encryption
+scheme, which means the encryption key and
+the decryption key, they're different.
+So in this protocol,
+what each user has is a pair of keys.
+A public key and a private key.
+So one user want to do an encryption.
+So, for example, I want to send a message
+to a certain user, let's say Bob,
+who has this pair of key.
+So what I'm going to do is,
+I'm going to encrypt a message using
+Bob's public key, which everybody knows.
+And then this message comes from P, become
+encrypted, becomes the ciphertext C here.
+When Bob receives the ciphertext C,
+he will be able to decrypt it using his
+private key and the decryption algorithm.
+So he decrypted the ciphertext C and
+then get the message the P back.
+For this part of it to work,
+we need the following requirement here.
+For the same message P, after we, after
+I encrypted it using Bob's public key,
+and then after Bob decrypted
+it using his private key,
+this message should remain the same.
+So that is the underlying protocol for
+this, RSA public key,
+public key encryption.
+So currently the key size for
+RSA is about 10,000, 1,024 and, but
+very soon it's going to be doubled or
+even I mean quadrupled.
+So let's see how, what,
+what is the encryption and
+the decryption algorithms,
+what schemes RSA is using here.
+So in the RSA algorithm,
+what user is going to do here is,
+is going to select two prime numbers,
+p and q, and
+then they're going to multiply
+these two prime numbers.
+And then they are going to
+choose a small number, or
+maybe not that small,
+smaller than n for sure, so
+it's a number e which is relatively
+prime to p minus 1 times q minus 1.
+And the next step is
+a little bit of challenge.
+So what you need to do is,
+you need to find another integer d,
+such that e times d is equal to
+1 mod p minus 1 times q minus 1.
+'Kay?
+And once it, this is done, the user will
+have a pair of public key and private key.
+And with this public key and
+private key pair, we can do encryptions,
+we can do decryptions.
+'Kay.
+And what you would realize in this case,
+the encryption function is
+a modular exponentiation.
+The decryption function, again,
+it is a modular exponentiation.
+And why it works in this case?
+So, we see what happens here is,
+so if I have a message X,
+I do the encryption, and
+then I do the decryption.
+And from the fact, from number theory,
+we know that when x raised to the power
+e times d, and as long as this e times d,
+mod p minus 1 times q minus 1 equal to 1,
+and then this x to the power
+e minus d mod n equal to x.
+Which means you can get
+the original message back.
+So again from this example
+we see that we need to
+calculate modular p exponentiation.
+We need to compute modular exponentiation.
+So next we are going to show how we can,
+we can compute this one efficiently.
+So this is another small example to show,
+how this works in real, real time.
+So we select p equal to 11, q equal to 17,
+is our two prime numbers, and
+then following the definition, n is
+the product of these two which is 187.
+And then p minus 1 which is 10, q minus 1
+which is 16, so their product will be 160.
+I choose 7,
+which is relatively prime to 160 and
+then I find out 23 is the magic number,
+that's 7 times 23 mod 160 is, is 1.
+So this will be my public key and
+this will be my private key.
+So now if I want to do an encryption.
+I want to encrypt
+the message x equal to 88.
+All I need to do is, I raise x to the 88
+to the power 7, which is the public key.
+'Kay?
+And then this give me, and when I do
+the mod, 187, give me the ciphertext 11.
+So, I'm going to send this message
+11 to whoever is the receiver,
+who has this 7 as the public key.
+So when this person receives
+the ciphertext y equal to 11, he or
+she is going to raise this to the power of
+their public, of their private key, 23.
+And then do this modular
+exponentiation operation and
+then find out the message is 88.
+[SOUND] So now the question
+remains is how do we compute 88
+to the power 7, or
+11 to the power 23 mod 187?
+And in general when RSA has
+a large key size of 1000 bits, or
+maybe 2048 bits how can we compute this
+modular exponentiation efficiently?
+

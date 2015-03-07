@@ -1,0 +1,252 @@
+Last time we talked about
+the advantages of using FPGA to
+implement cryptosystems and
+hardware security primitives.
+Now we discuss the vulnerabilities and
+the countermeasures in FPGA-based
+systems and FPGA design flaw.
+Most of these vulnerabilities and the
+countermeasures, we have seen them before.
+So this can be a very good review for
+what we have learned in
+the past five to six weeks.
+FPGA systems, like other computing
+systems, have vulnerabilities.
+There have been reported
+attacks from such channels and
+fault injection to break FPGA systems.
+There have also been attacks for
+all type of FPGA systems.
+The SRAM based FPGAs,
+anti-fuse based or flash based FPGAs.
+On the other hand, the design flow
+of FPGA system itself is not secure.
+At the hardware description
+language design level that this
+audience the designers they
+may still design details of
+the intellectual property, or
+did they insert trojan into the design.
+And, and trust its third-party IPs
+went through the similar damage.
+During the synthesis process
+there's always the use-uh,
+designers who are EDA tools,
+they may introduce trojan into the design.
+Or they might come perform
+some IP piracy and
+also the EDA tools needs to be protected
+from dishonest designers for illegal use.
+And finally the FPGA configuration
+bitstream file needs to
+be protected from being misused by users.
+So next we'll elaborate
+these vulnerabilities and
+the tags from the market view of FPGA.
+In this FPGA market,
+there are six major players.
+The FPGA vendors,
+those are the big FPGA companies that fir,
+that produce and sell,
+design and sells FPGA chips.
+And there are semiconductor
+foundries that view the chips.
+And there are IP vendors built the DSP
+cores other intellectual properties.
+There are EDA tool vendors and
+also there are system developers which is
+which are going to develop
+FPGA based systems.
+And eventually we have these end users who
+will purchase used FPGA based systems.
+And there are several connections
+between a pair of parties.
+So for example here,
+we have FPGA vendors with this edge.
+With a single arrowhead
+goes to the fundraise.
+This indicate a service request,
+which the SP vendor wants the,
+their FP chips to be fabricated.
+And this double error adds line
+indicates the return to service.
+In this case,
+the founder will fabricate the chip.
+The return to the FPGA vendors.
+And we'll study each of these
+pair of connections and
+about their vulnerabilities and
+the potential attacks.
+The first one is between FPGA vendors and
+the foundry.
+In this case the FPGA vendors will request
+some fabrication from the foundry.
+And the foundry will give them
+the FPGA chips based on the,
+the design from the FPGA vendors.
+And in this case where FPGA vendors get
+the chip from the foundries they may not
+just trust it for no reason.They may
+consider whether there's any malicious
+things inside these FPGA chips.
+For example,
+whether there's any hardware trojan.
+Whether they leak any information
+during the design of FPGAs.
+And also the main concern,
+whether the foundry has fabricated exactly
+the amount of FPGA chips as requested.
+Whether they have overbuilt or
+built more FPGA chips or not.
+The second connection is
+between FPGA vendors and
+either the EDA tool vendors or
+the IP vendors.
+In this case the FPGA vendors, they want
+to put design tools and in other important
+intellectual properties, like for
+example the DSP cores onto the FPGA chips.
+And the both vendors, the tool vendors,
+the IP vendors will provide such
+service to the FPGA vendors.
+And in this case there
+are concerns from both sides.
+The FPGA vendors will be concerned about
+whether the product from the EDA tool
+vendors and the IP have any Trojan or not.
+Whether they will leak
+any design information.
+And also the tool vendors and
+the IP vendors, they'll be concerned
+about how to protect their IPs.
+Whether the FPGA of vendors
+will do reverse engineering,
+then misuse their IPs.
+The next connection is between the system
+developers and the FPGA vendors.
+In this connection the system developers,
+they will try to buy FPGA chips from
+the FPGA vendors, and then the FPGA
+simply missell the chips to them.
+And, for for the FPGA based
+system developers, they will
+have the concern of whether these chips
+they got have any hardware trojan.
+Whether they will try to steal
+any valuable design information.
+And then finally once the system
+developer builds the FPGA-based system,
+eventually the end user will request
+to purchase such system and use them.
+In this case, the system,
+the end users when they purchase our FP,
+FPGA based system.
+They will have to concern about
+the trust of such system.
+Whether there's any hardware trojan,
+whether it will leak any information
+when the user is using the system.
+And from the system, the FPGA based
+system developer point of view,
+they will consider whether these
+users can be trusted or not.
+Whether they will go to open, perform
+reverse engineering and then try to
+clone the FPGAs, trying to retrieve the
+configuration-based stream files or not.
+Whether they may launch,
+side channel attacks, and
+FPGA replay attack which will
+going to be discussed next.
+And what we'll do now is we're
+going to consider each of
+these possible attacks and
+the available countermeasures.
+We start from the foundry overbuilding.
+We talk about this,
+in this attack, the foundries will
+build more chips than requested and
+then keep the actual ones by themselves,
+or try to sell them at a lower place.
+And we have discussed this before,
+the hardware metering technique or
+remote activation technique can be
+used to prevent such an attack.
+And the second attack is the trojan.
+We have seen many many
+links that might be trojan.
+And we discussed a lot
+of trojan detection and
+trojan prevention techniques that
+can be applied in this scenario.
+And those we have talked about in
+the testing process, how we can test.
+Trying to find the existing whether
+there's any trojan existing in the chip.
+And the second one is reverse engineering.
+The reverse engineering
+happens at multiple levels.
+It can happen at the, the hardware
+description language design level.
+It can happen at the configuration
+bit stream level.
+And to protect reverse engineering attack,
+and people can use encryptions for
+the encrypt, the,
+the configuration bitstream file.
+Or they can do obfuscation, trying to
+make the design harder to understand.
+And the next one is the cloning attack,
+where after the reverse engineering.
+The illegal users,
+they are trying to fabricate, or
+trying to use the reverse
+exchange configuration bit
+stream file to configure FPG chips, and
+this is what we call the clonal attack.
+And we have talked about
+the digital watermarking and
+digital fingerprint techniques
+to determine such an attack.
+Because you have your watermark trying
+to prove that this is your design.
+Even after they clone it, you can prove it
+is yours, or once you put a fingerprint,
+you can tell who has done this since
+illegally trying to clone the chip.
+And also, there are some risks
+to the work trying to bind.
+The chip, the FPGA chip with encryption or
+with silicon path.
+And the next one is side channel attacks.
+So there have been a lot of reported
+successful attacks from the power channel,
+from the timing channel, or
+from the electromagnetic,
+emission channel trying to leak
+information from the FPGA chip.
+And, the most of the passive the
+techniques against the passive attacks we
+have discussed earlier.
+Can be applied for FPG and base the system
+against a side channel attacks.
+And then, finally,
+this is a new attack for FPG system.
+It is called FPGA replay attack.
+And what happens in this case is so,
+when a new or
+updated FPGA chip is in the market and
+the taggers, they may
+try to use a known vulnerabilities
+which are for the old systems.
+And trying to see whether
+the newer system or
+the updated systems has fixed
+that known vulnerability or not.
+If it hasn't,
+then you will have a successful attack.
+This type of approach is called
+remote update protocols,
+will try to do a reconfigurable
+binding to against such attacks.
+

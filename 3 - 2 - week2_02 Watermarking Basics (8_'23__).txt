@@ -1,0 +1,178 @@
+Let's continue our discussion of IP
+protection with digital watermarking.
+This cartoon shows how watermarking can
+be used as a deterrent for IP piracy.
+Alice is IP provider.
+And Bob gets a copy of the IP from Alice.
+Seeing the value of the IP, Bob decides
+to make profit illegally from Alice's IP.
+He can reverse engineer the IP,
+and reproduce it or
+he can also integrate the IP
+into his own product.
+Then, Bob can sell the I,
+reverse engineered IP or
+his new design to another user
+without the authorization from Alice.
+This type of IP infringement can happen
+very easily because of the IP we use,
+particularly with the soft IPs.
+It is also very hard to detect and trace.
+Even when Bob is caught,
+Alice may not have
+sufficient evidence to prove
+her authorship of the IP.
+Now suppose Alice embeds her signature
+as watermark into the, into the IP.
+After Bob reproduces the IP or
+integrates the IP into his own design,
+before he can resell it, he has
+to think about whether he has removed
+Alice's signature or watermark completely.
+If not, he might get caught and
+face penalty because this time Alice
+can prove her authorship of the IP from
+the watermark or from the, her signature.
+Therefore, we see
+that watermark can deter attackers
+from illegally copying or using IPs.
+Digital watermarking has been
+widely used for identification, and
+notation and copyright of multimedia
+data such as text, image,
+audio, and the video.
+Traditional watermarking techniques
+take advantage of the limitations of
+human visual and auditory systems and
+embed the signature to the original
+data as small er, errors.
+This actually changes the original
+multimedia data and cannot be
+directly applied for the protection of
+hardware design intellectual properties.
+This is because the value
+of these IPs rely on
+their correct functionalities and
+their performance.
+We observe that for
+a given system specification,
+there are normally many different ways to
+implement the system, or develop the IPs.
+Therefore, if the IP designer
+can intentionally create certain
+structures in the implementation of
+the IP to make it rather unique,
+then this evidence can be used as
+watermark to prove IP's authorship.
+For example, this is the gate-level
+view of two implementations of
+a four-bit arithmetic and logical unit.
+On the left is the original design.
+The one on the right is upturned after we
+embed the message UMCP TERPS
+in the original varial code.
+We can easily see the different
+appearance of the two implementations.
+For example, here, here, and here.
+But it is hard to tell which one has
+watermark and which one does not have.
+The next example is a FPGA implementation
+of the data encryption standard.
+One with no watermark, another one with
+a message, more than 4700 bits embedded.
+Again, we see difference of
+the two designs here and here.
+Now we analyze the constraint
+based watermarking
+from the perspective of
+steganography system.
+Here is the classical
+steganography system.
+Secret data is hidden in the stego data,
+behind the cover data, using a stego key.
+The secret can also be extracted
+from the stego data, if necessary.
+Here is a similar drawing
+showing the concept of
+the constraint-based watermarking system.
+The original problem for the system
+specification, specification of the IP,
+will be used as the cover constraint to
+hide the watermark and author's signature.
+To do this, the IP designer will
+first create a set of constraints.
+These constraints are selected
+in such a way that they do
+not conflict with the cover constraints.
+This is because conflicting constraints
+my turn the problem into unsolvable.
+Then the original constraint and
+this additional constraint will be
+combined together to form a stego-problem.
+The stago-problem,
+instead of the original problem,
+will then be solved to
+obtain a stego-solution.
+This stego-solution will satisfy both the
+original and the additional constraints.
+To claim the authorship, the designer
+has to demonstrate that the Stegno
+solution carries information
+based on his signature here.
+The Stegno solution necessarily satisfies
+a set of additional constraints.
+These constraints may look random.
+However, the designer can regenerate these
+constraints using his signature
+together with his Stego-key.
+Cryptograph, cry, cryptography functions,
+such as one-way hash function and
+stream cipher, can be used to generate
+this embedded constraints to enhance
+the credibility of the authorship.
+Finally, we consider I,
+IP invention as solving a hard problem.
+The requirements for the IP are the
+constraints that any solution is to
+meet to be a solution for the problem.
+The value of the IP will be measured
+by the quality of the solution.
+We now show the concept of
+charting solution space
+behind the constraint-based
+watermarking approach.
+This green area shows a solution
+space to our original problem.
+The purple are in the middle shows
+the solution space of better solutions.
+This point is a randomly found,
+found the solution to the problem.
+After we add extra constraints
+some of the solutions failed to
+satisfy these additional constraints and
+they become invalid.
+Suppose this shaded area is
+the solution space after watermarking.
+Now, if we report the same
+solution it is more convincing to
+say that we find this
+solution by solving it,
+by solving the watermarked problem
+instead of solving the original problem.
+To see this, suppose there are,
+there are n solutions to
+the original problem and
+m solutions to the watermarked solutions.
+When n is greater,
+when n is greater than m or
+in many cases when n is much greater,
+much larger than m,
+the chance that finding a solution from
+the m solutions, which is 1 over m,
+will be much bigger than the chance of
+finding the solution from n solutions.
+And this can be used as a very strong
+proof of the authorship of this
+reported solution, which is in some
+sense the authorship of the IP.
+

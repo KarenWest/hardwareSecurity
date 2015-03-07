@@ -1,0 +1,119 @@
+Welcome to the course
+of hardware security,
+a part of the Coursera Cyber Security
+specialization.
+My name is Gong Chu.
+I'm a professor at the University
+of Maryland College Park, and
+I'm the Director of Maryland's Embedded
+Systems and Hardware Security lab.
+This cybersecurity specialization
+consists of four lecturing courses,
+taught by University of
+Maryland faculty members.
+The usable security by Jen Golbeck,
+the software security by Mike Hicks,
+the cryptography by Jonathan Katz.
+And the hardware security, by me.
+We will al,
+also offer a capsule design course.
+The [INAUDIBLE] overall goal of this
+specialization is to deliver a broad and
+multi-disciplinary perspective on
+the current topic being cyber security
+to the entire Coursera students.
+Cryptography, software, hardware and
+usability are four of the most critical
+components to build any secure systems.
+Here is my view of hardware
+[INAUDIBLE] in this system.
+So first hardware provides the platform
+for the execution of software,
+and an efficient option to
+implement cryptography.
+In terms of usability, most users
+interact with hardware devices and
+systems more often that source code, hence
+the underlying mathematical formulas.
+A securer system must have secure,
+and a trusted hardware support.
+On the other hand, today's hardware
+design heavily relies on a set of
+specific software tools known as computer
+aided design tools, or CAD tools.
+The security problems, your hardware and
+hardware design also need
+both securely sound and
+practically usable solutions.
+The course is called hardware security, so
+we will cover both hardware and
+the security.
+From the side of hardware,
+we will consider the design and
+fabrication of integrated circuits,
+or chips,
+the field programmable gate arrays FPGAs,
+and the popular embedded systems.
+On the security side, we will
+discuss about the systems security,
+vulnerabilities, threats and
+attacks from hardware sites.
+We will talk about how to build trusted
+and secure hardware components.
+We will also talk about the available
+hardware security primitives to help
+people build more secure systems.
+[SOUND] The course will last,
+say six weeks.
+For each week, we expect you to spend
+three to five hours to complete the weekly
+quiz, watch the video clips, and
+also to do some additional readings.
+[SOUND] In terms of the background,
+it is my intention to make
+this course manageable for
+anyone who has some background of
+computer science or engineering.
+You will find,
+if you know something about digital logic
+desig,n about programming any language,
+about the finite state machine, which
+is a very popular computational model,
+and some basics of modern cryptography,
+this will be very, very helpful.
+However, I will cover all
+the necessary background to make
+the course self-contained.
+We, we will also provide links to those
+who want to learn more about these topics.
+Upon the completion of this course,
+you will be able to understand
+the vulnerabilities and the threats to
+a system from hardware perspective.
+And you will also know the available
+countermeasures to these threats.
+You will be able to perform a security
+evaluation for the hardware
+implementations of cryptography
+primitives and the security protocols.
+You will also be able to analyze and
+assess the tradeoffs among system
+performance, cost, and security.
+In addition, we expect you to
+be able to design and build in,
+integrated circuits or embedded systems
+with better security and trust.
+You'd learn hardware security primitives,
+and
+how to use them for secure system design.
+And finally, you will know how
+to use self-protect methods,
+such as digital watermark,
+fingerprints, and
+the integrate circuit metering to protect
+your design intellectual properties,
+in addition to the patent,
+copyright and other law enforcement.
+Good luck on the course and
+enjoy learning hardware security.
+

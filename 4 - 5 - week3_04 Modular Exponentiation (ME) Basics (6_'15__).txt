@@ -1,0 +1,154 @@
+Welcome back to Hardware Security.
+In this lecture,
+we will learn a mathematical operation
+called modular exponentiation.
+It is a very popular operation
+in modern cryptography.
+However, it is also very
+computationally expensive in terms of
+hardware implementation.
+So what we'll learn today is,
+we're going to learn the definition
+of modular exponentiation.
+We will show a couple examples of
+how it can be applied for security.
+We will show a couple ways to see how it
+is computed and how it is implemented.
+And we'll try to explore whether there
+will be any security vulnerabilities in
+such implementation.
+For you to understand this lecture,
+you only need to know how
+to multiply two integers.
+However, for you to complete the quiz,
+the weekly assignment,
+you need to know how to convert
+a decimal number into binary.
+The modulo operator is always about
+trying to find the remainder.
+So when we do a division,
+for example, 7 divided by 2,
+we say the 3 is a quotient, but
+we have a 1 as a remainder.
+So mathematically, we write this as
+7 is congruent to 1 mod or modulo 2.
+Sometimes, I also call this one 7
+equals to 1 mod 2 or 7 mod 2 is 1.
+mathematically, we call, we define
+a is congruent to b modular n if and
+only if the difference of a and b, which
+is a minus b, can be evenly divided by n.
+So once we understand what modular is,
+so what is the modular exponentiation?
+So the goal is in this operation is to
+try to find out what is the value of a to
+the power e mod n.
+For example, once we have a to the power
+4, we say a to the power 4 equal to 16.
+So a to the power 4 mod 10 equal to 6.
+So that is a simple, fairly simple
+operation we're, we're doing here.
+So now let's see a couple
+of simple ways to implement
+the modular exponentiation operation.
+So first it is the straightforward
+way by definition.
+First we compute a to the power e,
+which we call it a variable b.
+And then we do b mod n.
+And this gives us the result.
+For example,
+when I calculate 2 to the power 10 mod 10.
+What I do first is,
+I raise 2 to the power 10.
+I get this 1024 as the result.
+Then I do a 1024 mod 10 where I
+know the remainder, remainder is 4.
+So that is the result, okay.
+So the second way I do is,
+this is the one I call derivative
+modular and exponentiation.
+It is based on the following observation.
+So you have two numbers x and y.
+And if they are congruent
+to each other mod n and
+then if I multiply them both by a,
+they are still congruent to each other.
+So, following this observation,
+I can limit the value of the numbers,
+which I do multiplication.
+For example, I'm not going to
+multiply anything larger than n.
+Whenever they are larger than n,
+I'm going to do a modular operation.
+For the same example here, let's say I try
+to calculate 2 to the power 10 mod 10.
+I start with this,
+which is 2 to the power 1, which is 2.
+So this is fine, this is less than n,
+so I continue doing multiplication.
+The second 2, 2 times 2 is 4.
+This is still less than 10,
+so I do the multiplication.
+4 times 2, which is 8,
+it is the third one.
+And then 8 multiplied
+by 2 again becomes 16.
+So now 16 is greater than n, which is 10.
+What I do now is I do a 16 mod 10.
+So this give me a 6, okay.
+So this is 2 to the power 4.
+And then I continue doing this for
+2 the power 5, 6, 7, 8, 9, and then 10.
+So what I do is, I continue from here.
+This 6 multiplied by 2 give me 12.
+And 12, again, it is larger than 10.
+So I do a mod by 10, and
+I get the remainder, which is 2.
+So starting from this 2,
+I multiply by 2 again.
+So 2 becomes 4.
+4 multiplied by 2 becomes 8.
+8 multiplied by 2 becomes 16.
+16, again, becomes larger than 10,
+so I do another modular operation.
+And this gives me a 6.
+From 6, I multiply it, becomes 12.
+I do a modular, becomes 2.
+And then from this 2,
+I multiply by 2 again, give me a 4.
+Okay?
+So by this method, I also get a 4 here.
+So both methods give
+me the correct answer.
+And you will see I can,
+this is much better because, for
+example, I don't really have
+to find this large number.
+The largest number I have used
+here is 16 for a couple of times.
+So this is, is on, is going to be a very,
+very memory efficient implementation.
+However, the problem
+comes if we are trying to
+calculate a large number
+raised to a large power.
+For example, in this case,
+what is the value
+of 34,987,317 raised to the power
+of 10,357,198 and
+then mod 510,926,533,897.
+So it only, it only, it's already taken me
+some time to read all these numbers, so
+how can we do these multiplications?
+In particular, if you think about this,
+no matter we're doing the first method or
+this second method, we have to
+multiply these things e minus 1 times.
+So once you have a large
+exponents like this,
+how can you multiply this
+many times efficiently?
+That is one of the problems
+we need to solve.
+

@@ -1,0 +1,390 @@
+Welcome to Hardware security.
+Today we are going to talk about
+the physical unclonable functions or
+PUF in short.
+This is a hot topic in hardware security.
+Lets start with the definition.
+PUF is a function that is based
+on a certain physical system.
+Using this physical system it is
+very easy to evaluate the PUF.
+PUF is a function that behaves
+like a random function,
+in a sense that it's going to
+generate random output values.
+These random output values
+are unpredictable even for
+attackers with physical
+access to the system.
+And finally, even when we know
+the functionality of a PUF,
+it is impossible to clone or reproduce it
+another copy of the same physical system.
+Let's see a small example.
+Here we have six inverters.
+Three on the top path, and
+three on the bottom pass.
+Both path lead to a modified different
+flop with one additional control signal.
+When this control signal C equals to 1.
+This is a normal different flop, where its
+contents is the same as the data input.
+When the control signal C is 0,
+regardless of the value of D.
+The, the flip flop content
+remains no change.
+Let's start with input value equal to 0.
+After these three inverters, this 0
+becomes 1 in both top and the bottom pass.
+And when the two one's arrive,
+the D flip flop.
+We have C equal to 1,
+and a D equal to 1, and
+therefore, we know the flip
+flop content should be 1.
+Now, we change the input from logical
+low to logical high, or from 0 to 1.
+And, accordingly we know
+the internal signals,
+they will change any the same way.
+So after three inverters this
+one will change to a zero, or
+this logical high becomes low.
+And when both zeros reach the D, C flop.
+From this definition which is
+C go to zero D go to zero.
+So the flip flop content shouldn't
+change for the remain is one.
+However, this is based on the assumption
+that the past delay on the top half,
+and this bottom half, they are identical.
+Or, some says, that two zeroes arrive
+at the the D, C flop simultaneously.
+Due to manufacture process
+of the digital system.
+We know there are fabrication variations.
+Sometimes also called
+manufacture variations.
+These variations are uncontrollable and
+unpredictable.
+And from, because of the variations,
+we know these six inverters,
+they may not have the same delay.
+Therefore for
+these two signal zeros to arrive at the D,
+C flop at the same time,
+that might not be possible.
+So in that case what will be
+the contents of this flip flop?
+First let's assume that
+the top path is faster.
+So this 0 will reach the signal D
+before C signal changes from 1 to 0.
+So what we have is,
+we have C equals to 1, D equals to 0.
+So in this case we know that flip flop
+contents will change from 1 to 0.
+On the other hand,
+when we have this bottom half,
+where the bottom pass is faster.
+So this zero comes to the flip
+flop earlier, changes C to a 0.
+And this will make the flip flop disables,
+which means its content
+will remain no change.
+So what we have seen so far here is, so
+this is a simple physical system, and
+based on this system,
+we can easily evaluate certain function.
+Given the value here,
+with the value of the output, by looking
+at what is the content of the D flip flop.
+And we have just as analyzed that this
+output has some randomness there.
+It can be either 1 or 0, and
+this is determined based by
+the manufacturer variation, by,
+by seeing which paths will be faster.
+And this manufacture, manufacturer
+variations, they are unpredictable.
+They are also uncontrollable.
+In a sense that, if I fabricate
+the same system, the same circuit,
+with six such as wires, and
+then this modified the D flip flop.
+We can not guarantee that we will have
+the same behavior than the previous one
+that we have analyzed.
+So this example meets all
+the requirements for our path.
+So based on the source of the physical
+randomness of, of, of PUF's.
+We can partition them into two groups.
+The silicon PUF's and
+the non silicon PUF's.
+Silicon PUF's include memory-based PUF's,
+Delay-based PUF's.
+And analog electronic sys, signal based
+PUFs, such as the power grid signals.
+And for non-silicon PUFs,
+we have seen optical PUFs,
+paper PUFs, acoustic PUFs,
+magnetic PUFs, and so on.
+For example, in paper PUFs,
+people believe that the roughness of
+the surface of the paper are random.
+And it can be used for PUF.
+In the rest of the lecture, we are going
+to focus on memory-based PUF and
+delay-based PUF.
+Mainly because they are relatively easy,
+to be integrated into
+the same as technology.
+[SOUND] Let's start with
+the memory-based PUF.
+This is a simple cell of an SRAM,
+where we have the close coupled inverters.
+So, my input is one, so one,
+through the inverter becomes 0.
+This 0 comes down, goes through
+the inverter, becomes one again.
+And then, this one going,
+going back becomes a 0.
+So this circuit now becomes stabilized.
+So we have a stable input is 1,
+and and the output is 0.
+And similarly if the input is zero,
+the output will be a stable one.
+The idea behind SRAM PUF is during
+the systems initial power up stage.
+The in, this input signals
+to SRAM cells are random.
+Therefore, the output will also be random.
+Or in some sense, the initial value
+of each SRAM cell will be random.
+And this can be used to build SRAM path.
+A similar, similarly, where we have light,
+each lights can be used
+to define a path bits.
+For example here initially
+we put A equal to 0.
+Then this 0 is going to make both
+indicate output 0, output 1.
+So B and a C will be what?
+So now, when we change A from 0 to 1.
+And we know that this two input nanogate
+may not have the same speed, so
+let's assume that, for example,
+gate number one is faster.
+So, a is a 1 and,
+previously, C is also a 1.
+So, these two ones would change B to a 0.
+That is what we have here.
+That this 0 comes down here making,
+get number two be to be a 1, which
+means there's no change on this line.
+And then this one coming back here,
+with another one from A,
+keep this one stable at 0.
+So the circuits becomes stabilized.
+So the stay, in the stable state we B for
+the 0 and then C go to 1.
+And because of the symmetry
+of this circuit.
+We know that if we assume that
+gate 2 is faster than C will be 0.
+And then B will be 1.
+So in this case when we make one change in
+the input, the output may have different
+values depends on the,
+the intrinsic property of the circuit.
+And as from path based on the neutral
+power up values is only good for physics.
+For FPGA's because during FPGA startup,
+power up,
+the configuration B string will
+initialize for the SRAM cell.
+So we cannot build SRAM PUF for
+FPJ in this way.
+So researchers have proposed butterfly
+PUF, and flip flop PUFs for FPJs.
+These we're not going to elaborate.
+So, now let's see the delay-based PUF.
+So this is what we call
+the ring oscillator PUF.
+If we consider this as an inverter.
+So this will be similar to
+what we have seen before,
+as the small example for PUFs.
+So for
+these two switch stage inverters we know
+that they have a tiny delay difference.
+And then that delay difference
+can be used to define a path bit.
+And however,
+because this delay difference is so
+tiny, so it is hard to measure
+this delay difference.
+To solve this problem,
+we add this feedback signal here.
+And then replace this inverter
+by a two input nanogate.
+And we do the same for,
+for the bottom velocity.
+So this becomes the oscillator, and
+we see the impact of this is if initially
+that this circuit, this two circuits
+they have a delayed difference of 30.
+And now if I let this
+one run seven times for
+example, and
+then now I measure the delay difference.
+That delay difference will be
+magnified to 1,000 times the area,
+so it becomes much easier to measure.
+And even better,
+instead of measure the delay difference,
+after this we also It's much easier for
+us to give them a time.
+For example, let both re-oscillators
+run one millisecond, and
+we'll see how many routes they
+have run using this counter.
+Whoever has run the more number
+of runs will be the fast one.
+And then, based on this, who is faster,
+who is slower, we can define a bit.
+And another popular re, delay-based
+PUF is the one called arbiter PUF,
+where you have multiple stages
+of a pair of multiplexers and
+these multiplexers are designed
+carefully so these passes,
+they are all symmetric in terms of,
+they will have the same wire delay.
+So, for example,
+if we use this thing we call
+the challenges as the selection bit for
+this motoplexers.
+For the first one, it has a 0, so
+it's going to pick this path coming to 0.
+And for the second motoplexer,
+because I want to pick 0.
+So, I'm going to pick this pass.
+Okay.
+And the way to build this pass is trying
+to make sure this pass there'll be,
+have similar wireless.
+So, now let's assume that's initially
+the signals high, or logical 1 here.
+And also for
+the end these two signals will be high.
+And once we have C equal to 1,
+D equal to 1, we know that the system
+has a memory content of 1.
+So now let's see the signal
+goes down from high to low.
+And because of this variation,
+we see that this blue curve, or
+the blue path is faster.
+And when the blue curve is faster,
+so this one goes down to 0.
+Then beca, and then to that time,
+the C signal is still 1.
+So this is a normal D flip flop.
+So it's countant will be
+the same as the D value.
+So however, under, for
+the same design what is on another chip,.
+Because of the unpredictability of the,
+of fabrication variation.
+We may have a completely
+different scenario.
+So in this case we see
+the red path is much faster.
+And in this case, C now becomes 0, and
+then it's going to disable the flip flop,
+so it's going to keep it's original value,
+which is 1.
+So now, let see some applications of PUF.
+So first, PUF can be used for
+device identification.
+This is based on the observation
+that the same PUF
+circuitry will generate different
+PUF data of different chips.
+So in that way, two different chips
+still have different PUF data, and
+this PUF data can be used to
+distinguish the two chips.
+And PUF can also be used for
+key generation and storage.
+This is much more secure
+than storing keys in memory,
+because key in the memory is vulnerable
+for physical attacks and other attacks.
+But if we use PUF to generate key, and the
+attackers can still use invasive attack.
+To open up the chip and
+then see the structure of the PUF, but
+the results that the PUF run in the race,
+they won't be able to figure out what
+is the key behind this, this structure.
+However, if we want to use the,
+the PUF key as a cryptography key.
+Now, we have to do some post
+process to make this case reliable,
+robust and random.
+And also PUF can be used for
+IP protection.
+For example, they can be combined
+with [INAUDIBLE] machine and
+then trying to,
+trying to do the Active IC metering.
+As we hae seen from the arbiter path,
+there is a challenge and response pair.
+And based on this challenge-response pair,
+which we'll call the CRP,
+has several security
+protocols can be defined.
+For example, we can devine, difi,
+devise authentication scheme.
+The user will have a cup, will have
+a pair of challenge in the response.
+When the user also
+authenticate the device,
+he will send the challenge to the device,
+and the challenge will return a response.
+If the response is correct,
+then the system will be authenticated.
+Otherwise it is not.
+And this pair can be also used for
+encryption.
+For example the data can be encrypted
+using PUF as the secret key.
+Now whoever has the public key can
+use that to decrypt the message.
+And also recently there's a proposed
+approach called the timed authentication.
+This is motivated by the example, by
+the motivation that the, when we do devise
+authentication and their response, and
+they can build a model to attack this,
+okay.
+So at the time of authentication.
+The, the authors observe that for the
+genuine device to response to a challenge,
+the time it takes is much less than the
+response time from model building attacks,
+or from any kind of hardware or
+software emulation.
+And path can also be used for sof,
+software licensing to be bounded
+to particular chip,
+because each chip have a different PUF ID,
+and we can use what tied this PUF ID to
+the software's licensing information.
+And finally, people have proposed to
+use PUF to build a secure memory and
+a secure processor.
+

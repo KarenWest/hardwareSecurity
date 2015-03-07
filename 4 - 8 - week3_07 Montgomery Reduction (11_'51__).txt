@@ -1,0 +1,254 @@
+We now learn another way to do
+fast modular multiplication.
+This method is known as
+Montgomery Reduction.
+Let R and N be two integers that
+are relatively prime to each other.
+And R is greater than N.
+For any integer T, which is greater than
+or equal to 0 and less than the product
+of N and R, the Montgomery reduction
+of T mod N with respect to R
+is defined as the modular multiplication
+of T and R inverse mod N.
+Where R inverse it the multiplicative
+inverse of R mod N.
+Which means R times R
+inverse equal to one, mod N.
+From this definition, we see that
+Montgomery reduction is nothing but
+a modular multiplication and, mod, mod N.
+The following algorithm actually
+tells us there are some other ways
+to compute this quantity.
+We start with some modular
+modification between T and
+the negative and inverse mod R.
+And we call this value m.
+Next, we add T and
+m times N, and
+the sum will be divided by R.
+The quotient, t, will be compared with N.
+If N is less than or equal to t,
+N will be subtracted from t,
+and the final value of t will be report,
+reported as the Montgomery reduction.
+Before we show this claim is true,
+let's see what is interesting in
+the Montgomery reduction algorithm.
+The goal of the algorithm is to
+compute the Montgomery reduction,
+which is the modular multiplication and
+the mod N.
+But in this algorithm you don't see any
+modular multiplication in the mod N.
+What we do see is one modular
+multiplication in the mod R.
+This feature actually gives us a way
+to speed up the modular multiplication,
+which we'll show later on.
+Now let's prove this result t is
+indeed the Montgomery reduction.
+To prove this is true we
+have to show two things.
+First t times R must equal
+to capital T and the mod N,
+and second, t must be between zero and N.
+To see the first equation,
+we start with the definition of t,
+and we multiply both sides by capital R.
+This gives us t times R
+equal to T plus m times N.
+When we do a mod N operation,
+the second term disappeared, so
+the only thing left is T as required.
+If t is obtained by subtracting
+N from the original t,
+we see this equation still holds.
+Because it is entered a (mod N) operation.
+So subtracting or
+adding a N doesn't change anything.
+To see the second condition
+which tells the range of t,
+we start with the definition of m.
+So, m is defined as the remainder
+of T times megative N
+inverse divided by R,
+or the mod R operation.
+From the definition of remainder or
+mod operation we know m
+must be between zero and R.
+So if we multiply this inequality by N,
+we know zero is less than or
+equal to m times N and
+less than N times R.
+This combined with the range, we select
+a T, so we have the following inequality.
+T plus m times N must be greater than or
+equal to 0,
+and also less than one N times
+R plus another N times R,
+so total less than 2 times N times R.
+So if we divided this inequality by R,
+what we get is T plus
+m times N divided by R will fall into
+the range of zero and 2 times N.
+And this quotient,
+it is exactly the definition of T.
+So we know that one T is less than,
+less than N, it is what we need.
+And if t is greater than or equal to N,
+and following the definition,
+N will be subtracted from t, again putting
+the, the value of t into the right range.
+This completes the proof.
+It tells us, indeed, the Montgomery
+reduction algorithm does give
+us the correct answer from Mon,
+from Montgomery reduction.
+When we plug in the definition
+of m into the equation for
+t, indeed we get the Montgomery Reduction
+algorithm's formula.
+Where the reduction equal to T plus
+T times negative N inverse mod R
+times N divided by R.
+And pay attention here,
+at the end we have a mod n operation.
+And remember in the procedure
+we do have mod N.
+So this mod N here is actually
+a shorthand in the notation.
+Remember, when we do this
+division divided by R,
+we know that if the quotient is
+less than N we don't do anything.
+If the quotient of t is greater than or
+equal to N, we subtract the N from t.
+This is exactly the modular operation.
+So that is why we use mod N as
+a short-handed notation to indicate this
+condition and this subtraction operation.
+Next we'll show how we can use
+Montgomery Reduction to simplify,
+or to speed up, the computation of modular
+multiplication, of modular multiplication.
+So to apply Montgomery reduction,
+so let's pick integer R,
+which is greater than N and
+relatively prime to N.
+And then we compute the following
+quantities in order.
+First, we compute an inverse mod N, and
+then we do the modular multiplication
+between a and R mod N,
+and similarly we do another modular
+multiplication between b and R mod N.
+And the last of the two operations,
+are the Montgomery reductions.
+First, we compute the Montgomery
+reduction of a prime times b prime
+mod N, with respect to R, and
+then this new result is called c prime.
+We can calculate the Montgomery
+reduction of c prime.
+After we do this, we return the value
+of c, and the claim is c is
+indeed the modular multiplication
+of a times b mod N.
+And to see this,
+we start from the definition of c and
+then plug in the definition of c prime.
+So what we get is c prime
+times R inverse equal to
+a prime times b prime times R
+inverse times another R inverse.
+And because this multiplication,
+they are commutative, so
+we pair up a prime with one of the R
+inverse to get a prime times R inverse,
+which is a, following the definition here.
+And similarly,
+b prime times R prime gives us b,
+which shows this is indeed
+the modular multiplication.
+So what we see here is we pick this
+R satisfies only two conditions.
+First R must be greater than N.
+And second, R and
+N must be relative prime to each other.
+And so, as long as these two condition
+are satisfied, we can pick any R we want.
+So when R happens to be a power of two.
+So what we know that in digital computer,
+the multiplication of R in
+this case will be a shift of
+k back to the left by k bits.
+And the division by R with the modular
+R operation will be a shift
+to the right by k bits.
+So all these operations
+will be trivial operations.
+So that is why, if we are following
+the Montgomery reduction algorithm and
+pick R as a power of two,
+then this gives us
+a great potential to optimize
+the modular exponentiation.
+So now let's see example to
+see how this can be performed.
+Let's see, we want to compute 68 times 57,
+modular 109.
+So in this case, we have a equal to 68,
+b equals to 57, and N equal to 109.
+So we pick a R which we want to have
+a power of 2 and greater than N.
+So we pick R equal to 128,
+which is 2 to the power 7.
+And then we compute an inverse and
+their mods R, which give us 27 101 here.
+Because 109 times 101
+equals to 1 modulo 128.
+And when we put a negative sign here,
+it becomes 27.
+So now we compute a prime, which is
+the modular multiplication between a and
+R, in this case 68 times 128 which is 93.
+And similarly,
+b prime will be defined as 57,
+which is the value of b times R,
+which is 128.
+And the result is 102.
+And next we compute using
+the Montgomery reduction formula
+to compute the Montgomery reduction
+of a prime times b prime.
+So a prime times b prime which
+is the T here, plus the T times
+negative N inverse which
+is 27 mod 128 times N,
+which is 109, and
+then divided by R which is 128.
+And if we simplify this,
+we realize the result is 178.
+However, this is greater than N,
+which is 109.
+So we subtract 109 from here.
+We got the result, 69.
+Next, we do another round of
+Montgomery Reduction of c prime.
+So what we do is, we plug in the value
+of c prime into the formula here,
+we've got c equal to c prime, which is 69,
+plus 69 times 27 mod 128 times 101,
+109 divided by 128.
+And this give us a result of 61.
+To verify this indeed is the result,
+the correct result, so
+we used the naive, straightforward
+multiplication and modular.
+So when we multiply 68 and
+57, we got 3876.
+And then when we do a mod 109, we got 61.
+Which is exactly the same value here.
+

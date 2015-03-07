@@ -1,0 +1,453 @@
+We have learned hardware Trojan
+taxonomies, and before we discuss how to
+detect hardware Trojans or admit we cannot
+detect them, let's first take a high level
+overview, of hardware Trojan detection and
+its relationship with trusted IC design.
+For a given fabricated integrated circuit,
+and its specification, the goal of
+hardware Trojan detection, is to determine
+whether the IC has any hardware Trojan, or
+whether the IC can be trusted or not.
+A hardware Trojan detection algorithm or
+mechanism, can report user hardware
+Trojan found, were not found.
+In the case when hardware Trojan is found,
+we can see that integrate circuit,
+is untrusted, but we cannot say
+that the design team is untrusted.
+This is because the design team, may use
+untrusted design tools or third party IPs.
+On the other hand, if the hardware Trojan
+detects an algorithm did not detect any
+Trojan, we can not conclude that the IC
+is trusted or the design team is trusted.
+We can only say that,
+this hardware Trojan detection
+algorithm did not find any Trojan.
+And this implies that, it is very hard or
+impossible to claim that
+a IC is 100% trusted.
+Even if we try old input
+combination we can
+only say that the system does not
+have any functional hardware Trojan.
+They may still have parametric hardware
+Trojans in the system, that can
+reduce the reliability of the circuits or
+leak information through set channels.
+So in that sense,
+hardware trojan detection,
+is a process to evaluate or
+to access system's trustworthiness.
+Recall that, we have defined or
+redefined trust,
+trusted integrated circuits as an int,
+integrated circuit that does exactly,
+it is asked to do, no less and
+no malicious more.
+So for a system specification,
+there are many, many different designs, so
+we take a approach,
+consider the design solution space.
+So this is a design space and
+this vertical bar,
+partition to be that space into two parts.
+The left side is the successful design
+that meets all the design requirements.
+The right pa, pa,
+path is the design failures which fail to
+meet some of the design specifications.
+And as we have learned older
+designs will do something more.
+So depends on whether these
+more things are malicious or
+not, we can further petition
+this ad space into two parts.
+The lower right corner here
+are the malicious functionalities imparted
+into the design, and the rest of the part
+they don't have any malicious or
+functionalities which in some
+sense we call the innocent more.
+And finally, assume that we have
+a hardware trojan detection algorithm or
+trust assessment tool.
+The tool will e,
+will assess the design as every port
+whether design is trusted or untrusted.
+So the latter half, this pa, part is
+called trusted design and the upper
+right corner and the lower left cor, or
+right corner, is at untrusted design.
+So with this three curves,
+the vertical bar, this red arc, and green
+half su, circle here, we partition the
+design space into eight different regions.
+The first region, the successful designs,
+because they on the left.
+They do have malicious functionalities.
+But the, the, the two has
+successfully detected as untrusted.
+Region number two is the same
+as region number one.
+However, the two fails to detect
+the malicious functionalities.
+They sync, this design is trusted.
+Region number III, is a successful design
+with no malicious functionalities,
+and the two consider this as trusted.
+Region number IV, successful design,
+no malicious functionalities, but
+the two accidentally or
+incorrectly identified this as untrusted.
+On the right side of this vertical
+bar is the whole failure designs.
+And the first two the five and
+the six they have malicious
+functionalities and then the two easily
+considers them untrusted or trusted,
+and the trusted case this is an error.
+For Region VII these are these
+are failures with no
+malicious functionalities and
+then the two consider these are trusted.
+Region number VIII these are succ, they
+are failure designs, with no malicious
+functionalities and the two successfully
+identified these as untrusted.
+And finally as we have discussed of, from
+the first week, so in your older details
+designs, there might be some backdoors,
+what we call the security vulnerabilities.
+So after this we consider
+systems vulnerabilities.
+And this region inside the circle here,
+we called region number nine,
+these are what we call vulnerable
+designs with security vulnerabilities.
+So in that sense, what we are doing
+here is to have a good design,
+what we want to do is,
+we want to search in the trusted region,
+which is region III and
+region IV and outside region nine.
+We want to find in this regions
+the best quality design here.
+And the hardware,
+the goal of hardware trojan detection,
+they have a different goal here.
+Remember, this is the hardware trojan
+detection which trust assessment into
+their report.
+The report, this part is trusted and
+the other part, they are untrusted.
+And then we do see some
+false statement here we have
+a false positive here with the number IV,
+this region is trusted but
+to report this as untrusted we want
+to minimize this false positive.
+And also the two has
+three false negatives.
+Region number II, Region number VI and
+region number VII.
+And we need to pay special atten,
+attention to
+region number II because these all
+have some malicious functionality but
+that the tool fails to detect it.
+For VI and VII it is of least importance
+because they are failure, design failures.
+So before we talk about how to detect
+hardware trojans, let's step back and
+then think about physical
+attacks to a system.
+Assume this is my chip.
+It has my intellectual property,
+it has my secret data.
+And, the attackers want to launch what we
+have discussed the physical attacks to
+the, to the chip.
+Trying to either reveal
+my design details or
+trying to steal the secret
+data stored in the system.
+And we have learned the different
+physical attacks, starting from
+the invasive attack, semi-invasive attack,
+or non-invasive, invasive attacks.
+And the two of the most, I mean, powerful
+attacks, they are reverse engineering and
+search channel analysis attacks.
+So these attacks they'll be able to to
+they'll be, I mean, be able peel of
+the chip layer by layer trying to figure
+out what is in the structure of the chip,
+and then trying to find out
+the functionality of my design.
+Or it can go through set channel,
+trying to analyse and then steal the data.
+So now let's consider, I don't have this
+chip here but I want to design a chip, and
+then someone design a chip for me.
+I got this design back, and
+I have this question, whether the chip
+has any hardware trojan or not.
+So what I want to do here is,
+I want to do a hardware trojan detection.
+And my goal is to detect hardware trojan,
+or trying to find any information
+related to hardware trojan.
+So take a look of these two scenarios.
+They are very, very similar, or
+in some sense they are identical.
+In both cases, you have a chip which you,
+you don't know all the details.
+And your goal is trying to find
+out the details of the chip.
+What it does and
+what kind of information that chip has.
+If that is the case, what I can do for
+hardware trojan detection,
+I can use exactly this attacker's used for
+physical attacks to the system
+to do hardware trojan detection.
+If that is the case I can claim that
+hardware program detection is easy,
+but is it really easy?
+So let's take a look at this approach
+which is based on reverse engineering.
+So this is what we call the de,
+the destructive hardware Trojan detection,
+or it is similar to invasive attacks.
+So what,
+what it does is it's going to pick one or
+a couple thumb holes inte,
+integrate circuits.
+And, it, it's going to remove the package
+to expose the die of each of the ICs.
+And then, it's going to conduct
+a reverse engineering trying to
+reveal the inner structure
+of the system and
+trying to figure out
+the functionality of the system.
+Whenever we find any malicious addition or
+modification to the system or
+to the wires or
+to any physical features, to the,
+to the design we can claim
+hardware trojan found.
+Technically this is correct and
+you should be able to capture all of
+the hardware trojans, regardless they're
+functional trojans or parametric trojans.
+However, these are not practical for
+a couple of reasons.
+So first,
+this process is very very expensive.
+Not only do you need
+the expensive equipment and
+tools, they also require detailed
+design knowledge and also,
+there are many, many cases,
+they are very, very time consuming.
+And second, even if we find any
+additional things in the design,
+and how do we know they are,
+these more things they are malicious, and
+how do we know they are intentionally
+added, or accidentally added.
+And then finally, remember we start by
+picking one sample or a couple of samples.
+And it is possible for
+the foundry to embed hardware trojans
+only on several chips not all the chips.
+So if we pick the sample that doesn't have
+hardware trojan, we cannot claim that
+all the chips fabricated by this foundry
+they don't have hardware trojans.
+So there are several factors that
+make hardware trojan detection,
+detection a very challenge task.
+First the hardware trojans, as we have
+seen from the hardware trojan taxonomies,
+they are very, very versatile.
+They have different sizes from
+largeblocksof powerful antennas to
+some very small kill,
+kill switch, a couple of gates.
+Or even you don't have any caves,
+you just make the, the wires thinner or
+change the physical features
+of some other components.
+And hard,
+hardware trojan can be hidden in many,
+many different locations of the system.
+Can be in the memory, can be in the IO
+device, can be in the processor.
+So, and then most of the hardware trojans,
+they're not active.
+They stay very very quiet,
+they sleep there un, until it has been,
+it will be activated.
+And they will take different forms or
+different types, as we
+had mentioned about functional hardware
+trojans or parametric hardware trojans.
+This makes the detection of hardware
+trojans very very challenged.
+And second, the test,
+the traditional testing tools or
+verification tools,
+fail to do the hardware trojan detection.
+Because they're developed to
+detect manufacturer defects or
+faults, not for this intentionally
+added malicious purpose.
+And finally, it is very difficult to
+distinguish between hardware trojan and
+other noises.
+By noise we mean a few
+different scenarios.
+So first, the hardware trojan
+detection algorithms or
+the testing tools, they may have errors,
+fail to find the hardware trojan.
+And also the side channel,
+they may have noise and
+then the measurement we got from
+the side channel, we have errors.
+This will make hardware trojan detection
+algorithm based on side channel trying to
+create some errors.
+And also we have talk about earlier.
+They have functional noise.
+For example, the don't care conditions.
+It can be accidentally implemented
+to carry some malicious purpose.
+And finally,
+there might be manufacture variations.
+For example, some wires become thinner,
+some special voltage becomes higher or
+lower.
+I know this will make hardware
+trojan detection algorithm or
+approach much difficult.
+So, besides the destructive approach we
+have seen earlier, there are also a lot of
+non-destructive, destructive approaches,
+that mainly falls into two categories.
+The run-time monitoring approach and
+the test-time detection approach.
+For the test time detection approach,
+they have logical detect and
+side channel analysis approach.
+And we're, we're going to analyze
+this later in the next lecture.
+And to end today's lecture,
+we are going to study how
+the hardware trojan will be added or
+what's the hardware trojan designers,
+they will think [SOUND].
+So as a hardware Trojan in embedder or
+designer.
+So the first, we have to have some
+motivations to insert hardware Trojans,
+and for their motivation normally starts
+by trying to see what other system or
+applications they are targeting.
+This can be a financial institute or
+maybe a banking system or
+this can be military systems.
+And they have to consider what is
+the pay load when hardware trojan is
+activated versus the design cost
+to embed such hardware torque.
+And then they have to consider
+technically, when, where, and
+how to embed the hardware trojans?
+There goal is, is two folded.
+First they want the hardware trojan to
+be effective, in a sense that they want,
+want to be able to trigger hardware trojan
+at the right time at the right place.
+And they want to make the damage
+as large as possible.
+And second, they want to make
+this hardware trojan stealthy,
+in the sense that it
+will be hidden well and
+then the hardware trojan detection
+algorithm cannot find them.
+Take the kill switch, for example.
+In this case, the hard,
+the, the trojan designers,
+they want to control the, the hardware,
+this hardware kill, kill switch.
+They want to make sure that this switch
+will be switched at the right time and
+the right, right place to disable
+the components they want to control.
+And second, they want to have little,
+very little, or no change to the design.
+Both to the functionality of the system,
+and the layout.
+This, the goal is trying to av,
+avoid being detected by either the test of
+time or doing the side channel attacks,
+the side channel analysis approach.
+And finally, because the kill switch, so
+the attacker wants to have
+some control of the trigger.
+So the trigger,
+do you want to have good control ability?
+It normally has to be based on rare event,
+and
+they want to have
+an internal control switch.
+So with the understanding
+of what's the attacker will
+think about having a better hardware
+trojan, in this case the kill switch.
+We can design our hardware
+trojan detection mechanisms to
+detect kill switch.
+For example, we'll first identify the
+potential target hardware components or
+blocks that the attackers
+may be interested.
+And second, for this block,
+for each of this block's B,
+we can do a test-time formal
+verification of B's control signals and
+input signals,
+make sure they are all secure.
+And at the run-time we can do
+the monitoring of the controls signals to
+the block B and
+also the input-output relations,
+make sure that the correct
+outputs will come with the input.
+And in the meanwhile we can try to
+monitor the stat channels to see if
+there is any abnormal behaviors.
+And finally we can do
+a very strict control of
+outside particular wireless signals.
+And all the blocks that
+are connected to this block B.
+This is because we know
+this is a kill switch.
+So ta for the kill switch to work,
+it must have some trigger.
+So with all this precautions,
+we cannot say that we have
+100% guarantee to protect the system
+from this attack of kill switch.
+However, once we have all
+these mechanism in place for
+the attacker to impact a kill switch
+into the system, it becomes much harder.
+

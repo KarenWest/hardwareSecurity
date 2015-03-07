@@ -1,0 +1,333 @@
+We now discuss the power analysis attacks.
+We will cover both simple power analysis
+and differential power analysis.
+In simple power analysis,
+the attacker attempts to visually exam,
+the system's current or power waves forms.
+Do, during execution,
+your ordered to discovery information
+about the data operation.
+This is based on the fact that the system
+will consume different amount of power
+when perform different operations or the
+same operation with different input data.
+The power and the current it traces
+can be upturned by oscilloscopes,
+high frequency components that do not
+reflect the data induced variations
+can also be filtered out.
+For devices such as smart cards,
+the power and
+the current information can be
+read directly from the terminals.
+The oscilloscopes and
+other equipment to measure power or
+current are widely used in the design,
+testing, and the debugging of the systems.
+They are relatively inexpensive and
+they can provide a pretty high precision,
+of the measurement.
+This is the pseudo code, of the square and
+the multiply algorithm,
+that we have learned last week.
+It is one of the most efficient
+ways to compute the value of a to
+the power e mod n.
+Remember, that's this
+multiplication operation,
+will only be executed
+when ki equals to one.
+This multiplication is
+a non trivial operation and
+its data dependent execution variation,
+can be observed through such channels,
+such as power, current and timing.
+We have mentioned that this might
+lead to side channel attacks that can
+reveal the value of the secret key.
+Now, we will see how this can happen.
+Square, is a special
+case of multiplication.
+Since it is a very popular operation in
+signal processing and other applications.
+Many systems, have special
+implementation of square that is
+normally more efficient
+than multiplication.
+This results in measurable
+shorter time and
+less power consumption to
+compute B square than A times B.
+From this simplified power trace,
+we can distinguish the square and
+the multiply op, operations.
+The x-axis is time, the y-axis can be
+seen as either the power or delay.
+Square is short, and
+the two bars are multiplication.
+Now recall that multiplication is only
+executed, when the key value is one.
+We can easily retrieve the key value,
+from this trace.
+First, the two bars, corresponds to
+the power or current, for multiplication.
+Therefore, they, these bars and
+the shorter square bars immediately
+in front of them, are related to
+logical ones in, in the secret key.
+The other ones only square operations,
+they are corresponds to
+logical zero in the key.
+And this is a way, how we can retrieve,
+the secret key that has been used to
+compute this ex, modular exponentiation.
+Simple power analysis,
+not only can reveal the key data value.
+It can also leak information,
+such as which round of
+the encryption is performed.
+However, as we have said earlier today,
+simple power analysis relies on
+the visible information from the power or
+current traces without
+using analyzing tools.
+Large number of traces, do not help much.
+This also implies that the precision
+of this side channel information,
+should be relatively high.
+To deduce secret data about
+the decrypted algorithm,
+from the very limited visual evidence
+in the power and the current traces.
+A good understanding of the crypto
+algorithm and it's hardware,
+software implementation, will be critical
+to the success of a simple power analysis.
+Simple power analysis attacks, are
+noninvasive, because the attackers, will
+only collect the power and the current
+traces, during system's normal execution.
+They do not leave much evidence,
+of the attacking either.
+However, it is possible to
+compare power analysis attacks,
+with other passive attacks.
+For example, if the attackers can control
+the input signals, they can have the sys,
+system running with inputted data
+of their choice to obtain or
+verify the deduced
+information from power trace.
+A more effective way,
+is to use fault injection message.
+So, the system will run
+at an abnormal mode, and
+the power the traces,
+may leak more valuable information.
+Because of the simplicity of simple power
+analysis, there are many countermeasures,
+that can effectively prevent simple
+power analysis attacks, with,
+with little or no cost.
+Therefore, advanced power analysis method,
+known as the differential power analysis,
+has been proposed.
+Differential power analysis attacks,
+require a large amount of power or
+current wave forms.
+However, the precision of these wave
+forms does not need to be very high.
+Then, with this data,
+the attacker will build a model,
+with some hypothesis about
+the secret key information,
+advance the data analysis techniques,
+such as statistical message.
+Nobody in the form of
+computer softwares will be
+used to reveal the key information.
+Differential Power Analysis,
+can be performed in any algorithms,
+that use the S box with the exclusive or
+of the segmented key and
+some known data are for as input.
+For differential power analysis
+attack to be successful,
+the following conditions are needed.
+First, the attacker must denote
+the crypto algorithm under attack.
+It is well known that the security of for
+cipher or cryptosystem is based on how
+hard it is to break the secret key, not on
+which crypto algorithm the system uses.
+But in practice, knowing which crypto
+algorithm the system uses can be very,
+very helpful for the attacker.
+Second, as we have mentioned in the last
+two slides, differential power analsi,
+analysis attacks need a large amount
+of power traces, this normally
+implies that the attacker will have
+physical control of the system for
+some amount of time to collect such data.
+Third, unlike the superpower analysis
+attacks, that do not need much help from
+software tools, most d, d, differential
+power analysis attacks require some
+statistical analysis tools to study the
+data and extract the secret information.
+The two big advantages of differential
+power analysis attacks compared to
+single power analysis are that they
+do not need to know the hardware and
+the software implementation
+details of the crypto devices.
+And they do not need to the power and
+the current waveforms to
+be very accurate either.
+Now, we see something else
+about differential power
+analysis attacks starting with
+the data collection phase.
+The algorithm here in the bl,
+the black box or the key that is
+using this algorithm is the target of
+the differential power analysis attack.
+The attacker will run algorithm with
+the piece of input data M sub i, and
+to obtain output C sub i.
+Meanwhile, the power wave form W i,
+during the execution, will be captured.
+The attacker will then repeat this process
+to collect more power waveforms W sub i.
+Normally, from hundreds to hundreds
+of thousands of measurements might be
+needed for successful differential
+power analysis attack.
+This number depends on the crytosystem and
+their attack and also the.
+The quality of
+the [INAUDIBLE] information.
+After the data collection,
+now the attacker has a lot of
+triples of the inputs text M sub i,
+[INAUDIBLE] text C sub i, and the power
+[INAUDIBLE] curved waveform W sub i.
+Assuming that the attacker knows the
+cryptoalgorithm being targeted, and wants
+to figure out the key only, that function
+f be the operation, or transformation,
+this algorithm is performing on the
+inputed data N, with hidden secret key.
+The attacker can compute output L sub i
+when the input and M sub i is supplied or
+plugged to the function F with
+any possible key value of K.
+He then can select a bit
+position j in the output L i, and
+let's call this bit Ls of I J.
+The large amount of data the attacker has
+collected will then be petitioned into
+two disjoined, which means now
+overlapping subset as sub 0 and as sub 1.
+In S sub 0 it has all the triplers of Mi,
+Ci and Wi, where L sub ij is 0.
+And in Si, it has all the data where Lij
+has values 1, that the j speed position.
+Then the attacker can compute
+the average wave formation,
+if each of these two subsets, which is
+calculated here by summing them up and
+divided by number of piece of
+data's in each of the set.
+And then we can com, calculate
+the difference between these two average,
+we can them data, and
+also we call them as the DPA value.
+Based on this value,
+the attacker can build model, or
+they can do the hypothesis
+test to deduce to correct key.
+If an incorrect key K is used to
+compute the, the output L sub i,
+the values of L i and the new output,
+C of i will not have any correlation.
+Recall that the two subsets, S0 and
+S1 there are partitions based
+on the bit value of Lij.
+But the power wave form, Wi's, they
+come from the real computation of Ci's.
+In this case because the Li's and
+the Ci's can not correlate it.
+Therefore, in each of this set
+when we compute the average
+the power wave form collected will,
+will up zero.
+And those will, will, when hubbard is one.
+So, when we do the average we
+will have very similar values.
+So, their difference, which is the DPA
+value will be very close to zero.
+However, when the correct key K is used,
+the computage of
+L sub I and the real output
+C sub I should be the same.
+Therefore, the power wave forms,
+W I in the same subset should be similar.
+And the wave forms from different
+subsets should be different.
+This will result in a large gap
+between the average power of, for
+zero and the average power,
+or average current for one.
+The difference is the delta,
+is the delta, or the DPA value.
+So, we can locate the correct key
+with high probability by looking at
+the key values that cause
+peak values in DPA.
+This slide shows how DPA breaks, how
+differential power analysis attacks breaks
+128-bit AES key or 16 bytes.
+As described earlier,
+first large amount of input.
+Text x sub i will be encrypted to
+generate the ciphertext C sub i.
+And then the power wave
+forms will be collected.
+Then for each byte K sub i,
+which has 8 bits,
+there will be 2 to the power h,
+with 256 possible key values.
+We use each of them as the key to
+compute the output decipher text,
+L sub i, then to the partition
+of the collected power wave
+forms based on L sub i, and
+to compute the DPA values.
+Because there are 16 bytes, so
+the total number of DPA values
+we have to compute will be 256 times 16,
+which is 4,096.
+The following figure,
+figures shows the result.
+Where we can clearly see
+there are a few picks.
+For example,
+the guess 1 here has the largest to pick,
+which indicates this, most likely,
+will be the correct key.
+It is not-trivial to
+compute the DPA value.
+Given that the power wave forms we
+will have to collect may be tens or
+hundreds of thousands.
+So, doing DPA type computation for
+4,096 times is not an easy task.
+However this can lead us
+to break the 128 AES key.
+If we do the brute math search,
+the key space will be 2 to the power 128,
+this is much larger then 4,096,
+which is only 2 to the power of 12.
+

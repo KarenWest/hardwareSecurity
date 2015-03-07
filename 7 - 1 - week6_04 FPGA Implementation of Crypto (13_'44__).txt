@@ -1,0 +1,322 @@
+Today, we will talk about FPGAs and
+their role in security and trust.
+We will start with the basics on FPGA and
+FPGA-based systems.
+We will discuss about the advantage
+of implementing crypto
+systems using FPGA compared
+with using ASIC or software.
+And we'll talk about how FPGA can
+be used to design hardware security
+primitives such as physical unclonable
+function and true random number generator.
+Next time, we'll talk about
+the vulnerabilities in both FPGA and
+FPGA-based system design and
+their countermeasures.
+We'll take an approach, which form
+the supply and the demand model for
+FPGA design market.
+In terms of background, if you have
+some experience in FPGA design,
+that will be a plus.
+However, it is not required.
+But we do need you to know,
+will be familiar with the physical attacks
+we have discussed several weeks ago.
+FPGA stands for
+field programmable gate arrays.
+It has input,
+output blocks on the parameter, and
+which known as this I/O buffers, and the
+core programmable fabrics in the middle.
+This letter L, the large L blocks,
+this stands for logical blocks and
+they are the circuitry to implement
+various Boolean functionalities.
+The logical blocks, they are connected
+with wires in the routing channel
+through the connection blocks,
+C, and the switch blocks.
+All these blocks, the L block, C block,
+and the S block, they are programmable.
+Today's FPGA devices,
+they can have billions of transistors
+under the 10 nanometer technology.
+Designing this many, logic units with,
+with such huge capacity, capacity can be
+a, can be a very, very high challenge.
+To help FPGA system developers,
+most of the FPGA vendors,
+they put many additional features
+on their FPGA boards in addition
+to only the, you know, in addition to
+the programmable logic cells alone.
+Typically, a FPGA chip has
+hardwired functional units such as
+the DSP cores or the embedded
+processors for certain applications.
+And also it may have
+large memory blocks and
+the high-speed input output and also,
+as well as other types of design IPs.
+This is a typical design
+flow of FPGA-based system.
+Starting from a given
+system specification,
+we first select the FPGA device that
+will be used to implement the system.
+Then we use hardware description language,
+such as, such as Verilog or
+VHDL to specify the behavior of the system
+based on the system specification.
+And the right all type of
+timing requirements in
+the design constraint file.
+So with the help of the FPGA developing
+tool associate with the FPGA device,
+we have selected in this face,
+a bitstream file will be
+generated as the desired output.
+These file will be used to
+configure the FPGA device to
+provide the system functionality.
+And pay attention, that's this bit,
+bitstream file, which normally
+called configuration bitstream file, will
+be used for this particular FPGA device.
+FPGAs from different vendors or
+different brands,
+different types, they cannot use
+the same configuration bitstream files.
+They have to be reconfigured,
+in some sense, redesigned.
+Compare with the ASIC design, or
+application-specific integrated
+circuit design, of the system for
+the same functionality with the same
+specification, FPGA-based system
+implementation has a much shorter time
+to market and an extremely low cost.
+For example, from this design flow,
+we don't see any involvement
+of the silicon foundries.
+This can save a lot of time and
+a lot of money.
+Second, this, the, the same FPGA
+board can be reprogrammed for
+different applications, or
+can be modif, can be re-programmed for
+modified systems specifics,
+specifications.
+These make,
+make FPGA a very popular design platform.
+Also compared with the software
+implementation for
+the same system specifications, FPGA-based
+system are in general much faster,
+more energy and power efficient, and,
+also have a very, very low power.
+This is because software
+implementation normally needs
+the support from general
+purpose computers.
+And, general purpose computers, they're
+much more expensive than FPGA boards.
+Now we can see third
+example of implementi,
+of implementing a cryptographic
+system such as a cypher.
+So one could go with
+the software implementation,
+which you can write the C code or
+Java code, or whichever high level,
+high level language codes, compile it and
+then run on a specific system.
+So this type of implementation
+has a short implementation time,
+it is easy to debug and update,
+and it also has low cost.
+And, on the other hand, we can go
+with the hardware implementation, and
+they will offer the following advantage.
+So first, you will have extremely
+low power consumption because we
+designed the system specific for
+this cryptosystem.
+And they will have high throughput,
+or high performance, and
+they will have much faster speed
+than the software implementation.
+The FPGA-based implementation in some
+sense is a compromise of hardware and
+software implementation.
+So they can enjoy both the advantage
+from software implementation and
+from hardware implementation.
+First, we see the feature of programmable
+logic cell structures on FPGA boards.
+These are good for
+implementation of bit-wise operations.
+Second, the large build-in
+memories on FPGA boards.
+It is in general very good for
+memory intensive operations,
+such as the substitution used for
+many, many deciphers.
+And third, the reconfigurability of FPGA,
+we have mentioned earlier, is,
+is good for reuse and integration.
+There are many reported cryptosystems
+developed based on FPGAs.
+These designs has demonstrated that
+FPGA have advantages in implementing
+some popular crypto building blocks,
+such as the field,
+finite field arithmetic and the ellip,
+elliptic curve cryptoprocessors.
+Here are some specific benefits
+of implementing crypto on FPGAs.
+First, FPGA-based implementation
+offers algorithm flexibility in two,
+twos, two ways.
+The agility, we know that many secure
+particles, such as SSL and IPsec,
+they are algorithm independent and
+maybe implemented with multiple or
+different crypto algorithms and
+this offers several advantages.
+So for example if one algorithm is broken,
+it's compromised.
+We can simply delete it and use another
+algorithm or another implementation to
+avoid the security protocol from,
+from going dark.
+And similarly, when there's a new
+algorithm developed to implement
+the the secure, security protocol,
+we can add it into the system for
+the protocol and, and
+maybe choose it for best performance.
+On FPGA systems, this becomes very easy
+to switch cryptographic algorithms during
+the operation of the target application,
+for example, the secure protocols.
+It also makes the secure protocols
+more adaptive because up,
+uploading new standards, or
+modifying standards for spec,
+specific applications,
+are all doable on FPGAs.
+This may not, or if it is possible,
+will be very, very expensive to
+do on application-specific implementations
+for this ASIC implementations.
+Second, FPGA implementation
+offers architecture efficiency.
+We know that when we fix the values for
+more variables, the system becomes more
+like application-specific
+rather than general purpose.
+And in general, the system
+performance with less variables will,
+will be more performance and
+hardware efficient.
+Also, when we need to change
+the values of these parameters,
+we can redo the design,
+and reoptimize it and
+resynthesize it on a FPGA board but
+we cannot do these things on ASIC.
+Third, to have,
+the same FPGA device can be used for
+multiple security protocols
+through run-time reconfigurations,
+as long as these protocols
+are not used simultaneously.
+By doing this way, we do not have
+to implement separate hardwares for
+each of the security protocols and
+we can save a lot of system resource.
+So next, compared,
+as we have already seen earlier,
+compared with software implementation,
+the FPGA implementation normally will be
+much faster, often can be ten times or
+hundreds of times faster.
+It will have actually a very
+similar performance as the very
+powerful general purpose CPUs.
+However, of course, the dedicated
+ASIC implementation of secure,
+security accelerators will be
+faster than FPGA based system.
+Finally, and perhaps one of
+the most important advantage of
+FPGA implementation is
+its cost efficiency.
+By cost, we're talking about
+both the unit price and
+also the design time and the design cost.
+So, FPGAs are ideal for
+building hardware security primitives.
+As we have talked about earlier,
+for both type of PUFs or
+physical unclonable functions,
+to delay-based PUF and
+memory-based PUF, they can be,
+they can be simply implemented on FPGAs.
+And to implement a true random
+number generator, and for
+a gener, true number, true number, true
+random number generator to be a good one,
+we have to evaluate
+the following criterias.
+So first, it is the entropy source
+of the true random number generator.
+Well, where the randomness comes from?
+On FPGA and
+other hardware, due to the fabrication
+variations and other unpredictable and
+uncontrollable nuances, there are many
+sources that can be used to generate
+randomness such as the phase jitter in
+the clock network and the path delay.
+And second, the design footprint.
+This measures the cost efficiency of
+the true random number generator.
+Typical matrix includes area, energy, and
+the time required to
+generate one random bit.
+The low cost and
+the high availability of FP,
+of FPGA make it a very good
+choice based on this criteria.
+The next that, two matrix,
+on the testing of random,
+random bitstreams generated by
+a true random number generator.
+These bitstreams, they have to
+be tested for predictability and
+other statistical properties.
+There are many randomness test suites
+available, such as the diehard and
+the one maintained by NIST.
+The random then,
+the random bitstreams must also be
+secure against attacks and also robust
+against the environmental variations.
+As we have seen in the earlier
+study of PUF, FPGA and
+hardware based approaches
+can meet these requirements.
+Finally, just like how
+random was selected as,
+as a yes, the ease of implementation
+is also important and, and
+the FPGA-based true random number
+generators are easy to implement.
+Next time we will talk about
+the vulnerabilities in FPGAs and
+FPGA-based system design.
+

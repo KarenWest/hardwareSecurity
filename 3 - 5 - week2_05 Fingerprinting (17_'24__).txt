@@ -1,0 +1,412 @@
+We have learned the digital watermarking,
+hitting bad information about the three
+intellectual property designer into
+the IP, as additional design constraints.
+The watermark the intellectual property
+was satisfied this additional constraints.
+And therefore, has certain properties that
+can be verified to prove IP's authorship.
+We now started digital fingerprinting.
+First, why do we need fingerprinting?
+We know that digital watermark can
+be used to prove IP's authorship.
+However, it cannot distinguish different
+users who are using the same IP.
+When you sell your IP to
+ten different customers and
+you find someone else
+who's also using your IP,
+can you find out from your ten different
+customers who has misused the IP?
+I'll say it's no, unless you can find
+a way to identify each copy of the,
+of the IP.
+Or you have to make different
+copies of the same IP.
+Digital fingerprint is a protocol
+that can make each copy of
+the object unique and distinguishable.
+[NOISE] Here is some comparison between
+digital watermark and digital fingerprint.
+First, they're both invisible
+identifiers that are embedded in
+the design permanently for the purpose
+of intellectual property protection.
+Watermark remains the same for
+all copies of the IP,
+while fingerprints must be unique for
+each copy.
+In other words, fingerprint is equivalent
+to multiple copies of distinct watermarks.
+Any fingerprinting techniques
+has to address the following two
+fundamental problems.
+How to generate IPs with different
+fingerprints effectively.
+And, how to distribute
+the solutions to the users.
+We now elaborate challenges for
+digital fingerprinting.
+First, in the face of IP generation,
+the challenges are,
+how to create multiple, or in many cases,
+a large amount of solutions.
+And second,
+how to maintain the high quality of
+these solutions to keep
+the value of these IPs.
+And a search how to minimize the time and
+the complexity to generate
+multiple solutions.
+Ideally, we want to keep
+it close to the time and
+effort at the same level of
+funding one single solution.
+In the second phase, of IP distribution,
+there are also several challenges.
+Uniqueness means that different users
+must receive distinct, distinct
+fingerprinted IPs, in order to provide
+high credibility about their identity.
+And robustness requires it
+to be very difficult for
+attackers to remove or
+change the fingerprints.
+Finally, the fingerprinted IPs should be
+very different from each other
+in order to prevent collusion.
+This second phase is similar to the scheme
+that distribute fingerprinted copies
+of multimedium data or other artifacts.
+There are plenty of such established
+schemes that we can use.
+Therefore, in the rest of this lecture,
+we will focus on the first phase, which
+is the solution generation particles.
+[NOISE] This slides highlights two
+different fingerprinting techniques.
+The first one is called constraint
+addition, where we start from
+the original problem although we consider
+a set of fingerprint constraints.
+Combining these two we'll form
+the augmented solu, problem.
+We use the problem solver to solve
+this augmented solution to obtain
+a seed solution.
+The seed solution meets
+the original problem constraints.
+Which means it has, it is,
+has a valid as a IP.
+In addition, it also meets
+the fingerprinted constraints.
+We can design these fingerprinting
+constraints in a way,
+such that we can generate multiple
+solutions from this seed solution.
+This is what we called the set of
+rules for solution generation,
+which is based on the fingerprinting
+constraints, and also the problems.
+And from one solution, this set of rules
+will create multiple solutions for us.
+From this flowchart, we'll see that
+the problem solver will be used only once,
+which means the runtime to create multiple
+solutions by constraint addition will be
+similar or in some sense identical
+to the time complexity for
+finding this seed solution.
+However, how to design this
+fingerprinting constraints, and
+then how to create the rule,
+the rules for solution generation.
+This can be very, very challenging.
+The second technique is
+called iterative approach.
+In this approach,
+we start from the original problem,
+which might be watermarked to re,
+reflect the designer's signature.
+We solve the problem to
+find a seed solution.
+And then to generate fingerprinted copies,
+we take the user, or the buyer's
+fingerprint, and then combined with the
+original problem and the seed solution.
+To first construct a sub-problem, which is
+a small portion of the original problem.
+Then we use the problem solver to solve
+this small problem, to find a solution for
+the sub-problem.
+By combining this sub-solution,
+the sub-problem, and the seed solution for
+the original problem, we can form a new
+solution for the original problem.
+This will be put in the solution
+pool with this buyer's fingerprint.
+If we need more copies of
+the fingerprinted copies,
+we can repeat this process and
+potentially using this new solution as
+the seed solution to repeat this process.
+And from this flowchart, we see
+the problem solver will be used many,
+many times.
+More precisely,
+to generate each fingerprinted copy,
+we need to use this
+problem solver here once.
+However, notice that here we're solving
+a sub-problem which potentially
+will be much, less much less com,
+complex than the original problem.
+So hopefully the runtime
+overhead will not be
+as high as solving the original problem.
+Now let's see an example.
+We use the graph coloring
+problem as the example here.
+Remember the question is,
+how to give each node in a graph of color,
+such that any two nodes which
+are connected by the edge will get
+different colors and
+we ought to minimize the number of colors.
+And here is the solution to this problem.
+And assume that we now we want to
+find a fingerprinted solution,
+which will be different from
+this original solution.
+We can achieve this by
+connecting this nodes, B and E.
+And then,
+instead of solving the original problem,
+we can take a look at their locality.
+And then we can easily find we can change
+the color of E from yellow to green and
+then form a new solution.
+And, if we want more solutions we can add
+more constraints as from our fingerprint.
+And as one can imagine, eventually, thus,
+the quality of the solution maybe dropped.
+And this problem can be solved by
+the constraint manipulation method.
+In this example we consider as, as smaller
+graph, and a solution to this small graph.
+What we observe here is you see
+the node E can also be colored yellow.
+And, as a matter of fact it
+can also be colored by red.
+But however,
+node A cannot be colored by red.
+And node A cannot be colored by yellow
+either, and what we have learned from here
+is a node's color can be changed to
+a node to obtain another solution.
+It all depends on the colors
+it neighbor has got.
+But checking then the colors of its
+neighbors takes time, and there's
+no guarantee that we can always find
+a new solution, like in the case of A.
+It would be very nice if we can create
+more solutions by changing the color
+of specific nodes without checking their
+neighbors, or their adjacent nodes.
+And we can achieve this by
+node duplication method.
+In this example, we duplicate node
+A by adding a new node, A complement,
+or A compri, A, A prime.
+And we connect A prime with A, and all
+the neighbors of A, B and E in this case.
+Now we have this new graph and
+we're going to cover this new graph
+which we call the fingerprinted graph.
+And we can obtain
+a solution such like this.
+And in this solution one thing
+which is for sure is A and
+A prime will get different colors
+because they are connected by an edge.
+And also,
+these two colors which is green and
+the red can be used to color
+A in the original graph.
+Either one of them, either green or red.
+This is because both nodes are connected
+to the same set of neighbors.
+So, what we see here is
+by duplicating node A,
+we can get two different solutions.
+If we duplicate key nodes,
+we can easily created 2 to the power key
+distinct solutions, from one solution.
+Now let's see another example.
+Here is a, a, a graph and
+a coloring solution for this graph.
+We see here node B, C, and D, they form
+a triangle, or a clique of size three.
+So we need three colors to
+color these three nodes.
+None of them can get the same color
+because they are all connected.
+And, we can also swap the colors of
+node C and the D to form a new solution.
+However, none of C or D can get
+the color of B because they share,
+they share the same neighbor E
+which has the same color as B.
+So now, if we connect it to pair of nodes,
+B and the E and also D and the G.
+And now this fingerprinted graph
+has a very special structure.
+We see that triangle BCD.
+Now they share the same set of neighbors,
+A, E and the G, outside of triangle.
+So now if we color this
+new augmented graph or
+fingerprinted graph we can
+find solution scheme here.
+And with this solution, we can easily
+generate a lot of different solutions.
+So for example,
+starting from this original solution,
+we can replace where we swap the color of
+the C and the D to find a new solution.
+Or, we can change the color of B from
+yellow to brown and then that C and
+the D pick any of the remaining two
+colors to form two different solutions.
+And for the same reason when
+we keep B as red, C and the D
+can also take any of the two remaining
+colors, and have two other solutions.
+In total, what we have here is we
+can build 3 factorial which is
+6 distinct solutions from
+solving the problem only once.
+So this shows that
+we can generate a lot of different
+fingerprinting solutions by solving
+the problem only once and that without
+compromise the quality of the IP.
+The final examples of how
+to utilize Don't Care
+conditions to generate
+fingerprinted copies.
+We first to consider the observability
+don't cares in the following circuits.
+Where X is the end of A and
+the B, Y is the or of C and
+the D, and
+output F is the end of X and the Y.
+In this case we see that when Y is 0,
+signal X cannot be observed from output F.
+Therefore we know that Y equal to 0,
+X equal to 0, Y equal to 0,
+X equal to 1 is
+the observability don't cares.
+Now we modified this circuit by
+connecting signal Y into the end gauge.
+Therefore, signal X becomes the end of A,
+B and the Y.
+And we know that when Y equal to 1,
+this is the same as A and B.
+And the Y equal to 0 this becomes 0
+regardless of the value of A and the B.
+But however, while 0 this X is
+our observability don't care.
+So what we have here is these two
+circuits, they are functionally identical.
+And so
+we can do placement route, based on this
+circuit with this additional connection.
+And then we decide whether we
+want to keep this connection or
+not, to embed one bit of fingerprint.
+And when we can find n such
+substructures in the circuit,
+we will be able to create 2 to the power
+n distinct copies of the same IP.
+Good [INAUDIBLE] bad
+any embed fingerprint.
+The next example is on
+the satisfiability don't care.
+In this circuit, X equal to A and B.
+Y equals to A prime and B prime.
+From the truth table, we see that X and
+Y cannot be 1 at the same time.
+Therefore, we have a satisfiability
+don't care condition.
+X equal to Y.
+X equal to Y, and equal to 1.
+We know that, the OR gate and
+exclusive OR gate, they're different.
+For example, when both X and Y are 1,
+or give you an output of 1, and
+exclusive OR give you output of 0.
+However, we know this
+condition X equal to 1,
+Y equal to 1,
+is a satisfiability don't care.
+Therefore in that case,
+we are seeing this X, the OR of X and
+Y will be the same as the exclusive OR
+of X and Y.
+Or we can replace this circuit
+by this circuit where the only
+difference is the OR gate or
+the exclusive OR gate.
+So, if we can find n distinct
+satisfiability don't cares,
+we should be able to generate 2
+to the power n distinct copies.
+To summarize digital watermarking and
+the digital fingerprint.
+You see di.
+We see that in this simp, simple flow
+of traditional IP development, without
+any protection, we can get a IP with the
+highest possible quality by synthesize,
+by synthesis tools based on
+the original design specification but
+however, we will not be able
+to prove our authorship.
+Or, if there's IP piracy happens,
+we cannot trace where is
+the source of the IP piracy.
+The idea behind digital f-
+Watermarking is to convert
+IP author's signature into
+additional design constraints.
+And then add it into
+the original design spec and
+use the synthesis tools to self IP that
+satisfies both set of constraints.
+In this way, we can hide IP
+author's signature into the IP,
+and then can retrieve this
+signature to prove the authorship.
+On the other side, fingerprint
+adds IP user's signature into IPs,
+into IPs as well.
+It will enable us to distinguish
+who gets each copy of the IP, and
+allow us to trace the use of IPs.
+Finally, it is important to mention
+that both digital watermarking and
+digital fingerprinting,
+they are deterrent of IP piracy.
+They do not prevent
+attackers from misusing IPs.
+But they do make the attackers to think
+twice before doing anything illegally.
+In addition, law enforcement is the only
+way to get the lost revenue back so
+the IP piracy happens.
+However, digital watermarking, and
+digital fingerprint are strong evidence
+to facilitate law enforcement.
+

@@ -1,0 +1,191 @@
+We have introduced the basic
+concepts about the PUF.
+Before we can use PUF in
+the security-related applications there
+are many concerns needs to be addressed.
+Today we'll use Ring Oscillator PUF as an
+example to discuss the reliability issue,
+first, what other reliability problems
+in path and why they are important.
+Think about the potential path
+applications as we have discussed, for
+example, the device identification and
+authentication, encryption and
+the decryption, the PUF data play
+a vital role in this application,
+even the flip of one single bit will cause
+failure, so why PUF bit, may, may change?
+There are many reasons, for
+example, in the delay-based PUF,
+circuit delay will be affected
+by your environmental con,
+conditions, such as temperature,
+supply voltage, humidity, and et cetera.
+As circuit ages,
+it also becomes slower, and
+a different part of the circuit
+may age at different rates.
+Finally, there might be measurement
+errors when we collect the delay
+information, take the temperature
+frequency relationship for example.
+This figure shows that
+when temperature goes up,
+the frequency of both ring
+oscillators goes down,
+however, the blue ring oscillator
+is always faster than red one.
+Therefore, if we define
+the PUF bits to be 1,
+if the blue ring oscillator's faster
+than the red one, this pair of ring
+oscillators will give us a reliable bit 1
+but we are not that lucky for this pair.
+When temperature is low, the blue ring
+oscillator is faster, which is a bit 1,
+but when temperature becomes high,
+the red one will run faster, and
+the half bit will flip to 0 because now
+the blue ring oscillator is slower, so
+the question is how to
+make PUF bit reliable.
+Remember, in Ring Oscillator PUF, the bit
+reliability is determined by the delay or
+frequency gap between the ring oscillator
+pair, as shown in this figure.
+A simple solution to improve
+the reliability is to
+increase the frequency gap,
+and the easiest way to do that
+is to use a large threshold during
+the selection of ring oscillator pairs.
+When the delay gap is
+smaller than this threshold,
+we simply do not define any PUF bit
+based on that pair of ring oscillators.
+Another way to do so is to increase
+the size of the selection pool,
+instead of compare a pair
+of ring oscillators,
+we can compare the fastest one and
+the slowest one among k-ring oscillators.
+This will give us a pair of ring
+oscillators that have large delay gap.
+These approaches improve reliability, but
+still they cannot guarantee that there
+won't be any bit flips, so for quick tool
+applications, error correction coding has
+been used to correct the PUF bit errors.
+There can be a large hardware
+overhead associated with this
+approaches because those and unselected
+ring oscillators will be wasted.
+Now we present one method that can utilize
+these unreliable ring oscillators.
+Consider this pair of ring oscillators,
+the blue ring oscillator is
+faster at low temperature region,
+which gives us a bit 1, however,
+it becomes slower in the high temperature
+region, so the bit would change to a 0.
+During the chip-casting phase, if we
+can identify this temperature region,
+we can still manage to have
+a reliable bit, for example, while we
+see the temperature is in the high
+temperature region we can take the bit 0
+from the PUF as I flip it to
+get the reliable bit value 1.
+The challenge is how to retrieve this
+bit 1 when temperature falls into this
+unreliable region, that is when
+the concept of cooperation comes to play.
+We select a secondary pair who will be,
+who will be able to
+provide a reliable bit at the unreliable
+temperature region of the primary pair.
+As, as part of the updater,
+the primary pair will remember who its
+secondary pair is and whether the bits
+from that secondary pair needs to
+be flipped to retrieve the PUF
+bit defined by this primary pair.
+With this information,
+we can define a reliable bit as follows,
+when the temperature is low,
+the blue ring oscillator is faster and
+that gives us the correct bit value 1,
+when temperature rises to
+the unreliable region we ask the secondary
+pair for help, which gives us a bit 0.
+According to the help data, we know
+that we need to flip this bit to get
+the correct value of 1, then temperature
+goes to the high temperature region.
+The primary pair yields a bit 0,
+which we know that we need to flip it to
+get the reliable bit 1, by doing this,
+we can define unreliable bit 1
+through the entire temperature region.
+Now let's consider this pair of ring
+oscillators, each with five inverters.
+The number indicates that
+delay of each inverter.
+It is easy to find that the delay of
+the top ring oscillator is 28 and
+the bottom one is 25, so the, so
+the top one is 3 units of time
+slower than the bottom one.
+This delayed difference of 3 will
+determine the reliability of this PUF bit,
+and whether this pair of ring oscillators
+will be used at all on this chip,
+however, if we only take the last three
+inverters to fold two ring oscillator,
+we see the delayed discrepancy
+will be doubled to 6,
+which indicates a much
+more reliable PUF bit.
+This is an interesting observation but the
+first question we need to solve is how to
+construct a ring oscillators with
+selected inverters, not all of them.
+This is the architecture
+to make this happen.
+In parallel to each inverter,
+we add a wire, we,
+we add a wire connection, then we
+can select at each stage whether we
+want to include the inverter
+in the ring oscillator or not.
+The concept can be shown from this
+figure where we use multiplexer to
+control the configuration at each stage.
+If we want to use this inverter,
+we'll set the selection bit to be 1.
+If we want to skip this inverter,
+we'll take the wire connection, and
+then put, the selection bit to 0.
+The selection bit for each multiplexer
+is referred as the configuration vector,
+of course, in real circuit design, this
+can be implemented much more efficiently.
+Here are the advantages o,
+of this highly flexible or
+configurable ring, ring os,
+Ring Oscillator PUF.
+First, it allows us to build ring
+oscillator PUF at inverter level
+instead of the ring oscillator level.
+At this finer level, as we have seen
+in the modulation example from the last
+slides, it can create larger delay
+gaps between the two ring oscillators.
+Second, the configuration vector will be
+decided at the post silicon testing phase,
+so we can select the inverters
+based on their real delay,
+to maximize the delay gap.
+With a lot of delay gap, between this
+Ring Oscillator pair, we can build
+

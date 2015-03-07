@@ -1,0 +1,464 @@
+Welcome back to Hardware Security.
+This time I'll go through the hardware
+Trojans, and trusted integrate circuits.
+From this title, you know that we're
+going to cover both hardware Trojans and
+trusted integrate circuits.
+For hardware Trojan, we're going to give
+the definition of hardware Trojans and
+we're going to study the taxonomy
+of hardware Trojans.
+It is very important to do such study,
+because instead of study dozens or
+hundreds of different hardware
+Trojans we can focus on
+several different categories and within
+each different, each category we can
+study the similarities between
+different hardware Trojans.
+We can capture their
+physical characteristics.
+And we develop benchmarks
+to do the testing.
+And more importance, we can, we can do,
+we can develop on how to work for
+the detection mechanisms.
+For trusted integrated circuits,
+we're going to give the definition
+of trusted integrated circuits.
+We're going to talk about how to build
+trust in integrated circuits design.
+In particular, we're going to talk about
+how to prevent hardware Trojan insertion.
+We do need a lot of background
+to understand this material.
+Start from the traditional digital
+logical design to crypto algorithms.
+And in some extent included the heart,
+the digital watermarking and
+fingerprints techniques,
+we have discuss, discussed earlier.
+However, the good news is since
+you are all here you're you know,
+in very good shape to proceed and
+learn this very exciting material.
+Hardware Trojans they are any additions or
+modifications to a system or
+to a circuit for malicious intentions.
+So, from this very simple definition,
+we can see two characteristics
+of a hardware Trojan.
+First, a hardware Trojan
+must have malicious goals.
+And the most common malicious goes for
+Hardware trojan includes, trying to
+change the circuit's functionality,
+trying to control the system,
+or trying to steal sensitive information
+such as secret key from the system.
+Also, some of the hardware trojans.
+They are trying to reduce the circuit's
+reliability, and by doing this
+a system will start malfunctioning
+before it's lifetime expires.
+Also from the definition,
+we know that a hardware Trojan must
+be added modified intentionally.
+So this basically tells us for
+example, the, the traditional designs,
+we have a lot of don't cares and
+we have discussed earlier, so we can
+introduce a lot of back doors as security
+vulnerabilities during the design.
+These are not intentionally
+introduced into the system, so
+they are not considered
+at hardware Trojans.
+And also we talk about a scan
+chan which is the testing,
+which is part of the testing circuitry.
+These I intentionally added to
+the system but they're not added for
+malicious purpose.
+So scan chan are not
+hardware Trojan as well.
+Trusted integrated circuits
+on the other hand.
+Is a system or is a integrated circuit,
+that does exactly what is asked to do,
+no more and no less.
+It is a very simple definition,
+but it is really very hard to,
+to assess the trustworthiness of an
+integrated circuit from this definition.
+So let's start with several examples
+of the system which are not trusted.
+So first, if a system fails, fails to
+deliver certain required functionalities,
+such searchers or
+such system cannot be trusted.
+second, if a system has
+hardware Trojan inside it.
+This system cannot be trusted either,
+because this system does something more,
+and these things are malicious
+hardware Trojans.
+So, from this definition,
+we want to ask it,
+the question, so, does such trusted
+integrated circuits really exist?
+As we have seen,
+the traditional digital logical design.
+When we specify the systems,
+normally we have a lot of don't cares.
+Even if you fully specify the system
+during the design design process,
+you may introduce some internal don't care
+conditions such as the satisfy ability
+don't cares or the other ability don't
+cares we have discussed earlier.
+So with these don't cares, and the system
+is going to give some values for
+the don't care conditions, and those
+are not specified so whenever they have
+a need to values, they will be
+considered as more to the system spec.
+So in that sense my argument here is
+such trusted integrated circuits,
+following this definition does not exist.
+So, this brings us to in some sense,
+my definition of trusted Integrated Sys,
+Ci, Circuit.
+So first of all,
+it must satisfy this condition, no less.
+So, for all of the required
+functionalities, all the required
+specifications, the, the system or
+the circuit has to satisfy those.
+And second, instead of no more,
+we define this trusted IC to be,
+it doesn't do any malicious more.
+So in some sense, if we know all the,
+all the possible attacks or
+all the possible vulnerabilities or
+all the possible bad intentions that the,
+that the attacker can put into the system,
+if you can verify none of
+these things exist in the system,
+then the IC can be considered as trusted.
+So let's start with a small example to
+show what, what we mean by trusted IC and
+So consider Alice asks Bob to design a
+circuit that computes a function f of x so
+Alice, she can use this circuit
+to authenticate the username,
+password pair of x and f of x.
+Where x is the username
+f of x is the password.
+So user will enter the username and
+password, and Alice can use
+the circuitry to compute f of x.
+And then try to compare and
+see whether this user entered
+one is the valued or not.
+So now let's see Bob gives Alice this
+design for a very simple case, 1 of x is
+x squared, and then we have ten potential
+users that have IDs from zero to nine.
+So this is a system that Bob designs for
+Alice.
+So you have this black box
+increments a function of f of x.
+As and Bob says that,
+because you have ten different users, so
+I need four bits to encode
+this different users.
+For example,
+user number zero will be have code 000.
+User number three will have code 0011,
+which is the binary
+representation of three.
+And in terms of output bits,
+so Bob says that since we
+are doing fx equal to x square, so
+the largest number he could get is 81.
+And for me to encode 81,
+I need seven bits.
+In this case, 81 would be 1010001.
+And Bob tell Alice that inside this
+black box all he can is the square of x.
+And Alice can actually test by putting
+these ten different values as then I
+see what will be the output and then
+can show that the system does no less.
+And how about no more part?
+So we starting from,
+we start from seeing what is the exact
+of the designing comment in this case.
+So this is a huge twist table here.
+Start from the middle two columns
+with with colored in blue.
+We see the input x goes from 0 to 9.
+And we will see the required output,
+x squared going from 0 to 81.
+Which is the square of 9.
+And for each particular input, we want
+the output to be the square of the input.
+So what Bob does for the system is,
+he's using a four bit binary encoding for
+the input, and he's using a seven
+bit encoding for the output.
+And from this very simple truth table,
+we do see a couple of simple things.
+For example, the most significant
+bit of the input happens to
+be the same as the most
+significant bit of the output.
+So, in that sense, we can define
+Z1 to be exactly the same as X1.
+And also, the last bit, or the least
+significant bit, of the output Z7,
+will be the same as the least
+significant bid of the input x4.
+And finally we realize that the sevens,
+the six output signals Z6
+it is a constant of 0.
+So in some sense bowing to this design
+what Bob needs to design is actually
+only 4, only 4 up with functions,
+Z2, Z3, Z4, and Z5.
+So, before we move on to talk about this,
+so
+let's see, I will give you a small hint
+for one of the early quiz questions.
+So remember we want to do a square of X,
+where if you talk about in general,
+I want to multiply 2X and AY.
+And both numbers goes from zero to nine.
+So for
+in terms of the number of inputs for
+each out prints X I need four bids
+as we have discussed earlier.
+Because with three bids I can only encode
+from 0 to 7, 8 different objects and
+here I need 9.
+So if I have two input X and
+the Y, and I need four bits for X.
+I need four bits for Y.
+So in that case I will need eight bits.
+And for output side, the output in this
+case x square goes from zero to 81.
+So we know the largest
+number will be 81 and
+as we have discussed earlier I
+need seven bits to encode 81.
+So in this case, the output,
+the number of output bits will be seven.
+So of course, in this case,
+you can argue that I don't really
+need seven bits because you see, that the
+number of, of different outputs will be
+only ten different subjects or
+ten different values.
+So, I could use as few as four bits to
+represent these ten different values.
+However, the problem of doing that is,
+with these ten different val ten different
+values, if you use only four bits,
+you do not see exactly the values
+of this output in binary.
+So that is why we are asking that
+even Z6 is a constant of zero.
+We still need to output
+a bit to represent it.
+So that says,
+we have seven bits as outputs.
+And then finally, in this case,
+since we have four bits as inputs.
+With four bits,
+we know that we have a total of 16,
+which is to the power for
+different input combinations.
+And in this case,
+we only care the first of ten of them.
+So the Dava six from 10 to 15,
+they will be the don't care conditions,
+which means in this case we
+have six don't care conditions.
+Okay, let's come back to talk about
+the profit ICs and the hardware Trojan.
+So what is inside the box of the,
+of what the, the, Bob's design.
+So Bob claims that he does
+exactly FX equal to X squared.
+And if we open up the box,
+we can see a circuitry like this.
+Or, you may see a circuitry like this.
+And just to try to be honest,
+if you can see the difference between
+these circuitry,
+raise your hand of course I'm joking.
+I, I mean I wish I could see,
+but I cannot see your hands.
+So if I show you one more time,
+you will see what is the difference here
+is take a look of this part and
+the functionality of Z2,
+this is the first design where
+Z2 is the product of X2 and X3.
+And this is a secular design,
+which we have to X1 plus X2 times X3.
+And signal X2 plus X1 comes from this So.
+So let's show it again here.
+So, to this, to start,
+take a look at that.
+And now I'll show it again.
+So this is the original one, and
+then this is the second one.
+So apparently these
+are two different designs.
+So, what we can see here is,
+in addition to their difference, we see
+that they have the same number of gates.
+Because I never changed anything
+except I changed the connection here.
+The first one connect this way.
+And the second one connect this way.
+So they have the same number of gates and
+they have the same number
+of different type of gates.
+And the more, more over they
+have almost identical layouts.
+The only tiny difference
+is the change we have here.
+So let's see what are the difference
+between these two designs.
+So what Alex can do here is,
+starting from the first design,
+he can verify that whether this
+design does what he wants, she wants.
+She can plug in, for example, zero, where
+all the X1, X2, X3, X4 will be zeroes.
+And I'm plugging all these equations and
+I figure out that Z1 is equal to 0,
+Z2 equal to 0, Z3 equal to 0, Z4 equal to
+0, because you have a Z4 equal to 0 here.
+And this, Z5, Z6, Z7, they are all 0s.
+So with the input of 0, it does out put 0.
+And as another example, if input is one
+where X4 will be 1 I can see Z7 will be 1,
+and Z6 will be 0 and Z5 will 0 and
+everything else will be 0.
+So that means that if input is 1 output
+is also 1, which is the square of 1.
+So Alice can confirm with all these
+things with 10 different input values.
+So, what is important for Alice to, to
+prove the trustworthiness of this design.
+Is, what more the system does.
+So, what Alice can check is,
+what happens if I give 10?
+Which is 1010 into the system.
+And according to this definition
+of the outputs signals.
+The, the system is going to produce 1,
+0, 0, 0, 1, 0, 0,
+which is the decimal 68,
+which is not the square of 10.
+And as another,
+another example, if I enter 11,
+the output will be the binary
+representation of number 89.
+Okay.
+So this is does, does some more,
+but doesn't do anything,
+I mean, suspicious, because this
+output is not the square of 10.
+And this output is not the square of 11.
+In terms of this application,
+Alice wants to authenticate the user.
+So if the user enters 10,
+the output is not 10 squared, so
+it's not going to be authenticated.
+However, once we move
+to the second design,
+we know that the only difference
+is on the up of signal Z2.
+And with this new design,
+we can see that once we have input of 0,
+1 here, 1, 0, 1, 0,
+then the output of Z2 will
+become 1 is that this is because,
+because X3 is 1.
+[SOUND] And X1 is also 1.
+So 1 plus X2 which is 0
+times this 1 give us a 1.
+And similarly, when the input is 11,
+this bit will also be 1.
+And if you remember how we do
+the conversion from binary to decimal.
+So this bit position, a 1 means 32.
+So if it adds 32 to this numbers,
+32 plus 68 give me 100.
+32 plus 89 give me a 121.
+So this are not just a magic numbers,
+but if you take a look at this and
+then if you think further.
+So this 100 happens to
+be the square of 10.
+This 121 happens to be the square of 11.
+So, that says in the second design,
+there's a back door.
+This back door is,
+is in embedded intentionally.
+So in this case what we have here is,
+both pair of 10 and 100 and 11 and
+121 will become valid.
+So what Alice used this system to build
+authentication this two entrants will be
+considered valid and in that case,
+the second design we can consider
+this as a, it has a hardware Trojan.
+It's going to allow user who doesn't have
+access to have access to the system.
+To summarize today's lecture,
+what we're going to do next will be
+hardware Trojans and
+the trusted IC device.
+For hardware Trojan, we have learned the
+two important characteristics of them, so
+first it must have intentional addition or
+modification to the system.
+Second, this addition or
+modification must have certain
+malicious purpose and for trusted IC's.
+We have defined trusted IC as, the system
+has to do no less, which means it
+has to meet all the design specifications,
+also it will not do anything maliciously.
+And from this discussion,
+we know that, for
+a system to be trusted,
+it cannot have Trojan.
+That is what we call Trojan-free IC's.
+And finally, for
+us to evaluate what to assess a,
+the trustworthiness of the system,
+we have to
+make sure that the system doesn't have any
+Trojans, which we call the Trojan-free.
+So hardware Trojan detection is
+about how to establish trust, or
+how to assess the trust or
+[INAUDIBLE] software system.
+And on the other hand,
+when we do hardware Trojan prevention,
+we are trying to prevent hardware
+Trojan being inserted into the system.
+This is in some sense trying to
+build trust into the system.
+And these two categories, hardware Trojan
+detection and hardware prevention,
+we are going to discuss in more
+details in the following lectures.
+

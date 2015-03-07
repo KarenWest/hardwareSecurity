@@ -1,0 +1,372 @@
+Now we discuss what's the requirements
+of a good watermark are and
+some of the advanced techniques
+to design digital watermark.
+First a good watermark has to
+preserve the correct functionality of
+the intellectual property.
+Because otherwise the watermarked IP
+fails to meet the design requirements and
+will have no value.
+Second, the desired overhead introduced
+by the watermark must be negligible or
+very low.
+Well that's the value of many
+intellectual properties are not
+only their functionalities.
+But also how these functionalities
+are implemented with high performance and
+the low cost.
+High design overhead, or
+performance degradation, will reduce
+the value of the intellectual property.
+Third, the watermark has to provide
+high credibility of the authorship or
+the probability of coincidence,
+that others will implement identical IPs,
+should be low.
+Next, the embedded
+watermark should be easy to
+detect as the proof of the authorship.
+However, it must also be resilient, in
+the sense that's it will be difficult or
+impossible for an adversary to remove or
+modify the author's watermark.
+Transparency means that the addition of
+watermark and it's detection should be
+transparent to existing design tools and
+design softwares.
+Otherwise it will be difficult for a
+watermarking scheme [NOISE] to be adopted.
+Ideally, a good watermark
+can also be used to
+protect specific parts of the design
+in addition to the entire design.
+This is important in the reused
+space then design practice.
+Because IPs will be integrated and
+the designer may not be able to
+insert watermarks to hold IP's.
+Finally as we have seen before,
+a good watermark should be
+fair to all the designers or
+all the possible signi, signatures.
+[NOISE] Next we will use low overhead and
+easy detectability to demonstrates
+how these features can be achieved.
+The design overhead and
+the performance degradation caused
+by watermarking is unpredictable.
+And in man,
+many cases they are uncontrollable.
+This is due to the random,
+randomness of the additional design
+constraints based on the random watermark.
+And also the fact that's
+most of the design tools contain
+Non-Deterministic Algorithms.
+In addition,
+if we want to control the design overhead,
+the security of the watermark
+may be compromised.
+To solve this problem,
+we can use the 2-phase,
+zero-overhead watermarking approach.
+In this approach we first do
+the design without any watermark to
+obtain the best possible performance.
+Then we identify places where
+we can embed watermark without
+introducing performance degradation.
+Next we embed watermark.
+And then we redo the design to obtain
+a watermarked intellectual property.
+This line shows how we can apply
+[NOISE] this strategy to FPGA design.
+The FPGA design, we start by reading
+the design constraint files, and
+then to a synthesis, and then,
+to the place and the route.
+And the last step is to generate
+the configuration bitstream file.
+If we try to embed
+a zero-overhead watermark,
+what we do is we follow
+the first to three steps.
+And however, we're not going to generate
+the configuration bitstream ff,
+file right away.
+What we do is,
+we try to extract timing information on
+certain passes from the place and
+route result.
+And we'll combine this with the author's
+signature, to have, to use,
+the author's signature.
+To modify the delay information
+on the certain nets.
+And then we do the place and route again.
+And then we check whether the timing
+requirements are satisfied or not.
+If they're not, we come back,
+and we potentially,
+we may have to reselect nets and
+then do the place and route again.
+Until all the timing
+constraints are satisfied.
+And in this, and then we generate
+the configuration bitstream file.
+So what we see here is,
+because we are checking the timing
+constraints are satisfied or not.
+So there shouldn't be
+any timing degradation.
+And also we are going to show later using
+industrial benchmarks to see whether there
+was any resource overhead.
+The only thing we can see here is,
+we have to do this step multiple times
+to meet the timing requirement and
+embed the users signature.
+And we'll also sh, show by results see
+how much this additional time will cost.
+So this is an example
+of Watermarking Scheme.
+So what we do is,
+after we've finished the optimal design,
+we try to select non-critical paths.
+So for example, the first column
+shows the starting Flip-Flop.
+And then the second column shows the Des,
+Destination Flip-Flop.
+Then the, the third column
+shows the Delay in the optimal
+design from this Source Flip-Flop
+to the Destination Flip-Flop.
+And then none of these delay are critical.
+In the sense that
+the critical delay are all,
+are all shorter than
+these delay constraints.
+So, for us to embed watermark,
+what we do is we try to modify the last
+digit of these delay constraints.
+For example, if these are the watermarking
+bits we want to embed into the FPGA
+design, what we do is we replace
+the last bit by the watermarking bit.
+To obtain a constrained delay profile.
+And then we use this as the additional
+constraint to the original problem,
+trying to do the place and result again.
+As a result, we have seen this,
+this result here.
+So these are the Four Industrial
+FPGA Design benchmarks.
+And to this column shows
+the resource requirement in terms of
+the number of FPGA slices.
+And then we see the Original one and
+the Watermarked the designed.
+In the older cases the required slices for
+the original design are the same
+as the Watermarked the design.
+Which shows that there's
+no resource overhead.
+And the second row for
+each benchmark shows the timing
+requirement for each application.
+And the check mark means here we have
+satisfied the timing requirement.
+See all the cases the timing
+requirement with performance are match.
+There is again no overhead.
+And finally we mention that there is
+design time overhead to do the place and
+route again and again.
+And in all these cases the time
+to do that is in seconds.
+Finally, we want to show that this give
+us a very strong proof of authorship.
+And this is measured by
+the humming distance of
+the configuration bitstream file of the
+Original one and the Watermarked design.
+And this shows the humming distance
+in percentage, 1.09% up to 4%.
+And to pay attention to that for this
+benchmarks, the configuration bits first,
+bitstream files,
+in terms of megabyte, megabytes.
+So even 1% is a lot of difference
+between the two, two designs.
+So that can be used as a very
+strong proof of the authorship.
+Next, we discuss the detectability
+problem of the watermark.
+We have seen these slides before, so
+it shows the basic concept
+of the steganography system.
+And also the constraint-based
+watermarking system as
+an example of the steno,
+stenography system.
+Where we embed the author's
+signature in the Stego-problem using
+additional constraints
+to the Original Problem.
+However, the problem in this
+approach is how do we di, di,
+detect the Embedded watermark and
+use it to prove the authorship.
+The Public Watermark approach
+solves this problem.
+In this approach,
+instead of hide the author's signature
+everywhere in the Original Problem.
+We've select certain places, and
+then embed watermark only
+on those certain places.
+So, we will highlight how do we solve
+several problems in the following slides.
+Question number 1.
+How we can embed the signature.
+Number 2.
+How to detect the signature?
+How much do we lose by doing this?
+And how much can the attackers gain
+by knowing this Public Watermark?
+We first use
+the Graph Partitioning Problem to
+show the basic ideas behind
+the Public Watermark.
+In this problem we have a graph and
+we want to partition the vertices in
+the graph into two disjoint subset.
+Such that the subsets are balanced and
+also the connections between
+the subset will be minimized.
+For example, here is a partition that cc,
+cuts the graph into the top-half and
+the bottom-half.
+For this partition it
+is perfectly balanced.
+Because there are exactly 12
+nodes on the top-half, half, and
+also 12 nodes on the bottom-half.
+And those are when we count, we have one,
+two, three, four, five, six,
+seven, eight, nine, ten.
+So 10 edges has been cut,
+which means the connection
+between the two subsets are ten.
+It is not easy to find a very good
+solution for a Graph Partitioning Problem.
+But indeed, this Graph Partitioning
+Problem is also a NP-complete problem.
+This slide shows how we can
+embed Public Watermarks.
+First we make the following
+information public.
+The 8 pairs of nodes, as shown here.
+A pair of 0, 0, a pair of 1,
+1 all the way to a pair of 7 and 7.
+And the second, the scheme we
+use to embed public watermark.
+If you want to embed a bit 0, we keep
+the pair of nodes in the same subset.
+If we want to embed a 1, we keep
+the pair of nodes in a different subset.
+For example, if we want to embed
+a capital letter O, what we do is,
+let's assume that we encode O in ASCII
+code and put it to pairitive bits.
+And what we do is, we first,
+the partition, the eight pairs
+following the public watermarking rule.
+For example, the leading bit is 0,
+which means that's the two 7s
+will be in the same subset.
+And the second bit is 1.
+Which means the two 6 will
+be on different subset.
+And then we partition the rest of the node
+and then we get a partition like this.
+So if we do the partition this way,
+now everyone can detect the watermark,
+and then verify it.
+That is why we call this
+one a public watermark.
+Now we consider the security and
+detectability of public watermark.
+The Public Signature will be
+encoded in ASCII and then embedded
+into the problem using a, using
+a scheme that is known to the public.
+Therefore, it is very easy for the
+attacker to come and modify the watermark.
+For example, he can change one of
+the bits, and then to completely I
+mean remove the watermark, or
+modify it to another watermark.
+To solve this problem we can
+use some Crypto Primitives.
+So, for example,
+We can Hash the Bitstream file and
+then encrypted the Hash using
+the Bitstream itself as the key.
+In this way, we can have the public
+watermark into two parts.
+Which in the first one called
+the Public Watermark Header.
+Which is the plain text ASCII
+code of the Public Signature.
+And then we have a much longer Watermark
+Body which is being encrypted and
+encrypted of the Hash.
+And this is the entire will
+form the public watermark.
+Now, with this new Public Watermark,
+the attacker's job becomes
+much more difficult.
+Why?
+What we see here is, it is still easy for
+the attacker to modify
+the Public Watermark Header.
+And however, because of
+randomness involved here, even if
+the attacker changes only one bit or a few
+bits in the P, Public Watermark Header.
+Rel, relatively half of the bits in
+the Public Watermark Body will have to
+be changed.
+And then this makes the attacker's
+job much more difficult,
+even if he knows where to
+change all these bits.
+And finally, once we do all this,
+how difficult it is to verify or
+authenticate the watermark.
+We claim this is also very easy.
+So for a person to verify
+the claimed Public Watermark.
+He or she can start with the Public
+Signature to a client [INAUDIBLE]
+ASCII Encoding and
+then check the Public Watermark Header.
+If the Header matches, that is a,
+a good sign, since this probably
+the authenticated user.
+And if the, and if, if the, if the user
+wants further verification, she can
+also Hash the Bitstream file
+from the Public Signature and
+then use this as the key
+to encrypt a Hash.
+And then get, find out,
+what is the Body of the Public Watermark.
+And then go to the design to verify
+whether the Public Watermark Body has been
+changed to and then eventually,
+verify or detect the Public Watermark.
+

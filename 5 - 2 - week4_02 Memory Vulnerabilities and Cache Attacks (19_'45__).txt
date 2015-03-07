@@ -1,0 +1,453 @@
+As the first example of
+side channel attacks,
+we use the developing cycle of encipher to
+show the vulnerabilities in memory access.
+As I demonstrate several attacks,
+related it to cache memory.
+The development of a cipher starts
+with the algorithm designed by
+mathematicians or cryptographers.
+A good cipher,
+needs to be mathematically solid.
+For example, the RSA encryption,
+which is based on the heart
+integer factorization problem.
+Once the cipher is proven mathematically
+strong, software engineers can implement
+the algorithm with high, high level
+programming languages such as C.
+Sometimes, this C code
+will be fine tuned at
+assembling level to
+improve the performance.
+Then, the code can be put onto
+the appropriate computing
+devices ready for execution.
+Alternatively, the cryptoalgorithms
+will secure the particles.
+Can also be implemented
+directly on hardware.
+The hardware designers
+would write HDL code.
+Synthesize it, and
+then send it to the foundering for
+AC fabrication or
+run it directly on FPGA chips.
+HDL stands for hardware description
+language, such as Verilog.
+AS, ASIC is application
+specific integrated servers.
+Such as the, the chip viewed for
+cell phones.
+FPGA stands for
+field programmable gate arrays, which is
+prefabricated chips that can be programmed
+to implement different applications.
+Today we focus on the vulnerabilities of
+the software implementation of the cipher.
+This is a simplified architecture
+of a standard microprocessor or
+a computing device.
+It has it's memory hierarchy of the main
+memory, instruction cache, data cache and
+register files.
+This is the central processing
+unit we call CPU's.
+It has functional, functional blocks, has
+controllers and it has the arithmetic and
+the logical units.
+In a typical flow of the execution of
+a software or program, instructions in
+the data will be loaded from main memory,
+to instruction cache and the data cache.
+The register files,
+are the closest to storage to the CPU and
+thus have the fast action time.
+The CPU will take inputs,
+both instructions and the data,
+from this, caches and register files,
+and process them accordingly.
+The result will be read them back
+to the memory, either the cache or
+the main memory.
+Now assume that we store some of
+the secret data in the register
+files doing execution.
+And that see,
+that we visit the typical execution flow
+to see what will be
+the security vulnerabilities.
+First, memory load operation will get
+data from D cache to the register files.
+This needs the memory access,
+the memory address of the data.
+If the memory address is determined by
+whether it is related to the secret data
+the secret might leak
+from the memory address.
+When a secret data value, the, when the
+value of the secret data is overwritten by
+the data from the main memory,
+there will also be information leaked.
+For example,
+when the register file is reset to o 0s,
+it requires power to override over
+the ones in the previous registers.
+But there's almost zero power consumption
+on the bits that was previously zero.
+So this may review some of the old
+information which might be
+the secret data in the register files.
+Similarly while memory store
+operation is performed.
+Information might leak from ei,
+from either the memory address or
+the data to be written to the memory.
+During the arithmetic and the logical u,
+u, the logic operations, particularly when
+the operation is performed at bit level.
+The secret data may be
+exposed through that channel.
+We have seen this earlier from this
+example of this integer multiplication.
+Finally, we have also shown
+earlier that's the date,
+the data might leak from
+the control flow of the execution.
+For example, like a if else statement.
+Now we use a concrete example
+to show these vulnerabilities.
+This is an if,
+else statement which is very similar
+to the one we have seen earlier.
+The difference is,
+we changed the condition from
+a not equal to B to A less than b.
+Here is the control flow graph for
+this instruction.
+When variable a is less than b,
+it will take the true branch and
+assign constant value eight to x.
+Otherwise, it will be greater than or
+equal to b.
+And it, it will take the false branch,
+and assign the different between C and
+the D to X.
+Now we show the assembling code for
+this, this statement.
+The first is,
+the first line starts with a semicolon.
+This is the sign of commenting assembly.
+The next line is to get the address for
+variable a and
+store this address in register called r4.
+This load instruction will load
+the value of a from this register,
+from address that is stored in r4 and
+the value will be stored in register r0.
+Similarly, the next two lines will get
+an address of b, put it in r4, and
+then fetch the value of the address r4 and
+then store the value in r1.
+The CMP instruction is to compare the data
+stored in these two register, r0 and r1.
+Which stores the value of A and B.
+And, the next instruction it means that,
+when the register r0 is greater than or
+equal to the value stored in register r1.
+The execution flow goes to the branch.
+Which is labeled as F block.
+This slice shows the implementation of
+the true branch and the false branch.
+In the true branch, the move statement
+will move the constant of value X eight.
+To register r0.
+This is going to be the value we
+are going to assign to variable x.
+And, this is going to get address of x.
+And then store operation will store
+value which is occurring at 0
+the value 8 to the address,
+which is the address of x.
+In the fast branch,
+we are going to execute
+the instruction x equal to c minus d.
+So first like before,
+we'll cache the address of c,
+and then get a value of c,
+store it in zero.
+And then we get the address of d, and
+just get the value of d, store it in r1.
+The next instruction sub is going to,
+go perform the subtraction.
+Is going to subtract the value of,
+in r1 from the value stored in r0.
+And the difference will be
+then stored in register r0.
+The next two statements
+are very similar to these two,
+which is the memory store that's
+going get the address of x.
+In that store, the valuing are zero,
+which is the difference between c and
+the d to add to x.
+Now, we use this portion of
+the assembling code to show the memory
+access vulnerabilities,
+we have mentioned in a previous slide.
+First, we see there's
+memory load operations.
+There are load on constant, or
+load the value from the main memory.
+And if either the address or
+the value are related to secret data,
+there might be information leak here.
+And similarly,
+we have seen memories do operations.
+Where we store the value to certain
+registers and then, then memory address.
+When, when either the address or
+the data value carries, carries secret
+data, these data may get leaked.
+And next, we have this instruction
+which is the subtraction, and
+as we have seen earlier.
+This sub subtraction that
+execution time may be different.
+It depends on the data value.
+For example always subtract this
+binary number, from this number.
+It will take much longer time,
+than with subtract this one zero
+which is binary two from this number.
+because there's no borrow here,
+but there's a lot of borrow here.
+Finally, if we count the number of
+instructions in the true blocks,
+in the true block, we have one, two, three
+instructions, but in the false branch,
+we have one, two, three, four,
+five, six, seven instructions.
+So if the attacker can get
+a hold of this part of the code.
+And then can monitor the execution time.
+He will be able to discover,
+whether A is less than B or not.
+If A is less than B,
+it is a very short execution.
+If A is not less than B,
+the execution time, might be much longer.
+Next, we will see how
+these vulnerabilities,
+can become attacked through cache memory.
+Cache attacks can happen when lookup
+tables are used in the ciphers.
+And also, the processor uses,
+cache memory.
+There are three types of cache attacks.
+In the trace-driven attacks, the adversary
+monitors the power consumption of the.
+Electron magnetic re, reduction traces.
+In order to figure out whether a cache
+miss or a cache hit has occurred.
+This can be used to attack small
+embedded devices such as smart cards.
+In time driven attacks, the attacker
+uses the execution time of that,
+the encryption operation to determine
+the secret key or other data.
+This normally requires a large
+amount of obs, observations.
+However, it can be done remotely.
+This types of attacks
+have been reported on sm,
+small micro controllers to large servers.
+The last attack is called access driven
+attacks, this happen on processors.
+The cache memory is shared
+by multiple processes.
+The attacker can use process
+running on the same host of
+the encryption process to reveal
+the memory access paten of the cipher,
+will steal the secret data
+stored in the cache directly.
+Now, we'll see a couple of examples.
+The first one is a trace-driven
+cache attack on the S-box.
+In the implementation of the DES
+algorithm in each round,
+there will be eight S-box access.
+The usage of each S-box depends on
+the input and the encryption key.
+Assume that each S-box is
+implemented as a look up table.
+The idea of this attack is based on
+the cache hit of these look up tables.
+In the first round,
+there's no S-box stored in the cache,
+so it will be eight cache misses.
+Like we have seen here, O to eight apps.
+However in the second round,
+there might be some cache hit such as the
+second and the fifth table in this case.
+Because the usage of the S boxes depends
+on the input data and the encryption key.
+Such collision on the lookup tables.
+Between two rounds,
+in particular the first of two rounds of
+the memory access can review information
+about the, the encryption key.
+This leads to the following attack where
+the attacker monitors the cash trace of
+the first two rounds of the cipher,
+assuming that the cash
+is cleared initially.
+First the attacker uses a random
+input in the first round.
+To break the table, to break the table for
+one S-box, the attacker selects input for
+the second round such that there will be a
+cash hit on the target tab, lookout table.
+Not all the secret keys can result
+in your cache key on this S-box or
+the two inputs in these two rungs.
+Therefore, these keys can be filtered
+out as the potential candidate for
+the secret key The attacker can
+repeat this process again and then again
+until there's only one valid key left.
+And that key will be the secret key.
+It was reported in 2003
+that a 56-bit DES key
+can be revealed with only 2
+to the power of 10 inputs.
+And a key search space
+of 2 to the power of 32.
+Much less than the boot first search
+space of 2 to the power of 56.
+Similar attacks have successfully broke,
+broken AES as well.
+The second attack is also based on, on
+tracing the cache miss and the cache hit.
+However, unlike the previous
+attack which compares the cache
+activities in the first two rungs of
+the cache with different input and
+requires old cache
+assisting the first rung.
+This attack attempts to
+introduce cache misses.
+First.
+A random input x is encrypted.
+We know that if the same x will be
+encrypted again, there should be a lot of
+cache hits of the x boxes because all
+the x boxes are now loaded in the cache.
+What the attacker does next
+is to invalidate a cache line
+occupied by the S-box.
+Then, when the same input
+adds is encrypted again.
+If the cache access to the invalidated
+cache line is required,
+there will be a cache miss.
+More details of this attack and
+how it has successfully broken AES
+can be found in this 2005 paper.
+Timing attacks can break
+a software limitation of a cipher.
+It is based on the fact
+that the execution time of
+an operation is related to the input and
+the secret key.
+Following the requirements for
+timing attack to be the successful.
+First, there must be operations whose
+execution time has timing variations.
+Second, these operations, and
+particularly the timing variations, must
+depend on the values of the secret key.
+The adversary should be able to
+measure the timing variations.
+The number of measurements
+may not be a constant.
+It, it depends on the,
+the amount of reviewed information
+from these measurement, and how much,
+how many measurements we need
+to break a cypher varies.
+The attackers should have
+a synchronization signal to identify
+the start, the starting and
+completion of the encryption.
+Finally, the design of
+the crypto-system and
+the implementation of the cipher
+should be known to the attack.
+There are many practical ways
+to prevent cache attacks.
+At application level,
+because cache attacks rely on the look-up
+table implementation of S boxes.
+If we do not use look-up tables,
+these attacks will fail.
+Also, most of the cache tags are unable to
+distinguish data in the same cache block.
+If we use small tables that can
+fit into one single memory block,
+less information will be leak.
+Cache warming is a technique
+that loads the look-up
+table to the cache before the execution.
+Or before them, in particular before
+the encryption to avoid cache misses.
+There are several approaches to change the
+path of memory access so it becomes ob,
+oblivious to the order that data is
+passed to the encryption algorithms.
+For example, when multiple access to
+different memory locations I needed for
+the encrypts, for the execution,
+we can use an arbitrary order of
+memory access to confuse the attacker.
+Another way is to request a data from each
+memory block and use only the one needed.
+This will leave almost identical memory
+activities for the attacker to monitor.
+However, it does in, introduce overhead
+in runtime and power consumption.
+The execution time of certain
+operations depends on the key but
+it can be modified to hide this, this
+dependency for example, in cache warming.
+Warm memory access will
+be cache me heat and
+this will give almost
+a constant execution time.
+Meanwhile it is also possible to
+introduce random delay to help
+us gage the execution time that
+can be measured by the attacker.
+Hardware can be modified as well
+to prevent cache attacks or
+make them much more difficult.
+For example, we can change certain
+memory pages to non-cacheable memory.
+This will make all the cache access
+miss and to prevent all cache attacks.
+Special instructions can be added to the
+instruction set in architecture, or ISA,
+or specialized cache can be designed
+to counter node cache attacks.
+Data prefetching is a popular
+performance enhancement tech, technique.
+It will fetch data from main memory
+to the cache before it is used.
+By pre pa, by pre fetching we can increase
+cache hit and confuse the adversary.
+This completes the discussion
+on cache attacks.
+Next time, we will talk,
+talk about power analysis attacks.
+

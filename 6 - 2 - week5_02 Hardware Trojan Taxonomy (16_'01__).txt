@@ -1,0 +1,367 @@
+Now let's talk about
+Hardware Trojan Taxonomy.
+Based on different criteria the hardware
+Trojan's can be categorized in
+many different ways.
+These criteria include,
+when the hardware Trojan will be
+inserted in the micro chip supply chain.
+And more specifically, during the many
+stages of chip design which stage, or
+at which level of abstraction
+the hardware Trojan will be embedded?
+How the hardware Trojan will
+be triggered or activated?
+And what will the hardware
+Trojan do once it is activated?
+Or what is the goal or
+payload of the hardware Trojan?
+Which system components will,
+where's the hardware Trojan will
+be inserted into such as the processor,
+memory unit, or clog networks?
+Whether the hardware Trojan is
+functional or non-functional?
+In the case of non-functional, it is
+also called parametric hardware Trojan.
+Are the hardware Trojans big or small?
+Tight or loose?
+Tight means that the hardware
+Trojan is clustered or
+centralized at one spot on the chip, and
+loose means that the hardware Trojans
+are distributed all over the chip.
+Does the insertion of the hardware Trojan
+require redesign of the layout or not?
+We will explain this hardware
+Trojan taxonomies in
+details with some
+hardware Trojan examples.
+The first one is the hardware
+Trojan taxonomy based on
+the IC supply chain that
+we have seen earlier.
+To refresh your memory,
+the green blocks we have seen here,
+they are generally considered
+to be trusted phases.
+The red block, blocks,
+they are untrusted phases.
+And the yellow block,
+it can be either trusted or untrusted.
+In the first system specification phase,
+we define the functionality of the system
+and its large building blocks.
+We also give the performance
+requirements for
+these components, and
+their communication protocols.
+For example, the system has to be of
+certain size, the power consumption has to
+be lower than certain value, and
+there must be some timing or delay
+requirements between the modules that
+will be communicating with each other.
+Hardware Trojans can be embedded at this
+phase by deliberately change the module's
+functionality or
+the communication protocols among modules.
+Next, the design phase is,
+is in the supply chain
+is perhaps the most vulnerable stage for
+hardware Trojan insertion.
+This is because during this phase third
+party IPs design tools, design libraries,
+and many other things that are out of
+the control of both the system user and
+a trial stage design team,
+will be involved in the design.
+We will give a more detailed categori,
+categorization of hardware
+Trojans at this phase later.
+Once the chip design is completed mask as
+such will be made to fabricate wafers.
+In this phase, attackers can embed
+hardware Trojan into the mask or
+change the chemical compositions
+to do the damage on the system.
+For example, by increasing the electron
+migration in power supply or
+clock network,
+they can make the chip age faster.
+When the chip is assembled with other
+hardware components extra wires can be
+added to leak information from a module or
+to control that module.
+Also unshielded wires can leak information
+through the electron magnetic set channel.
+Finally, in the testing phase not
+only systems functionality but
+also its trustworthiness will be tested.
+Hardware Trojan can be
+inserted in this phase, so
+other hardware trojans embedded earlier
+in the design phase will not be detected.
+This is a typical IC design flow,
+starting from the high level system and
+architectural synthesis,
+all the way down to physical
+design before chip fabrication.
+In each of these design phases,
+hardware Trojan can be embedded.
+For example,
+in a circuit that compute x square,
+we have seen last time, the valid input
+values to the system are from 0 to 9.
+A hardware Trojan, as we have shown,
+is in, in, inserted so
+the circuit can also compute
+the square of 10 and 11 correctly.
+in that way the system will authenticate
+attackers with the pairs of 10 and 100 or
+11 and 121,
+as their user name and password.
+This is a hardware Trojan inserted
+at the functional level, and
+it is done by adding 10 and
+11 as valid input to the system.
+As another example, consider this block
+which is controlled by an enable signal X.
+When X is equal to one,
+the block will be disabled.
+When X equal to zero, I'm sorry when X
+equal to one, the block will be enabled.
+When X equal to zero
+the block will be disabled.
+At gate level,
+a hardware Trojan can be easily inserted
+to control the usage of this block.
+For example, we can replace this control
+signal X by a two input AND gate.
+The attacker will set the hardware
+Trojan's trigger signal C
+to be one so
+the system will behave normally.
+When the attacker wants
+to disable this block,
+he can simply set the, the hardware
+Trojan trigger signal C to be,
+to be zero, and
+to disable this entire functional block.
+This type of hardware Trojan is
+sometimes called killer switch,
+because it can disable or
+queue a hardware components.
+Similarly, this can also be
+done with a two input OR gate.
+However in this case, this,
+the building block will be
+disabled when X is set to be one and
+it will be enabled when X equals to zero.
+So in the normal case,
+we set d to be zero so, to let,
+to let the system behave normally,
+to and to,
+once we try to disable the system,
+we set d to be one to disable the block.
+At transistor level, there are also
+many ways to insert hardware Trojans.
+For instance, some physical, some physical
+parameters such as threshold voltage or
+transistor size can be changed to
+impact the delay of the logical gates.
+The power consumption of
+the logical units, or
+the aging process of the transistors.
+These timing or
+power features may leak information,
+or facilitate side channel attacks.
+At the physical design phase,
+or the layout level,
+the physical parameters of the circuits,
+such as the dimensions or
+the locations of the circuit components,
+can be changed to embed hardware Trojans.
+These hardware Trojans are called
+parametric Trojans, and
+we'll discuss them later on.
+Finally, the design environment,
+particularly the kind of tools used for
+during the design, design phases,
+cannot be trusted.
+Hardware trojans might be inserted into
+the system through the use of these tools.
+Based on whether the hardware trojan
+changes system's functionality or not,.
+They can be considered as
+functional hardware Trojan or
+parametric hardware Trojan.
+Functional hardware Trojans are those that
+will change the system's functionalities.
+Examples include adding a actual
+functional unit, removing or
+modifying systems components.
+Parametric trojans on the other side,
+on the other hand, normally do not
+change system's functionalities.
+Instead, they try to reduce system's
+reliability to increase the chance of
+performance failure.
+This can be done by changing the physical
+parameters of the system components,
+such as making the wires thinner or the
+transistors weaker, or modifying the power
+supply to, to cause, cause certain parts
+of the system to age faster than expected.
+Hardware Trojans can be always on or
+triggered by some event or signals.
+The Trojans such as those based on
+the modification of physical features of
+the transistors, wires or other hardware
+components, they are always on.
+Hardware Trojans can also be triggered,
+and most of these cases,
+triggered by rare event or signals.
+These triggers can be data
+collected by the sensors or
+logical units from the hardware
+components, such as registers or counters.
+The triggers can also come
+from either internally or
+externally from outside of the chip.
+Here are several examples.
+A time bomb, as it name suggests,
+will explode when a preset time expires.
+If hardware Trojan this can be easily
+implemented with a counter, or
+a finite state machine.
+When a counter reaches a preset
+value with a finite state
+machine reaches a certain state,
+the hardware Trojan will be activated.
+This is an internally triggered and
+logical triggered hardware Trojan.
+A temperature or other physical
+condition based hardware Trojan can be
+activated when such
+physical conditions is met.
+For example, when the on chip
+temperature reaches certain degree, or
+when the supply voltage becomes
+lower than a given value, or
+when outside humidity
+reaches certain levels.
+This kind of hardware Trojans
+are triggered by sensors and
+can be either internally or externally
+depending on where the sensors are.
+Hardware Trojans can also be
+triggered by outside signals,
+such as user pushing a button,
+turning on or off of a switch, or
+once certain input values are entered
+into the system, maybe even wirelessly.
+These hardware Trojans
+are externally triggered.
+They can be either sensor based or
+logical value based.
+The payload is the action or
+the damage that a hardware Trojan
+will do once it is activated.
+We have mentioned from the very beginning,
+there are three major types of damage or
+malicious purpose
+a hardware Trojan may have.
+First it may try to change or control
+the function, functionality of the system.
+Examples include, the killer switch,
+we have mentioned earlier.
+The time bomb and the simple F x equal
+to x square example we showed last time.
+Second, a hardware Trojan may try
+to leak sensitive information.
+Normally this is done through side
+channels, such as the power network,
+the clock network, optical, thermal, or
+electrical, electrical magnetic emissions.
+Finally, some hardware Trojans may try,
+try to reduce circuit reliability or
+the lifetime of the system.
+These type of Trojans include
+parametric hardware Trojans or
+those Trojans that can activate
+applications or functional units that will
+drain resource from the system,
+to make system die earlier.
+Hardware Trojans can be embedded into
+many, many locations of the system.
+In the processing units,
+hardware Trojan can be hide,
+can be hidden there to change or
+control the systems functionality.
+In memory structures, hardware Trojan
+can be im, embedded to alter or
+to change the memory's contents, or
+simply to monitor memory activities and
+leak information.
+The I/O devices are the link between
+the outside world and under the chip.
+So hardware Trojan can be embedded
+there to control, monitor, or
+modify data communication between
+the chip and the outside.
+Power supply units.
+Hardware Trojan can be embedded
+there to change the power or
+current supply to cause system failure, or
+to leak information through
+the power side channel.
+And the clock grids is another position
+to have, to, to hide hardware Trojan.
+They can attacker can change
+the frequency to cause fault or failure.
+And to leak information through
+the timing side channels.
+Based on the physical
+features of hardware Trojans.
+The hardware Trojan can also be put
+into several different categories.
+So first based on their size,
+we can have large or
+big hardware Trojans such as
+sophisticated time bombs or powerful
+antennas embedded or hidden in the system,
+trying to receive signals from outside.
+There can also be a lot of
+very small hardware Trojans,
+such as the killer switch we have seen
+earlier, just a simple two input gate or
+some very small temperature sensors.
+Sometimes when hardware Trojan,
+Trojans are embedded into the system,
+we need to redo the layout or
+placement in the And examples of this
+are including adding functional units,
+which are nontrivial ones, cannot fit into
+a small extra space on the, on the layout.
+There are also hardware Trojans that
+doesn't need to change the layout.
+For example, the parametric hardware
+Trojans or some very small hardware
+Trojans that can utilize the actual
+white space on the, on the chips layout.
+And then finally we mentioned earlier,
+based on the distribution
+of the hardware Trojans, they can be
+either centralized or distributed.
+The centralized hardware Trojans,
+normally they are bigger,
+they can take over bigger space in,
+on one spot of the chip.
+And the distributed hardware Trojans,
+they're normally small and
+then they are scattered all over the chip.
+Next time,
+we're going to talk about how we can
+detect different type of hardware Trojans.
+

@@ -1,0 +1,339 @@
+We now discuss some popular
+Hardware Trojan detection methods.
+We'll start with test time approaches,
+followed by the run time
+monitoring approach.
+In the logical test based Hardware Trojan
+detection, we run different test patterns,
+what has the vectors.
+And the monitors, the systems,
+the output and the behavior.
+If the system had Hardware trojan,
+when the trojan is activated,
+it's malicious behavior, or malicious
+payload will observed as it can be caught.
+However, a full coverage
+test is impractical for
+reasonable size of the circuit.
+For example,
+if we have a combinational block with n
+input then there potentially will be
+the 2 to the power n test vectors.
+Was this, the logical block
+has also sequential parts.
+For example, if we have m flip flops and
+n, an input.
+Then the total number of test cases
+will be 2 to the power n plus m.
+Therefore, people have
+developed random test,
+random test based Hardware Trojan
+detection mechanisms.
+However, such methods will fail because we
+have learned Hardware Trojan normally
+are triggered by a rare event.
+When you do a random selection, these
+rare test vectors may not get selected.
+Therefore, we know the hardware, the
+Hardware Trojan detection mechanism has to
+test the time based on
+logical test is hard to
+generate rare test vectors
+to activate Hardware Trojan.
+Another way to do Hardware Trojan
+detection at test-time is
+to do the Side Channel Analysis, just
+like the Side Channel Analysis attack.
+What we do is, we monitor the side channel
+information during the execution of
+the system at the test-time.
+If the system has Hardware Trojan,
+then its presence will show on
+certain physical parameters, and
+can be observed through side channels.
+This pretty good, because they not only
+capture functional hardware Trojans.
+They can also capture
+non-functional Hardware Trojans,
+like the parametric Hardware Trojans.
+However, they may have
+a high false alarm rate,
+because, because of
+the fabrication variations.
+Because the, the side channel
+information measurement errors, or
+because the modeling errors or the model,
+the normal behavior of the system.
+So now let's see a couple
+of popular side channels.
+First is the Power Side Channel.
+We can measure the supply
+current at the quiescent stage,
+when the circuit is not switching and
+that the inputs are also not changing.
+In this case, if there is there is
+a HardwareTrojan, the Hardware Trojan
+circuitry will consume additional
+leakage power that can be caught.
+However, this may also have false
+alarm rate, because nowadays chip,
+it has a very high leakage curve.
+Similarly, we can also measure
+the transient, supply current.
+When there is, when there is,
+when the Hardware Trojan is activated,
+it has additional switch activity,
+and this will cause a increase in
+dynamic power, so it can be caught.
+For this one to work, we need find ways
+to activate the Hardware Trojan, or
+at least activate part
+of the Hardware Trojan.
+For power side channels there
+are a couple limitations.
+First, it, it fails to capture
+small Hardware Trojans or
+always-on Hardware Trojans because you
+cannot distinguish this from
+the power side channel trace.
+And also, they are very
+sensitive to noise to errors and
+also to fabrication variations.
+Another side channel
+is the timing channel.
+Where we know that Hardware Trojan
+can change delay of a path.
+For example, in the case of kill switch,
+the added illogical gate
+will make the path longer.
+In the parametric Hardware Trojans,
+the change of the wire or
+the change of the transistors
+may change the delay, as well.
+So the limitation of delay,
+path delay based Hardware Trojan detection
+mechanism is not all the paths
+we can measure their delay.
+For us to measure the delay of a path,
+we need to be able to observe or
+to see both the starting gate and
+the ending gate of the path.
+And also the,
+just the path delay measurement will be
+very sensitive to fabrication
+variation and other noises.
+And similar to side channel
+analysis attack we can
+also capture Hardware Trojans
+from the EM emissions.
+So when the circuit has Hardware Trojan
+and the Trojan got activated,
+the additional switching will produce
+EM trace which can be captured, and
+then used to detect Hardware Trojan.
+So here a short summary of the two
+major test time approaches.
+In the first,
+the logic test-based approach,
+these are good to capture
+small Hardware Trojans.
+They're also very robust under noise and
+the fabrication variations.
+However, they can no handle large Hardware
+Trojans Mainly because of the large space
+of tester vectors and also it is very
+hard to generate the test of pattern or
+test of vectors that can
+activate Hardware Trojans.
+On the other side, this, the side
+channel analysis based approaches.
+They are good to capture large Hardware
+Trojans because this may introduce large
+variation in the, in the power,
+power trace or current trace.
+They can also hand,
+handle non-functional Hardware Trojans,
+like the parametric
+parametric Hardware Trojans.
+However, this all sensitive to noise and
+fabrication variations because
+the measurements of the side
+channel information.
+And also they can not detect
+the small Hardware Trojans.
+Because the small Hardware Trojan,
+their contribution to static channel
+information may not be significant enough.
+In addition to test of time Hardware
+Trojan detection, we can also capture or
+catch Hardware Trojans at run time.
+The basic idea is simply to monitor
+the execution of the system at real time.
+If the system has Hardware Trojan and
+the trojan get activated,
+then we can find the malicious behavior.
+However in this case most
+likely there will be a inter,
+interrupt mechanism coupled with
+the run time monitoring system.
+Once the Hardware Trojan is detected
+the interrupted mechanisms will stop
+the execution to protect the system.
+As we know that at test-time
+we cannot detect all
+the Hardware Trojans with 100% guarantee.
+Therefore run-time monitoring is
+a very good complementary approach to
+test-time approaches.
+However, for us to do run-time monitoring,
+we do need monitoring units.
+And these units will take resources,
+like power or
+CPU time and
+that they can cost performance overhead.
+Another feature about
+run-time monitoring is,
+once we know what type of Hardware Trojan
+we are looking for, then this run-time
+monitoring approach can be very effective,
+because we have a target to monitor.
+We know what is the expected
+malicious behavior.
+Finally, let's see a few examples
+about Hardware Trojan detection.
+So first let's consider
+the parametric Hardware Trojans.
+These are the Trojans that are not
+change the functionality of the system.
+Therefore the logical test with
+run time monitoring may not be
+able to detect these
+parametric Hardware Trojans.
+However, since they change the physical
+parameters of the circuits,
+in particular, the wires or
+the transistors with the logical gates.
+So this will lead some trace in
+the power or the delay side channel.
+So the side channel
+analysis based attack ana,
+detection can find
+the parametric Hardware Trojans.
+And a big trojan.
+So for a big trojan, depends on whether
+they change the functionality or not,
+we may be able to detect
+it using the logical test.
+However, it may not be easy, because when,
+when we have a big Hardware Trojan,
+it may not be easy to exhaustively
+search all the test patterns.
+And the big Hardware Trojan will cause the
+big variation on the power consumption, so
+we'll be able to detect it by
+the power side channel analysis.
+For the path delay based
+detection mechanism,
+depends on whether the big,
+the big Hardware Trojan is on the path or
+not or
+whether that path can be measured or not.
+We can either detect it or we may,
+may not be able to detect it.
+And normally, a big Hardware Trojan
+can be detected at runtime.
+On the other hand a small Hardware Trojan,
+this is very good for
+the logical test, test based
+approach to detect it as test time.
+It, it is also very good for
+delay based side channel analysis.
+Because for the small ones, the paths
+delay, the number of paths may be limited.
+However, because it is, it is small,
+so the changes it have made to
+the system of power is very limited,
+so we may not be able to detect
+it from the power side channel.
+At run time, it depends on what kind of
+impact does small Hardware Trojan will
+make to the system.
+We can either detect it, or
+not be able to detect it.
+Remember a type tight
+Hardware Trojan is the one
+that clustered at one spot on the chip.
+So this is something similar
+to a big Hardware Trojan.
+So we will be able to detect it
+through the power side channel.
+We can also normally detect
+it by the delay side channel,
+because this is a large unit.
+And depends on the, the payload
+of the Hardware Trojan, the run
+time monitor approach may be able to
+detect it or may not be able to detect it.
+And normally,
+the logical test-based approach can
+detect a such Hardware Trojan,
+because we have a large block here and
+there are certain approaches to generate
+test patterns to test this large block.
+For the loose Hardware Trojans,
+these are the ones that randomly
+distributed all over the chip.
+So this one may not be able to be
+detected by power side channel,
+because each of this is
+a small Hardware Trojan.
+And to similar as before, it's,
+in whether it can be detected by
+a run time monitoring approach
+depends on its payload.
+And normally it can be detected by
+the logical test based approach or
+the delay side channel.
+The always-on Hardware Trojan.
+This is very hard to detect.
+so, because it is always on, so
+at the run time monitoring,
+it doesn't show any difference.
+And also, it is always on, so the power
+trace doesn't show any difference.
+And as we mentioned, some of the always-on
+Hardware Trojans, they don't
+change the functionality of the system, so
+logical test may not be able to find it.
+However, these always-on Hardware Trojans,
+they do change the delay of this,
+the circuits.
+So the path the delay based as side
+channel can capture such Hardware Trojans.
+Finally, as we had mentioned earlier, so
+there are several purp,
+malicious purposes for Hardware Trojans.
+For example, one of them is trying
+to leak sensitive information.
+So for this type of Hardware Trojans,
+we may not be able to
+detect it by logical tests.
+Because to leak information,
+they don't change other part of
+the functionality of the system.
+And also this unit for
+example, that leaked the information leak
+through an addit, and added antenna.
+So the past delay may
+not be detected as well.
+However, the power side channel may be,
+may be able to detect it.
+Once thing, once the antenna is activated,
+the power may become higher.
+And notify the run time we can,
+once we know the target of the Hardware
+Trojan is to leak information.
+We can monitor [COUGH] the signal to data
+communication channel of the system and
+then detect such Hardware Trojan.
+

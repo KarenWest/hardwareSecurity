@@ -1,0 +1,337 @@
+Welcome back.
+This week we will first talk
+about physical attacks.
+From studying various ways of
+physical attacks, you will see
+the threats from hardware, or,
+how to break security from hardware side.
+You will also learn some of
+the countermeasures to these attacks.
+Probably one thing that you may find
+a very use for is how industry and
+government define and
+evaluate the security levels of a product.
+Most of the physical attacks
+require special skills and
+knowledge in addition to sometimes very
+expensive equipment and the tools.
+However, you do not need to have any
+special background to understand most
+of these attacks.
+Our goal in this lecture is to let
+people be aware of these attacks,
+not to teach them step by step,
+how to do such attacks.
+Next week, we will discuss in more
+details about side-channel attack,
+which is a very powerful physical attack.
+Over the years of lecturing on
+hardware security, I find it is very
+difficult to deliver this part of the
+material without a lab for demonstrations.
+For this Coursera course,
+I will also take away some of the images.
+Part of this course is developed based on
+a book chapter by Sergei Skorabogatov.
+On his web page,
+Sergei has also posted his lecture notes
+Physical Attacks and Tamper Resistance.
+If you are interested in this topic, you
+should definitely read this book chapter.
+Let's start with the question,
+what are the physical attacks?
+I cannot give you an accurate definition,
+but all the physical attacks have
+the following characteristics, or
+require the following conditions.
+First, to launch a physical attack,
+the attacker needs physical
+access to the chip, or at least should
+be able to contact, to contact,
+to connect certain wires in order
+to measure the target's signals.
+With more and more devices being
+connected wirelessly nowadays,
+physical attacks without physical access
+to the system have also been reported.
+For example, acoustic attacks, near field
+communication attacks, and some attacks
+to the RFID can all be performed close
+to the device without touching them.
+In addition to the necessary equipment and
+the tools, the attacker must
+also have the required skills and
+the knowledge to perform physical attacks.
+The second common thing about
+all the physical attacks is
+that they all have two phases.
+First, the Interaction phase
+where the attackers interact with
+some physical characteristics
+of the device to collect data.
+And then, the Exploitation phase,
+where the attacker analyze the collected
+information to reveal the secret and
+break the security.
+From this, without discussing
+any physical attack in details,
+what can we say about physical attack and
+hardware security?
+First, we can imagine that this requires,
+requirements make it
+harder to attack the system from
+hardware than from software or network.
+We have said that Physical attacks
+needs Physical access to the system.
+And those will most of the time need
+Specialized equipment, tools, and
+the knowledge to perform the task the,
+the attack.
+And normally, for software attack or
+network attack the, the bar is much lower.
+On the other hand, we know that the
+attackers loss will always be our gain.
+In this content, contexts this
+means that with the same costs and
+efforts investing on protection from
+hardware will most likely make the system
+more secure than adding security
+from network and software layers.
+This is also one of the reasons
+why hardware security has gained a lot
+of attention in the recent years.
+However, the downside of
+building security at hard lev,
+hardware is that this will also
+add another attacking surface.
+We have to make sure that
+the hardware is secure and trusted.
+Which means that we should
+consider the vulner,
+the vulnerabilities of hardware design and
+implementations.
+And make sure that the back doors
+will not become new threats.
+Attackers, not necessarily
+who launch physical attacks,
+can be categorized into three groups.
+Class I, clever outsiders.
+These attackers are often
+very intelligent, but
+they may not have sufficient
+knowledge about a system.
+They may not have access
+to the equipment and
+the tools necessary to
+break the system either.
+Class II, knowledgeable insiders.
+These attackers are familiar
+with the system, and
+have highly sophisticated tools and
+equipment to analyze and break the system.
+Class III, funded organizations.
+They normally have a team of expert,
+experts with all the necessary skills,
+tools, knowledge, and
+equipment to invent new attacks if
+necessary to break the target system.
+So what are the motivations for
+all these kind,
+kind of different attackers
+to break a system?
+There's one single motivation, money.
+Actually, this is also the motivation for
+almost all the attacks.
+Based on how money can be made
+from successful physical attacks,
+we can further partition the motivation
+for physical attacks into several groups.
+First, steal money or a service directly.
+Example of these type of
+physical attacks include,
+breaking smart cards and
+making bogus deposit, or
+breaking the TV set top box to
+watch programs without subscribing.
+Or, breaking game consoles to
+play games without paying.
+Second, make profit fits by sailing,
+selling or reselling products illegally.
+IP piracy, integrated circuits,
+overbuilding, and
+counterfeiting, are all
+examples of this kind.
+Third, post their own
+sales by interrupting or
+damaging the service
+provided by the competitors.
+For example, an attacker can insert
+malicious updates, patches or hardware
+tojan to make competitors device or system
+malfunction or suffer bad performance.
+This will give their own product an end,
+an unfair competitive edge.
+We have discussed IP protection last week,
+and we will cover hardware trojan later.
+This week our focus will be on how
+physical attacks can break the system.
+Particularly cryptosystems to
+steal service or money directly.
+When we say breaking a system, we do not
+mean physically destroying the system.
+Instead, the attackers want to learn
+information about the system that he
+doesn't have ac, the authority to access.
+In the case of cryptosystems, such
+information could be the secret key, or
+the secret data.
+In the case of design IP protections,
+it would be the design details.
+If on further discuss, discussing
+physical attacks, we would like to
+point out the difference between
+Physical Attacks and Cryptanalysis.
+They both have the goal
+of breaking the security.
+However, classic Cryptanalysis
+focuses on breaking the cryptosystem
+by mathematical analysis of the crypto,
+cryptographic algorithms.
+It had success in the past, for
+example, the birthday attack and
+the differential Cryptanalysis.
+But now, Cryptanalysis is
+becoming harder and harder.
+This is because most of the modern
+crypto systems are theoretically sound
+and unbreakable.
+Instead, there may exist flaws in
+the implementation of the crypto systems.
+Physical attacks attempts to find
+such flaws and break the system.
+Based on whether the targeted system or
+device will be damaged during or
+after the attack, Physical Attacks
+can be classified in three groups.
+Invasive attacks,
+this kind of attack requires direct access
+to the inside of the chip or device.
+Depends on whether after you attack,
+the system can be reassembled.
+The sys, the,
+the attack can be either Reversible,
+otherwise it called irreversible.
+Apparently, for irreversible attacks,
+it cannot be repeated.
+Normally, the device will be
+damaged after the attack.
+Sometimes tamper evidence will be,
+will left.
+The cost and
+required skills to perform invasive attack
+varies based on how the attacks will
+be performed on what kind of systems.
+But normally, the cost and
+effort will be very, very high.
+The second category is called
+a Non-invasive attack.
+In this case, the attacker
+will interact with the device,
+with a chip, with its interface,
+such as voltage,
+current, clock,
+input-output interface, etc.
+And such attack can also be Passive or
+active.
+Depending on whether
+the attacker only monitors and
+measures this physical measure,
+physical characteristics.
+Or, the attacker also injects input to the
+system to cause the system malfunction.
+Normally, such attack will
+not damage the device, and
+it will not leave any tamper evidence.
+Most of these thing, these attack,
+have very low cost and can be repeated.
+And in the middle,
+between invasive attack and
+non-invasive attack, there's another
+category called semi-invasive attacks.
+These attacks, normally they require
+access to the surface of the chip.
+But they do not need to create
+contacts with the internal wires.
+And usually did not damage the system, and
+depends on how the attacker is performed,
+they may or may not leave tamper evidence.
+And the cost of this depends
+on what kind of surface,
+what kind of interact they
+will have with the system.
+They can be high or low.
+But still be definitely much lower than
+the very expensive invasive attacks.
+And they also require some special skills.
+And most of the cyber invasive
+attacks they are repeatable.
+There are a few ways to
+perform physical attacks.
+And based on how physical
+attacks are performed,
+it can also be put into
+several different categories.
+Reverse engineering, this type of
+attack will study the chip's in,
+inside structure.
+Then trying to decide,
+determine the functionality of the system.
+Normally, this has very high cost, and
+the attacker should have similar
+capabilities of the designer.
+And normally have,
+also have the capability of manufacturing.
+And this is in general is in,
+invasive attack.
+The second group is called Microprobing.
+In this case it requires to direct
+access to the chip surface to observe,
+manipulate, and interact with the chip,
+and they are also invasive attacks.
+The third category is
+called a Fault generation.
+In this case,
+the attacker will generate, create f,
+Fault, normally a faulty input,
+or make the chip run eh,
+of normal environment conditions, and in
+the hope that the chip will malfunction,
+to leak information, or give the attacker
+additional access to the system.
+Depending how the fault is generated,
+the attack can be either be
+semi-invasive or non-invasive.
+And Side-channel attack,
+which we'll discuss next week,
+they are normally non-invasive attacks,
+and this type of attack has two phases.
+First, the attacker, while monitoring,
+will measure a chip's physical
+characteristics, such as power, current,
+timing, EM radiation, etc,
+during the chip's normal operation mode.
+And then, with the data collected,
+they will perform a data analysis
+to learn the hidden information.
+And finally,
+there's a category called Software attack.
+This again, it is non-invasive and
+the attacker will use normal input,
+output interface trying to explore known
+security vulnerabilities in the se,
+in the security protocols or
+algorithms were there software
+implementations to perform an attack.
+This attack, they are repeatable and
+non-invasive.
+

@@ -1,0 +1,287 @@
+We have learnt the importance of
+intellectual property protection, and
+the basics of digital watermarking.
+Now, we will show a couple
+of examples to see how to
+embed digital watermarks into hardware
+design intellectual properties.
+[SOUND] The first example is on
+Boolean expression optimization.
+The problem,
+is to rewrite a Boolean formula don't care
+conditions using the minimum
+number of literals.
+Our goal is to protect,
+to minimize the formula,
+which is the design intellectual
+property in this case.
+The approach we've used is to embed,
+one bit of information behind
+each don't care conditions.
+When we want to hide a bit of one,
+we force the don't care condition to
+be one, and when we want to a bit zero,
+we force the formula to be zero
+on the don't care condition.
+For example, to had,
+to hide the message 01, we make the first
+don't care condition to be zero, and, the
+second don't care condition, after that
+condition the formula will be evaluated
+at one, and thus, the formula becomes,
+this new form,
+which has a well additional term, abcd,
+corresponds to the second
+don't care condition.
+And we can find,
+the optimal solution in this case,
+which F becomes a prime,
+b, c prime plus bd.
+And similarly to hide message 10, we can
+include the first don't care condition
+into the Boolean formula and then leave
+the second don't care condition away, so
+this is because the second bit is 0,
+and, as a result we
+upturn this solution which is distinct or
+different from the first one.
+To summarize this example, we see that,
+we can hide watermark by specifying
+values to don't care conditions.
+In this example,
+any 2-bit message can be embedded and
+will get distinct watermarked solutions,
+as shown here, or we add either 00,
+01, 10, or, or 11, and we get four
+completely different solutions.
+However, we see some of the solutions
+are better than others.
+For example, the solution with 01, and
+11 as watermark, they both have five
+letters as the solution, and, however,
+the other two have nine literals.
+This is one of the challenges for
+watermarking,
+which is known as fairness, and
+we will talk about this later.
+Let's see another example.
+This example is a radix-4 to binary
+encoder, what we have here is,
+this is the truth table where we
+have each of the four symbols,
+the radix-4 member system, and
+we'll convert each of the symbols into a
+binary representation, with fo, two bits.
+And the window that's the input
+has four bits, and so
+we have two to the power for
+16 different input combinations, however,
+the truth table has only four of them,
+that means there are a total of
+12 don't care conditions and
+we list them, listed them there
+numerically, start from page 0000
+all the way to 1111, and output,
+the oldest cases are don't cares, which
+are represented by this double cross.
+And assume that we want to add,
+a two-digit letter, DA,
+as our watermark, DA stands for
+design automation in this case.
+The first thing we do is,
+we represent this, these two letters into,
+binary information.
+And what we do is, we consider that
+ASCII code, D and A, and then we
+also add a parity bit at the end, so
+this gives us a 15 bit watermark.
+And we embedded this 15 bit watermark into
+the original truth table for the original
+design, what we do here is,
+we see there are 12 don't care conditions.
+With don't care con, 12 don't care
+conditions we can embed three bits, this
+is because, if you want embed four bits,
+we may end up with the situation that,
+it does not exist in these 12 don't
+care conditions, because 12 can
+represent 8 different combinations for,
+of 3 bits, but not 4 bits.
+So what we do is we
+consider the last 3 bits of
+the watermark which is 010, which is
+a binary 2, so what we do is we come to
+our list of don't care conditions,
+see zero, one, and the two.
+So this is the don't care condi,
+condition,
+we are going to specify a deterministic
+value to embed our signature.
+And, what value should the system
+output in this don't care condition,
+that depends on what is the message
+you want to embed here.
+So, what we see in the original watermark,
+the next two bits, which because, our,
+our output has two bits.
+So, the next two bits are 00,
+so that is why,
+I replace these don't cares by two zeroes.
+And similarly, I can move out to the next
+three bits, I can do this because now,
+the don't care table has 11 don't cares,
+I can still do, three bits.
+So this 3-bit is 100, which is the binary
+four, so what I do is I count zero,
+one, two, three, four, so
+this is the don't care condition,
+I'm going to force a value, and
+the value happens to again to be 00,
+because the next two bits
+in the watermark are 00.
+And then, we keep on this process,
+and then the next one bit is 001,
+which is the binary of one, so 01,
+and then the massive logo add,
+add the, the leading bits, which is 10.
+So now we have successfully convert,
+this 15-bit watermark into three pairs
+of input and output, and we added them
+into the original truth table, and then
+we got an augmented truth table, which
+we called the watermarked truth table.
+Now we will show how design
+will be conducted with
+the original truth table and
+the watermarked truth table.
+So from here, we can easily see that,
+the two outputs x and
+y can be represented by c plus d,
+and b plus d, or simply two
+And however,
+to implement the watermark truth table.
+The expression becomes
+a little bit more complicated.
+So in this case, instead of four literals,
+two logical gates, we need one, two,
+three, four, five, six,
+seven, eight literals.
+This is something we know
+called design overhead, and
+again, we'll discuss about
+the design overhead later.
+The final example is our problem that has
+a lot of applications in hardware design
+and optimization, the problem is known as
+graph vertex covering, coloring problem.
+So what we have in this problem is,
+we have an undirected graph, and
+we want to color the graph by giving
+each vertex or each node a color,
+such that, whenever two nodes
+are connected they must get,
+we must give them different colors,
+for example, node B, and nodes D,
+they are connected, so B and the D,
+they have to receive different colors.
+So this is one of the sample solutions
+here, you see, I mean, A, B, C, D, they
+all get different colors and then H has
+the same color with D because they're not
+connected, and H has to have a different
+color with G because they are connected.
+And usually this problem is not that
+hard to solve, but what is harder is,
+well we tried to minimize
+the number of colors we, we need.
+As a matter of fact,
+if we consider whether a, a graph can
+be colored by two colorful nodes,
+which is known as the two, 2-colorable
+problem, that problem is trivial to solve.
+However, when I ask you whether a graph is
+three, can be colored by three colors or
+not, the 3-colorable problem
+turns to be NP-complete, and
+in fact ,the 3-colorable problem is one of
+the most important NP-complete problems,
+and it has a lot of applications,
+in particular for digital VLSI design.
+Now we will show how we can embed
+watermark into a solution to
+graph coloring problem.
+So what we ha, have here is,
+we have a graph with 11 nodes,
+and a, probably around 20 edges.
+[COUGH] What we want to do here is,
+we want to protect our solution to,
+to a scheme of this graph,
+and what we do is,
+by hiding a message 2000 into
+the solution, to achieve such protection.
+The first thing we do as
+we show previously, we,
+we need to convert our signature, well
+our message into binary, in this case,
+the decimal number 2000 will be
+converted into binary bit sequence here.
+And what I do now is, I want to show you,
+step by step how I can hide this,
+bitstream into the graph, and
+then solve the graph, find a solution.
+The first thing I do is I take a look,
+look at note 0,
+I want to find, the next two note
+that are not connected to note 0,
+in this case, I see 0 and 1 they're
+connected, so 1 is not a candidate, but,
+both note 2 and 3,
+they are not connected to note 0,
+so 2 and 3 will be candidate in this case.
+And to hide a bit of information,
+what I'll do is, I'm
+going to add one additional edge starting
+from 0, and what is the receiving end or
+the receiving note of this edge that
+depends on the [INAUDIBLE] I'm going to
+invite, so, if want to invite a 1,
+I'm going to connect a 0 to 3,
+if I'm going to invite a 0, I'm going
+to connect the 0 and a 2.In this case,
+because I want to invite a 2, so
+what I do is connect a 0 and the 3, and
+similarly, I move on to the next one,
+know the 1, 3 and 4, they are the next two
+nodes that are not connected to 1, and to
+add another bit-1, I connected 1 and a 4.
+So I can repeat this process, and
+at the end, all these 11 bits will
+be embedded into the, into this new graph,
+which we called a watermarked graph,
+and these are the dotted edges
+correspond to one, one, one, and so on.
+So now I use my tool or
+find another smart way to color
+this graph, and the solution I get is,
+this is one of the examples, and
+we see that it requires 0, 1, 2, 3, so
+all together, four different colors.
+And, in this solution we noticed
+some interesting things, so for
+example, note 8 and note 7,
+they received different colors, however,
+this is not required
+in the original graph.
+As a matter of fact,
+indeed I can also put note 8 as blue,
+which also satisfies all the requirements,
+which means that for
+all notes that are connected to 8,
+they're not, they're not in
+the same color in the original graph,
+but not in the watermarked graph.
+So, the fact that this solution satisfies
+a set of additional constraints,
+will be used as the proof
+of our authorship.
+

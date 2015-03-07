@@ -1,0 +1,317 @@
+Welcome back to hardware security.
+Today we're going to talk about
+vulnerabilities in hardware and
+hardware design.
+What you see next might be pessimistic,
+but when we talk about security,
+it's better to be pessimistic
+instead of optimistic.
+You cannot and
+should not trust the hardware you
+are given, no matter it is a cell phone,
+it is a laptop, it is a desktop, or maybe
+it is just a very simple embedded system.
+There are a couple of reasons behind this.
+So, first it is the trust issue
+in microchip supply chain.
+There might be back doors in the server or
+in the system.
+And also, when designers design
+the system they have to use third,
+third party intellectual properties.
+They have to use design tools which
+may not come from a trusted source.
+And the third reason here is so
+when people design hardwares to implement
+applications, implement functions, when
+you implement for example crypto crimi,
+primitives, what they consider
+is performance, not security.
+So this potentially can introduce
+security vulnerabilities into the system.
+Finally, there might be malicious
+designers, malicious foundries.
+They may add hardware
+trojans into the hardware.
+And, in addition to these issues
+related to the hardware design process,
+the hardware itself might
+become a target for attacks.
+Such like, side-channel analysis and
+physical attacks.
+So today we are going to talk about
+microchip supply chain security and
+the back doors.
+And all the other concerns we
+are going to talk about later.
+So let's start with
+the microchip supply chain.
+So this figure is coming
+from a 2006 report
+from the Defense Advanced
+Research Projects Agency.
+It shows the design goes
+from a user specification.
+Goes to the design team for design.
+Goes to the manufacturer for fabrication.
+And then eventually deliver back to
+the system, back to the system user for
+testing and for deployment and monitoring.
+So when the entire design and
+fabrication phase is in, in house,
+it can be under control,
+everything is trusted.
+However, with the increased
+design complexity, and
+with the off shore foundry,
+a lot of these plugs becomes untrusted.
+So for example, this design team,
+it may be trusted, we might say okay,
+okay, you have this design team for
+years, but however, they are using models,
+which come from other sources.
+They are using third party
+intellectual properties.
+They are using design tools.
+And these things may not be
+designed with a trusted source.
+And also when we talk about the foundries,
+these are oversee of, for foundries.
+They're out of our control.
+So what we have here is
+only the phase when we
+specify the system we can trust it.
+When we get the system back we
+can do the test by ourself.
+We'll trust our testing.
+When we deploy the system.
+When we monitor the system
+we can trust this.
+And everything the middle
+we may not trust it.
+So now let's come down to see
+a couple more concrete examples.
+So the first example we have is
+coming from the reveal slides for
+digital logical design.
+So where,
+where do we have this 3-input encoder.
+So there are three bits input x, y and z.
+And at, at any time, each,
+any one of them can be one, the only one.
+And what we want to do is we want
+to encode this with a two bit code,
+which will be fit into
+the next module as input.
+So if you remember from the review slides,
+what we have here is the optimal
+design looks like this.
+A is the complement of z, and
+then b, b is the complement of y.
+So we know this is the best design.
+However, there might a couple of
+security problems for this design.
+So first if we have 000 as the input,
+following this design, a will be 1,
+which is the complement of z.
+And then b will also be 1,
+which is the complement of y.
+So this overall will give us
+an output 11 as the code.
+Which coincides with the code for
+inputs combination 100.
+So this potentially becomes
+a backdoor to the case of input 100.
+And the second question, well,
+maybe actually is a more severe problem.
+So when we have inputs such as 011 or 111,
+the output of this optimal design,
+give us 00 as the output.
+Which will be feed into
+the next module as input, but
+however if you come back to
+our system specification here,
+it does not specify 00
+as a potential output.
+So that means the next module it may
+not consider 000 as a valid input.
+So this may cause some problems for
+the next module.
+Which potentially can be something
+called a fault injection attack.
+So the next slide we're going to see
+an example of sequential system design.
+Where we have a three state
+find-a-state machine.
+And we have state 00, state 01, and 10.
+And this table shows, this diagram
+shows you that if I'm at state 00 for
+example I'll input X equal to zero, I'm
+going to move to state 01 and output a 1.
+So if you follow the traditional design
+we have reviewed in the review slides.
+What we have here is we need
+to flip flop the A and the B,
+we encoded the two bits 0 and 0 or 01110.
+And then we need the input, and
+then we need to specify what
+will be the next stage.
+'Kay?
+So, for example, like the one we have
+mention earlier, start from stage 00.
+I input x equal to 0,
+I'm going to move to state 0, 1 okay.
+So when we follow the traditional design
+flow, this system can be implemented with
+two flip flops like this A and a B, and
+also with a couple of logical gates here.
+And what is interesting here is
+what happens with these two dashes.
+And when we come back to the system stack,
+this corresponds to the case that when
+the system is not specify the requirement.
+So for example here, 01,
+that is my current state.
+Then if input is 0,
+I don't care where it goes.
+I don't care what is the next state.
+But however, from this system here,
+you cannot generate I don't care.
+When the system is at
+state 01,iIf you give 0 as
+an input the system has to direct
+you to a deterministic state.
+So when we do a circuit analysis we find
+out in this case the next state will
+be 00.
+And similarly in the other
+don't care case,
+output is also 00,
+which is the next state.
+So when you think more about this,
+you can now have two flip-flops, A and B.
+What happens if those has counted one?
+So this give you another state,
+state 11, which is not specified in
+the original system specification here.
+And however when the system
+is designed in this way,
+you must have some next state
+when the current state is 11.
+So when we do a full circuit analysis,
+we've realized that when state is 11,
+depends on the input, our next state
+can be one of these two states.
+So this leads us to the following
+five finite state machine model for
+the system, actually, was delivered to us.
+This system here.
+It is a four stage state machine,
+with everything completely specified,
+particularly these four red edges.
+And now you say okay so,
+this three-state machine is what I want.
+I want you to design a system for, for
+me to do this functionality, and
+this is what is delivered to me, and
+if I check all these original constraint,
+they are met.
+So this is a system that works for me.
+But however I may not trust it,
+because it also implements all these edges
+in red, which I put question marks here.
+So this is something
+we call the backdoors.
+And they can potentially create
+vulnerabilities into the system.
+So for example, now we see this finite
+state machine, it is what we required and
+this is what delivered.
+And we mentioned that we may
+have these backdoors here,
+and then how can we figure
+out these backdoors?
+Well how can attackers
+find these backdoors?
+So we consider this simple case,
+where we assume that state 00 is a state
+that we want to restrict the access.
+So the original system
+nobody can come back to 00,
+there's no incoming edge coming into 00.
+But however in this new state, where this
+new state machine have been implemented,
+I do see this address coming back.
+I do see this one coming back.
+I do see this one coming back.
+And then from first state 00 I
+can go to 01 and then come back.
+So the state machine that I have,
+that designed, everybody can come back and
+access state 00.
+So this is the potential vulnerability.
+But how easy it is for
+the attackers to find this back door?
+[SOUND] To show this, we designed
+a very simple random walk attack.
+So in this attack, the attacker is
+going to start from a random state, for
+example, 01.
+And then he is going to try,
+try a random input for example one again.
+And with this one,
+the system will move him into state 10.
+And then we say okay, so
+this is not what I want, not state 00.
+So he is going to try another
+random input, for example 00.
+And then this one stays at state 10,
+still not the target at 00.
+And next time the attacker is
+going to try input one, and
+this will take him directly
+to the state of 00.
+Which means that the attacker now
+have access to the state 00 which he
+doesn't have access.
+Where, we, he should not have access.
+[SOUND] So
+now we use the same example to show how
+malicious designers can introduce
+hardware Trojan into the system.
+So for example in this case, again we
+want to limit the access to state 00.
+And then malicious designers may say, so
+I want to have a back door access to it.
+And how do I do, do that?
+So what the attacker can do
+is it can simply specify all
+these unspecified conditions.
+Direct them into the state 00,
+which is the one he wants get access.
+And for
+this hidden state which is not specified,
+he can also specify them go to this state.
+So whenever the system is
+in any of this state, or
+this hidden state, and the attacker
+can give a unexpected input, and
+then the next thing they know is they're
+going to have access to this state.
+So that is a very simple way
+to gain unauthorized access.
+And if you know that
+the attackers can do this,
+you can do some very
+simple countermeasures.
+So for example, I realize these
+are the potential vulnerabilities.
+So how about I put all these things
+back to a state which is safe?
+Safe in the sense that this one
+cannot go back to state 00.
+So in this case, you do have 100% trust,
+where you do have 100% security.
+But however, there is a huge design
+overhead, which normally we cannot afford.
+

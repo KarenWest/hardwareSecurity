@@ -1,0 +1,469 @@
+We have learned modular exponentiations.
+And its security vulnerabilities.
+Today we're going to talk about,
+how to fix these security vulnerabilities
+from algorithm perspective.
+And this approach is called
+Randomized Modular Exponentiation.
+We know in modular exponentiation,
+our goal is to compute x
+to the power of d, mod N.
+And we know the attacker's goal is trying
+find the value of the exponents d, d.
+And the most popular implementation
+of this is the called square and
+multiply algorithm.
+And we have seen the vulnerabilities
+in that algorithm.
+And in the randomized modular
+exponentiation algorithm,
+there are several steps.
+First, we will chose three random numbers,
+r1, r2, and r3.
+And then we're going to change
+the three important numbers x,
+d and N in the modular
+exponentiation to x prime,
+d prime, N prime,
+following the following formulas.
+X prime equal to x plus r1 times N.
+d1 equal to,
+d-prime equal to d plus r2 time phi of N.
+Phi is the unitless phi function,
+which we're going to define next.
+N prime equal to r3 times N.
+And then instead of computing the modular
+exponentiation of x to the power d mod N.
+We compute x prime to the power d prime,
+mod N prime.
+And we call this result y prime.
+And after this,
+we do a modular y prime mod N, and
+we call the result y double prime.
+The claim we have here is.
+This y double prime is the same as y,
+which is the modular exponentiation
+we're trying to compute.
+Let's first do a quick review of
+the Square and Multiply algorithm for
+modular exponentiation.
+And then see,
+what is the vulnerability here.
+And the example we have here is we want
+to compute 15 to the power of 47, mod 26.
+The first step is to convert
+the decimal 47 to binary.
+And here's the standard procedure how to
+do the decimal, to binary conversion.
+We divide 47 by 2, the quotient is 23,
+and has a 1 as remainder.
+And then we divide the quotient 23,
+by 2 again it's a new quotient 11 and
+a remainder 1.
+Then we keep on dividing.
+The quotient by 2,
+and then get the new quotient get
+a remainder, and then keep on doing this.
+5 divided by 2 equal the 2
+with 1 as a remainder.
+And 2 divided by 2 with 1 as the quotient,
+and there's no remainder.
+And finally, 1 divided by 2,
+with 0 as quotient and
+1 as a remainder, then we stop.
+So now with all these remainders we try to
+write these remainders from bottom to top,
+bottom up and then this new sequence
+is the binary representation of 2.
+Let me repeat again.
+So to convert a decimal number,
+47 in this case, to binary,
+all we need to do is keep on dividing 47
+by 2, get the quotient, get the remainder.
+And then keep on dividing
+the quotient by 2.
+Get a new quotient.
+And then keep on doing the division.
+And then,
+we keep track of all the remainders and
+write down them backwards from the first,
+last one to the first one.
+And this is the binary number for
+binary equivalent of 47.
+Now we use the left to right Square and
+the Multiply algorithm to compute
+15 to the power 47 mod 26.
+We first write down the binary
+representation of 47.
+Start from the left most bit 1,
+0, 1, 1, 1, 1.
+Remember when we have, when we do this
+square in the multiply algorithm, and
+when we move one page to another page,
+we square the current value we have.
+And then once the bit is a 1,
+we do a multiply by 15.
+So we start with 15,
+then we do 15 square because this is 0, so
+we don't do any further multiplication.
+15 squared is 225, or modular 26.
+This is negative 9, or it is positive 17.
+Next, we do a square of negative 9,
+and because the bit is 1,
+so we multiply this by 15.
+The square of negative 9 is 81.
+81 mod 26 is 3,
+because 78 divided 26 equal to 3.
+So 3 times 15 equals 45 and
+double 26 is 52, so 45 is 7 away from 52.
+So 45 equal to negative 7 mod 26.
+So next, we have another 1, so
+we square the negative 7 we have,
+and then multiply by 15.
+This gives us 49 times 15.
+49 mod 26 is negative 3.
+And negative 3 times 15 is negative 45.
+And because 45 mod 26 is negative 7,
+so negative 45 mod 26 must be positive 7.
+And we keep on doing this.
+Square the 7 here.
+Multiplied by 15 because the big 1.
+So we've got 49 times 15 again which is 7.
+And we do this again.
+So eventually,
+we know that's 15 to the power
+of 47 mod 26 is equal to 7.
+However, we have pointed out there is
+a vulnerability in this calculation.
+Because, whenever the bit is 1, we do
+one step, which is the multiplication.
+Hence, if the the attacker, they can
+monitor the stat channel information,
+they can figure out this extra step.
+And then, reveal what is the secret key
+here, or the value of the exponent.
+Before we talk about, how to fix this with
+the randomized modular exponentiation?
+We're going to introduce the Euler's
+phi function as we have promised.
+Euler's phi function, is actually the
+number of positive integers less than or
+equal to n and relatively prime to n.
+And this stands for the great common
+divisor between k and n is 1, which means.
+They are relatively prime to each other.
+We'll see a few examples here.
+So first, phi of 2 is only a number 1,
+which is relative prime to 2,
+so phi of 2 equal to 1.
+For 3, we know both 1 and 2,
+they are relative prime to 3,
+so phi of 3 equal to 3.
+Phi of 5, all the numbers less than 5,
+1, 2, 3, 4, 5, 4.
+They are relative prime to 5.
+So phi of 5 is 4.
+At this point, we can reasoning that for
+any prime number p,
+phi of p should be p minus 1.
+Because all the numbers from 1 to p
+minus 1, they are relatively prime to p.
+Next we see phi of 10.
+And we see number 1, 3, 7, and 9.
+These are the four numbers,
+that are relatively prime to 10.
+So phi of 10 equal to 4,
+which happens to be phi2 time phi of 5.
+Which is 1 times 4.
+And the last example is phi of 15.
+So we know that 3,
+is relative prime to 15.
+5, 6, 7, 9 I'm sorry 9, 10, 12 and 15.
+Those are the numbers that
+are not relative prime to 15.
+These remaining numbers,
+they're all relative prime to 15.
+And if count these, we have 1, 2,
+3, 4, 5, 6, 7, 8 numbers, which
+happens to be the product of phi of 3,
+and phi of 5.
+So for these two observations here,
+it happens they are not a coincidence.
+Indeed we have this formula here.
+So if we have two numbers m and n,
+they're relatively prime to each other.
+And so phi of m times n equal
+to phi of m times phi of n.
+Actually to prove this is
+pretty straightforward.
+So we first count how many
+numbers between 1 and,
+n times m and not,
+are not relatively prime to n time m.
+So from 1 to m,
+there m minus phi of m numbers,
+that are not relative prime to n
+from the definition of phi of m.
+And for each of these numbers, and
+if they multiply by n, all these numbers.
+And multiply from 1 to n, and the product
+will not be relative prime to n times n.
+So these are the numbers, that will
+not be relatively primed to m times n.
+And for the numbers between 1 and
+m, that are a relative prime to m.
+If the second number,
+which are not relative prime to n,
+their product will not be
+relative prime to m times n.
+It's follows the si,
+similar argument as the first term.
+So if we multiply this and then we see
+the phi of m times n with a minus.
+And phi of m times n with plus these
+two terms, they cancel each other.
+So, what we have is m times n,
+minus phi of m times phi of n.
+So these are the numbers between 1 and
+m times n,
+that are not relatively
+prime to m times n.
+So the number that are relative
+prime to m over n,
+will be m times m minus this quantity,
+which happens to be phi of m times phi
+of n which is what we have claimed here.
+To see a concrete example,
+we consider phi of 10.
+So, three of 2 which is 1 number, 1 here.
+Phi 5, which is 4,
+contains the number 1, 2, 3 and 4.
+So for
+the numbers that are not relative prime to
+10 from the first term, we have 1 here.
+And this 1 can be multiplied by
+all the numbers between 1 and 5.
+So we have this 2 here,
+which is not relative prime to 2.
+2 times 1, 2 times 2, 2 times 3,
+2 times 4, 2 times 5.
+These are the five numbers that
+are not relative prime to 10.
+And then for the second term, for
+the phi m, which is this 1 here.
+And n minus phi, phi of n.
+In this case, there's only one number,
+which is 5, not relative prime to 5.
+So we get the number 5 here.
+So in total, we have one, two three, four,
+five, six numbers that are not
+relatively prime to 10.
+Which tells us phi of 10
+equals 10 minus 6 which is 4.
+Indeed, we have
+the Euler's Product Formula,
+which we're not going to keep the proof.
+It says that,
+if we can do the factorization of n,
+we go to p1 to the power of k1
+times p2 to the power of k2.
+Times et cetera to pm times,
+to the k, km where all this pi's,
+p1, p2, p of pm,
+they are distinct prime numbers.
+If we have this prime factorization of n,
+Euler says phi of n equals to
+n times 1 minus 1 over p1,
+times 1 minus 1 over p2,
+times...until 1 minus 1 over pm.
+The next important thing
+about Euler's phi function,
+is the one called Euler's Theorem.
+Which happens to be one of the most
+elegant theorem and number theories.
+So it says, we have two numbers, a and n.
+They are relatively prime to each other.
+And then we this phi of n
+which is the phi function.
+It says a is to the power of
+phi of n mod n equal to 1.
+And, let's see one very simple
+application of this Euler's Theorem.
+So let's see, we want to find
+the modular multiplicative inverse.
+If we have two n and m, a and
+n they are relative prime to each other.
+From Euler's theorem,
+we claim that the modulo inverse of a,
+which is a negative 1,
+equal to a of phi n minus 1.
+And to see this is relatively easy.
+So what we do a multiplied by
+a to the power phi n minus 1.
+This give us a to the phi n.
+And followed Euler's Theorem,
+this tells us this is one.
+So, we see a times a to the power
+of phi n minus 1 equal to 1 mod n.
+That is exactly the definition
+of modular inverse.
+To see example of this.
+We know 7 and 10,
+they are relative prime to each other.
+And we have phi of 10 equal to 4.
+From this we know that
+the modulo inverse of 7 mod 10,
+is indeed 7 to the power 4 minus 1,
+which is 3.
+So 7 cubed is 7 squared,
+which is 47 times 7,
+49 mod 10 is 9, so
+this 9 times 7 which is 63.
+And modular 10, mod, mod 10 is 3.
+And to verify this, we see 7 times
+3 equal to 21, which mod 10 is 1.
+So now we have all the necessary
+background we need.
+To learn the randomized
+modular exponentiation.
+So let's first see example,
+see how it works, and
+then give a formal proof of this.
+So this is the, the procedure to do
+the Randomized Modular Exponentiation
+where we select the three then,
+random numbers.
+In this case, let's pick r1 equal to 4, r2
+equal to 7, and r3 equal to 5, randomly.
+[SOUND] Following the definition
+of x prime, d prime and
+N prime, we can compute these quantities.
+Oh, by the way, phi of 26 equal to
+phi of 2 times phi of 13 which is 12.
+So x primes equal to x,
+which is 15 plus r1, which is 4.
+Multiply by N which is 26.
+This give us 119.
+d prime equal to d, which is 47 here.
+Plus r2,
+which is 7 times phi of N which is 12.
+So this is 47 plus 81 give us 131.
+Finally N prime.
+Is defined as r3 times N.
+So in this case 5 times 26 is 130.
+So now we can compute
+the modulo exponentiation.
+Instead of doing 15 to
+the power 47 mod 26,
+we compute 119, which is x prime.
+To the power of d prime which is 131.
+And the mod m prime which is 130.
+So again, the first step,
+is to convert 131 in to binary.
+So this is a procedure,
+as we have outlined earlier.
+And I'm not going to go
+through the details again.
+And we do the,
+keep on divided by 2 and record all
+the remainders and write them bottom up,
+so we have binary representation.
+And then we can use the left to right
+square and multiply algorithm to compute
+and find out 119 raised to the power
+of 131, mod 130 is indeed 59.
+And now, we follow the last step
+to do a mod N, which is 26.
+So 59 mod 26 is 7.
+And what we see here, this is the same 7.
+As we have computed earlier.
+So when we take a look of this,
+we do compute a modular
+exponentiation during this procedure.
+However, this modular
+exponentiation to take us
+may see some information about 131.
+And this, from this they did not get
+much information about the secret
+of D here, which is 47.
+Let's now give a few more proof,
+of the randomized modular exponentiation.
+To show its correctness.
+So let's say we have two numbers
+a which is equal to c to mod p.
+So we can write a as c plus
+p times the integer k1.
+And similarly, if b equal to d mod p.
+We can write b as d plus p times k2.
+So the product of a and
+the b can be written as
+c plus p times k1 times d plus p times k2.
+And if we ex, if,
+if we break the parentheses, and
+when we do the mods operation of mod p.
+All these terms disappeared except cd,
+which means if a and,
+a and c they're equivalent mod p,
+b and d are equivalent mod p.
+And then their product,
+a times b, will be equivalent,
+will be the same as c times d mod p.
+So now let's see the modified or
+randomized modular exponentiation x prime,
+to the power d prime.
+So when we plug in the definition of
+x prime, which is x plus r1 times N,
+hence the definition of d prime,
+which is d plus r2 time phi of N.
+So we this, this equation here.
+And then once we separate the exponents,
+we get the first term
+times the second term.
+So let's denote the first term with a,
+and then let's do a mod
+N prime operation here.
+So if a equal to x plus r1 times
+N to the power d mod N prime,
+we can write a equal to this plus N prime,
+which is r3 times N times the integer k1.
+And if we mod N of this quantity.
+You see this term disappeared after mod n,
+and for this binomial exponent,
+by following the binomial equation formula
+here, for this term when we do a mod
+n the only thing remaining will be x
+to the power d for the second term.
+That's column b which is x plus r times N,
+raised to the power r2 times phi of N,
+mod N prime.
+And so b can be written as this plus N
+prime, which is r2 times N times k2.
+And if we do a mod N operation,
+so this term disappeared.
+And for this term, and
+because we do mod N.
+So the only thing left is x to
+the power r2 times phi of n.
+Now because of Euler's Theorem,
+we know this x to
+the power of phi of N mod N equal to 1.
+So eventually, what we get here is x
+double prime will equal to x prime to
+the power, raised to the power d prime,
+will equal to a times b.
+And a will be x to the power d times b,
+which is 1 mod N.
+So this eventually is x to the power d.
+Which is y mod N.
+So this shows that the randomized
+model exponentiation,
+gives the correct answer after-
+After model exponentiation
+adds to the power d.
+However, the secret,
+which is the exponence d will be hiden.
+The modular exponentiation
+we're doing here is,
+x prime to the power of d prime,
+mod N prime.
+

@@ -1,0 +1,146 @@
+Let's conclude the course with
+some discussion on the roles that
+hardware play in security and trust.
+Assume that you have some valuables,
+gold, diamonds, jewelry or whatever.
+How to protect it?
+Most of us will think,
+put it in a safe and lock it.
+In our discussion, hardware is the safe.
+So, let's say, you have a digital
+secret you want to protect.
+You can develop a solid crypto-algorithm
+with secure protocol to protect it.
+And, you can write a, a solid,
+a well-protected software to
+implement this crypto-algorithm or
+secure protocol.
+But, eventually you need hardware.
+You need computers to exe,
+execute these software products.
+You need developers to
+do the communication.
+So, this is the first role of
+hardware plays in security and trust.
+It is an enabler, without hardware we
+cannot do all these computation of the,
+and the communication.
+And also, people know that
+customized hardware always has
+better performance than
+software implementation.
+So that brings us to the second
+role of hardware in security and
+trust, it becomes an enhancer.
+Normally, enhance the performance
+of the system in terms of speech,
+energy consumption, et cetera.
+And we have also seen
+the case of security and
+trust with additional
+hardware inside the systems.
+The system can add more
+security to the system.
+More recently,
+we have seen more advance or
+more involvemen,
+involvement of hardware in security.
+We present it by this thing
+called Trusted Platform Module.
+And also some,
+a lot of this Vormetric uh,co-processors.
+What they do there is they are trying
+to build a first line of defense.
+If you cannot pass the authentication
+check in TPM, if you cannot pass
+the authentication check by the biometric
+co-processor, you cannot access the CPU.
+And however, we have seen that it
+is important to have hardware,
+but if you don't design
+your hardware properly.
+Let's come back to this safe.
+The safe is solid, however,
+you leave the key combination of
+the safe right on top of the safe.
+Then this safe is not safe anymore.
+This is the same as when you design
+a hardware, you leave a lot of back doors.
+And through the course, we have seen a lot
+of vulnerabilities from hardware side.
+People can use side-channel attacks.
+People can use physical attacks.
+Trying to steal the information
+inside the hardware,
+trying to attack the physical system.
+This brings us to this, this question.
+Is hardware become the weakest
+link in security or not?
+Unfortunately, if you don't
+design your hardware properly,
+if you don't think about security and
+the trust to the design and
+optimization of your hardware, it will
+become the weakest link for security.
+So what will be the challenges for
+hardware design?
+In my opinion, there are three
+things we have to consider.
+First, as a hardware designer,
+you want to secure the design.
+You want to protect your
+intellectual property.
+And we have discussed
+about the attacks the,
+the overbuilding, counterfeiting,
+IP theft and IP misuse.
+And we have already provide
+count countermeasures or
+techniques to prevent this,
+like digital watermark,
+digital fingerprint, hardware metering,
+all these things of authentication.
+And also you have to make sure that
+the hardware you deliver to the customer,
+they are trusted.
+This is what we call the trusted
+integrated circuits.
+There shouldn't be any backdoors.
+There shouldn't be any
+hardware Trojan horse.
+And the second challenge of
+hardware design here is eventually,
+the hardware is going
+to do some computation.
+It's going to have some data.
+You want to make sure the data will be
+secured, and against side channel attacks,
+against any physical attacks to
+any kind of memory or And finally,
+you have to be active, trying to
+provide hardware security primitives.
+Try to enhance or improve the system's
+overall security performance.
+And we have talked about the TPM, and
+they are also secure co-processors, which
+speed up the competition of security.
+And we have seen PUF.
+We have seen random number generators.
+This x can stand for t, for
+true random number, true number, number,
+random number generators, while p for
+pseudo-random number generators.
+And also, you have to keep,
+always keep on looking at the new devices,
+and the new technologies, and
+whether it will bring any
+vulnerabilities to the hardware design.
+And, or, whether it can provide
+new features for hardware design.
+I hope that in the, in this six weeks,
+you have learned something,
+which might be useful, and it can be,
+you can use it to protect your design,
+to make your design more secure.
+And finally, I will say, thank you
+

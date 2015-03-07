@@ -1,0 +1,250 @@
+Welcome back to Hardware Security.
+This week we will talk about
+how hardware designers can
+protect their design intellectual
+properties from being misused.
+We will learn what design
+intellectual properties are and
+why they are important in
+modern hardware design.
+We will show that in
+addition to law enforcement,
+there are several techniques available for
+you to protect design intellectual,
+intellectual properties by yourself.
+These techniques include digital
+watermarking, digital fingerprinting,
+integrated circuit metering,
+and design obfuscation.
+So, the discussion of this
+message we will also see how to
+make the tradeoff amount, security,
+cost, and system performance.
+No special background is needed
+to understand these concepts.
+However, the examples we will use require
+some basics of digital logic design.
+We will also introduce the concept
+of graph coloring problems and
+graph partitioning problems.
+How we use them?
+According to the Cambridge
+International Dictionary of English,
+intellectual property is an original idea,
+which can be used to earn money.
+Original reflects the novelty
+of the intellectual property and
+that the phrase can be used implies the
+usability of the intellectual property.
+Examples of intellectual
+properties are products,
+technologies, softwares, and so on.
+Meanwhile, it also states
+that's the person or
+group who is recognized as having
+the idea can use the law to
+prevent other people from
+earning money by copying it.
+This law enforcement includes, patents,
+copyrights, trade secrets, and so on.
+In VLSI design,
+an intellectual property is a dig,
+is a design unity that can
+be reasonably viewed as
+a stand-alone sub-components of
+a complete system on-chip design.
+It can be any innovation and
+the technology that make designs better.
+For example, a place design algorithm,
+a power management technique,
+or a noble design or testing method.
+These are all considered as Design IPs.
+More tangible examples include,
+microprocessor course,
+on-chip memories, PISA interface micro,
+fully routed netlist,
+Verilog chip descriptions, and so on.
+These are also as virtual components,
+blocks, cores, or
+sometimes called a macros.
+Based on their performance and
+the flexibility.
+Design, design intellectual properties
+can be categorized into three groups.
+Hard IPs, they include GDSII files with
+test the list and high level models,
+customer physical layout,
+fully placed in a routed netlist for
+a given partic, technology library.
+These hard IPs have
+predictable performance, and
+most of the time, optimized.
+But they are very, very inflexible.
+On the other hand,
+soft IPs are delivered in the form of
+synthesizable HDL code,
+like Verilog or VHDL programs.
+They offer great design
+flexibilities despite the la,
+the last predictable performance.
+Examples of Firm IPs
+are placed RTL sub-blocks and
+the fully place netlist for,
+for generic technology library.
+They can be, they can be considered as
+a compromise of hard IPs and soft IPs.
+The driven force behind intellectual
+properties is the design productive,
+productivity gap.
+The gap between what can be built and
+what can be designed?
+This figure is available from Wikipedia.
+It shows the CPU transistor
+counts in the past of 40 years,
+following the Moore's law.
+The Moore's law says,
+that the number of transistors on a chip
+is doubled every 18 months.
+I don't want you to read all the words
+in small font in this figure.
+What is important is that back,
+back in 1971 the Intel 40,
+4, 4004 processor has 2300 transistors and
+they're 10 micrometer technology.
+Now, technology has advanced
+to 20 nanometres and
+more than processors have
+buildings of transistors.
+The capacity of si,
+silicon has increased for
+almost 1 billion times
+in the past of 40 years.
+But designers ability to
+do meaningful design.
+With such transistors has not
+increased at the same pace.
+This creates the design productivity gap.
+One of the most effective way to close the
+gap is reuse-base, reuse-base the design.
+Starting, starting from the mid 1990s.
+There are many industry
+initiatives on IP reuse.
+In the US, there
+are Virtual Software Interface Alliance,
+also known as VSIA, and Virtual,
+Virtual Component Exchange.
+At the design and reuse this,
+organisation in Europe, Europe.
+An IP-Highway is the one in the Asia.
+In reuse-base design IPs are developed
+not only for use, but also for reuse.
+Design engineers are forced
+to cooperate and
+share their data,
+expertise, and experience.
+These are details I encourage
+to be documented and
+made public to make reuse more convenient.
+But, at the same time,
+these efforts has made IP piracy and
+the infringement much easier than ever.
+Since the early 1990's
+litigation cases and
+semiconductor related to IP
+infringement have been increased very,
+very fast causing an estimated annual
+revenue loss of billions of dollars.
+The most dangerous threat of IP pi, piracy
+came in the form of reverse engineering,
+chip overbuilding, and counterfeiting.
+Reverse engineering is the process,
+where a product is taken apart and
+analyzed in order to improve or
+duplicate the product.
+For hardware design IPs, the cost and
+the schemes required for
+reverse engineering are much less than
+those to develop the original IP.
+This gives a taggers incent,
+incentive for IP piracy.
+Chip overbuilding refers to the scenario,
+where our foundering fabricates
+more chips than the order.
+And then sells those extra copies
+to the market to make profits.
+Counterfeiting is the case
+when a low quality product, or
+IP, is manufactured but
+is sold as a high quality brand name.
+The Virtual Software Interface Alliance
+has listed the following four goals for
+intellectual property protection.
+Number one, enable IP providers to protect
+their IPs against unauthorized use.
+Number two, protect all types of design
+data use to produce and deliver IPs.
+Number three, detect use of IPs.
+And finally, trace of IPs.
+[NOISE] In practice, most design,
+design IPs are secured
+by deterrents and
+the protection mag, mechanisms.
+Commonly used the deterrents,
+includes patents,
+copyrights, contracts, trademarks,
+and the trade secrets.
+They do not directly provide IP piracy
+they do not directly prevent IP piracy.
+But rather discourage the misuse of IPs
+because the attacker was being caught.
+They face lawsuit and
+severe penalty to recover
+the financial loss of the IP provider.
+However, it is the IP provider's task to
+identify and report IP infringement and
+find the attacker.
+Protection mechanisms, on the other hand,
+use means such as encryption,
+chemicals, obfuscation, and
+dedicated hardwares to prevent and
+authorize the access to the IP.
+Standard encryptions can be
+applied to protect these IPs.
+For example Both Xilinx and Altera have
+offered encryption on their IFPG boards.
+Chemicals can also be
+integrated into the chip for
+a passive protections,
+mainly from military devices.
+When the surface of the, the chip
+is scratched and exposed to the a,
+to the air it will damage
+the exposed silicon.
+And thus, prevents reverse engineering.
+Meanwhile, obfuscation method have
+been proposed at various design phases
+in order to disguise the design and make
+reverse engineering much more difficult.
+In addition, industry organizations have
+been working on establishing standards for
+IP reuse and IP protection.
+For example, Virtual Socket
+Interface Alliance has published
+two tagging standards to
+protect hard IPs and soft IPs.
+Law enforcement is the only means to
+get back the revenue lost to IP piracy.
+The encryption and
+other protection mechanisms make IP piracy
+more difficult, and more expensive.
+But only the detection schemes
+such as digital watermark.
+digital fingerprinting, and
+integrated circuit metering
+can enable IP providers to identify
+the occurrence of IP piracy.
+This identification will be the first
+step towards legal fight against
+IP infringement.
+We will focus on this message this week.
+

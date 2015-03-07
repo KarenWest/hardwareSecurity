@@ -1,0 +1,321 @@
+Side channel attacks are perhaps
+the most successful attacks to modern
+cryptographic systems for
+two main reasons.
+First, they target the weakness of the
+implementation of the crypto-algorithms,
+not the algorithms themselves.
+Therefore, the mathematically
+sound algorithms,
+can become vulnerable
+against side channel attacks.
+Second, these attacks are non invasive.
+Passive and to most of time will
+not leave any trace of attack.
+They use the signals leaked from side
+channels during system's normal execution,
+to reveal the secret information.
+So it is hard to detect and
+catch such, such attacks.
+This week,
+we will start a section of attacks.
+We will start with what are set channels,
+why they may mix information, how
+attackers can take advantage of this vuln,
+vulnerabilities to launch
+side channel attacks.
+We will discuss in details on
+four representative attacks.
+Cache attacks, power analysis,
+including both sink power analysis,
+and a differential power analysis.
+Timing attacks, and scan chain attacks.
+Of course, we will also talk about
+the counter measures from software,
+hardware and algorithms.
+Some background on electrical engineering
+will be helpful to understand
+the mechanisms of information leak
+through different types of side channels.
+To follow the example we're going to use,
+you need a good understanding of the con,
+concept of modular exponentiation and
+Montgomery reduction that we have to,
+learned last week.
+Some basics of assembling programming will
+be helpful for a couple of examples, and
+some entry level knowledge about the cache
+and memory structure are needed, too.
+I'll try to cover this background
+as needed during the lecture.
+Side channel attacks, normally have
+two phases, a marrying phase and
+a data analysis phase.
+During the first phase,
+the attacker will measure, will monitor
+the systems physical characteristics when
+the system is running at the normal mode.
+This physical, physical features can be
+power consumption, current, timing or
+delay, electro magnetic ignition, acoustic
+information, optical information etc.
+Then during the second
+phase the attacker will
+perform data analysis on
+the collected side channel
+data to determine the on-chip
+secret information of interest.
+Normally, further measurement
+will be collected to conf,
+confirm the deduced secret information.
+Side channel attacks, are non
+invasive because they do not
+require to open up the chip.
+Some of the attacks do not need to have
+physical access to the chip either.
+For example, the EM attacks and
+acoustic attacks.
+Side channel attacks are also
+passive as the attacker will be
+monitoring the normal
+operation of the chip.
+However, there is the trained of combining
+side channel attack, with active attacks,
+to improved efficiency and
+effectiveness of the attack.
+For example, by doing input control, the
+attacker can put the chip in the normal
+operation with his imputed data,
+and the attacker can use faulty
+ejection techniques to force the system
+to run at some of normal conditions.
+This will help the attacker to collect
+more valuable section information that
+are not necess, are not easily available
+through a passive monitoring process.
+There are many set channels that
+can be utilized by the attackers.
+The power consumption and execution
+time during the normal operation.
+The electromagnetic information,
+the optical, and
+acoustic emission,
+as well as the system's output signals.
+Next, we'll briefly discuss each of this.
+First, the power and the current side
+channel is perhaps, that the, the side
+channel that has been started extensively
+in the past twenty years or so.
+Chips power consumption mainly
+comes from three sources.
+The dynamic power, power that is needed
+to charge and a discharge the capacitors.
+The leakage current that will occur
+even when the system is idle.
+And short circuits and others.
+Information may leak from dynamic
+power consumption, because it is
+proportional to the effective
+capacitors of the switching activity.
+A switching happens, when we change
+a logical 0 to a logical 1 or
+logical 1 to a 0.
+This will incur higher power consumption
+than the case when the logical value
+remains at zero or one.
+On the other hand, leakage current may
+leak information about the system because
+the leakage current of a logical device is
+related to the input value to this device.
+For example, for this two input nano gate
+the leakage current on both input
+signals are one is about 454 nanoamp,
+about 12 times higher than the leakage
+when the input vector is 00.
+Naturally, timing or delay is related
+to the execution time of an operation.
+The execution time of different
+operations may be different.
+The execution time of the same operation
+with different operants under different
+conditions may also be different.
+This will give attackers some insight,
+about the system's internal information.
+For example, the control flow will leak
+data when different branches execute
+very different instructions.
+Take this if-else statement, for example.
+It will take longer time to perform
+the operation x equal to c minus
+d in the false branch, than the operation
+x equal to 8 in the true branch.
+If the attacker can manage to measure
+the execution of this portion of the code,
+whether a and
+b have the same value can be deduced.
+The data dependency nature of many
+operations can also leak information.
+Consider a very simple multiplication
+operation, x times y and
+assign the product to x.
+The execution time when y equal
+to a number such as 190, will be
+very different, in particular will be much
+longer than the case when y equal to zero,
+y equal to one, or y equal to 64.
+In the last case, because 64 is 2 to
+the power 6, so this multiplication
+normally is implemented by a logical
+shift which takes much shorter time.
+In addition monitoring
+execution time can also
+reveal whether cache misses and
+pipeline stores have happened.
+This may also leak
+the cache memory content,
+in particularly, the cache memory content.
+EM emissions originate
+from the acceleration of
+charges near a conductor or an, antennas.
+In the near field range, which is about
+two wavelengths from the antenna,
+the electric and
+magnetic fields are dominated by EM waves.
+However, their intensity drops quickly
+as the distance gets further away.
+Why data may leak from EM emissions?
+This is because they can modulate
+other on-chip signals through
+near-field inductive and
+capacitive couplings.
+This makes it possible to
+use the EM tracers as set
+channel signals to these cover
+operations inside the chip.
+Optical emissions come
+from the movement of hard
+carriers including both electrons and
+holes.
+When they move in a fat channel,
+they can cause a visible or
+infrared light emission.
+This can be captured by
+a charge-coupled device cameras and
+used to help IC testing and the debugging.
+If this information about that circuit can
+be used for testing and the debugging.
+It is also possible for
+an attacker to use the same information
+to extract information about the system.
+This type of attack can be used to detect
+the data from all kinds hardware devices,
+from microcontrollers and
+smartcards to FPGAs and ASICs.
+Acoustic information has been used
+to attack hardware systems for
+several decades.
+When a key is entered from the keyboard,
+or
+when certain system components
+are running, sound might be captured.
+For example, in the 1950s,
+British intelligence agents determined,
+the starting position of
+the Egyptian encryption machine by
+listening to the resetting
+of the key wells.
+In old spy movies we have seen spy
+movies we have phone numbers leaked from
+the dial tone.
+Text printed on certain dot
+matrix printers can also
+be detected from the acoustic
+side channel information.
+The reason for
+information leak from acoustic
+channel is fairly straightforward.
+The acoustic traces of different key being
+keyed on the computer are different.
+Microphones can capture this and
+other sound information through
+the system's components during execution.
+For instance, it was reported
+that on a home-built PC with
+RSA encryption implemented,
+the mic, a micro,
+when a microphone is placed close by,
+it can capture the acoustic
+information to tell when the RSA
+encryption algorithm is running.
+Furthermore the runs of
+the RSA with different key
+values give different acoustic traces.
+It is speculated that,
+the acoustic emission is the result
+of the piezoelectric properties of
+the ceramic capacitors used on
+the mother board of this system.
+This is related to the power and
+the current draw on the chip.
+Finally, we talk about
+the scan chain sidechannel.
+This is another perfect
+example to show how design
+features that are introduced for good
+intention can make the system vulnerable.
+This figure shows a core and a test, and
+the scan channel built to
+facilitate the testing.
+The original five D flip flops,
+have been modified and
+connected by this chain
+through the Q port, of the,
+of flip-flop to the input
+of the next flip-flop.
+Testing value, testing control signal,
+which is called the TC here can
+choose the input to the D flip-flop.
+When TC equal to zero
+the signal coming from core and
+the test, will be used to keep
+the system running at a normal mode.
+However, when we change the TC value to
+one, the system changes to the testing
+mode, and the testing input vector
+will come from the scanning port and
+forge to each of the flip
+flops through this scan chain.
+For example, if we want to tested the
+system with stage information zero, zero,
+one, one, one from left to right,
+we can push the input vector one,
+one, one zero zero, one bit at each clock
+cycle from the the scan in input report.
+And this, at the end, these,
+these values will go through the scan
+chain to the designated flip flops.
+For example, the first bit one
+will travel through the first
+scan flip flop to the second on
+the second clock cycle, and third one and
+the fourth one and
+eventually reach the last flip flop.
+After that, we can change the test
+control signal to zero to let the system
+run at a normal mode, and then the result
+will be written back to the flip flop.
+Now we change the test control signal
+back to, to one for testing mode and
+then we can get, the results from each
+flip-flop from the scan out signal.
+This is one of the most important
+inventions in the test.
+It allows the tester to test
+any system stage at any time.
+However, this scan flip-flops
+can be turned into side
+channel that will leak the system stage
+information directly, from the sent out
+signals when the attacker set the TC
+value to be one for the tasking mode.
+

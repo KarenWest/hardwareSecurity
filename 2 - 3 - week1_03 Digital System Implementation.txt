@@ -1,0 +1,209 @@
+We have learned how to
+specify digital systems,
+now let's see how we can implement it.
+The system implementation,
+means the procedure of how to build a bul,
+a digital system from smaller components.
+And these smaller components was simple
+components with building blocks, can
+be basic logical gates, can be universal
+gates which we are going to define later,
+or can be some indus,
+industrial technology library, we can,
+we can use, always use flip-flop to,
+to store memory.
+And also, nowadays when people use,
+reuse space of design,
+they're talking about using intellectual
+properties as the building block.
+[SOUND] Now let's see how we can
+implement Boolean functions using basic
+logical gates, by basic logical gates,
+we are talking about the three gates,
+the AND gate, which represents
+the Boolean AND, x and the y,
+which will be true if and only if both
+x and y are true, the logical OR,
+x plus y, which will be true even if
+any one of x and y will be true, and,
+the inverter, NOT gate, x prime,
+which will change a true to a false.
+And with this three basic logical gate,
+we can implement all kind of
+Boolean expressions, for example,
+this w based on three or
+four variables, x0, x1, x2, x3,
+it is defined, as the sum of four terms,
+each term is a logical end, and
+from here, we can easily draw the logical
+implementation of this function.
+So for example here,
+we have x0, and x1, so this AND
+gate implements this term,
+and then the last AND
+gate takes x3, and x0 so
+this one implements the third term.
+And this OR gate, implements the sum,
+of this, four terms.
+[SOUND] And
+besides the three basic logical gates,
+there are several other logi,
+logical gates.
+So for example, the NAND gate,
+the NOR gate, Exclusive-OR gate, and
+Exclusive-NOR gate.
+The functionality of these gates
+are given in this truth table, and
+on these first two truth columns, we list
+all the four combinations of two inputs,
+x and the y, start from 0, 0, 0, 1,
+go to 1, 0, then 1, 1, and then for each
+of these input combinations, we list, the
+output, for each of these four functions.
+So for example, so NAND gate will be 0,
+if and only if both x and y are 1,
+and the NOR gate, on the other side, will
+be one if and only if both x and y are 0.
+So with this additional gates,
+we can sometimes, have a much better or
+more efficient,
+implementation of the system.
+Consider this example.
+It has three input x, y, and
+z and then two output, S and
+a C, and this basically implements
+a which is going to add up x and
+y plus a carry z, and S is the new sum,
+and the C is the new carry.
+And the functionality of S is given
+as the Exclusive-OR of x, y and z.,
+and then the functionality of
+C is given as xy plus z times,
+the Exclusive-OR of x and y.
+So from this definition, we can also draw
+the logical diagram of this function.
+So input x, y, z, output sum and a carry,
+and the inside, we have the basic logical
+gates, gate, gate, OR gate and
+the two Exclusive-OR gate.
+So for example, the first one,
+is the Exclusive of x and the y.
+It will be Exclusive-OR with z again,
+implement has.
+So this is input from z.
+'Kay?
+And what is interesting in this
+example here, it also shows that,
+this Exclusive-OR of x and the y,
+also comes to this AND gate, or
+the AND with z here, to produce this term.
+So this is the concept of reuse,
+which we will discuss later on.
+Now we talk about this concept
+called universal gate,
+it is another way to
+implement Boolean functions.
+A gate or
+a set of gates is called universal,
+if it can implement all digital systems or
+all the Boolean functions.
+So this is a very, very strong statement,
+a gate will be able to implement
+all the Boolean functions, so how can we
+verify that, there's no way you can en,
+enumerate all the Boolean functions.
+So how we do this is, we start,
+from the definition of Boolean functions,
+we've realized that, all of the Boolean
+functions can be expressed as the logical
+AND, the logical OR, or
+inverters, so by putting these three
+gates together, we have the so
+called, the standard universal gate,
+so all the Boolean functions,
+should be able to implemented
+by these three logical gates.
+And now this seems becomes easier,
+so for us to prove, any logical gate
+is universal, we only need to show that
+this cage can be used to implement
+the standard universal gates which is
+logical AND, logical OR, and the inverter.
+Let's see in the example here.
+[SOUND] We define a logical gate
+as a Boolean function f of x,
+y, z, it is defined as, as x prime
+yz plus xy prime plus y prime z,
+and we claim this function
+with this gate is universal.
+And how do we prove this?
+The first one will show that,
+I can use this function block f or
+this gate to implement the inverter.
+And how do I do that?
+I set, the second and
+the third parameter to f as constant to 1,
+so if I plug in this into
+the definition of f, I got x prime
+times 1 times 1 plus x times 1
+compliments plus 1 compliments times 1.
+And because 1 compliments equal to 0,
+so this last of two terms disappeared,
+and then 1 times anything is,
+that thing itself,
+so this give us x compliments,
+that is exactly the inverter.
+And to draw a, a diagram, I can show this,
+so this is my logical gate f, and
+how I feed into this system
+is I feed x and 1, 1 into f.
+And, but higher from outside the box,
+what people see is,
+I give it input x to the system, and
+then the system outputs x prime,
+which is equivalent to the logical AND,
+logical NOT gate, the inverters.
+So next, we show you how to
+implement the OR gate, and
+then similarly, we put the middle,
+parameter to 0, and
+then plug in to the definition of f, so
+we, what we get is x prime and a y 0,
+so this becomes 0 times z,
+and the z is the new y here.
+And plus the first variable,
+which is x, times the compliments of
+the second variable, which is zero
+compliments, plus the compliments of
+the second variable times the third
+variable, which is y here.
+And because we know that 0 complements
+is 1, and 0, cancel this one so
+the only thing left is x plus y,
+which is the logical OR.
+'Kay?
+And then to show this concept, we can
+go the same figure, is thus the box you
+feed the x and the y, and internally you
+are taking 0 as the middle, parameter,
+let this function f, give you x plus y, so
+from outside, this looks like a OR gate.
+And then similarly, we can implement the
+AND gate, and, which is a little bit of,
+more, I mean, complicated than,
+AND, than OR gate or NOT gate.
+And here is the logical imp,
+implementation here,
+with two functional blocks, this one,
+the first one, get y complements,
+the second one get x times y, and
+from the outside you see x, y coming in,
+and then from outside you see x times y
+coming out, so, this is the logical AND.
+And because I can implement a logical AND,
+logical OR, and inverters, using this f,
+so I know that f is universal,
+and I can use f
+to implement any kind of Boolean
+functions or any kind of digital systems.
+

@@ -1,0 +1,286 @@
+We have learned who the physical attackers
+are, their motivations to attack, and
+the classification of physical attacks.
+Now we study the details of these
+attacks and some of the countermeasures.
+We start from invasive attack.
+Invasive attacks start with
+depackaging the chip or
+device to expose the inside
+of the silicon die.
+Decapsulation is the process
+of removing chip package.
+For complicated chips with multiple
+layers, deep processing will
+remove layer by layer to allow attackers
+to study features in each layer.
+Once the chip is opened up,
+reverse engineering can be performed to
+discover the inner structure of
+the chip and its functionality.
+This can be done with a optical
+microscope with digital camera
+to capture high resolution image of
+the chip's surface in each layer.
+In order to obtain more detailed
+information about a chip,
+microprobing station will be needed.
+This is perhaps the most expensive
+equipment required for invasive attacks.
+It can reach submicron precision.
+So electrical contacts with
+single on-chip bus line can be
+established without damaging them.
+This means that the attacker will be
+able to monitor on-chip bus activities,
+and they can also inject test signals and
+observe the chip's response.
+For example,
+secret keys with sensitive data can be
+extracted from memory by this method.
+Finally, with all this detailed
+information about the chip,
+a knowledgeable design team, and
+the silicon fabrication capability,
+the attackers will be able to rebuild or
+modify the chip to complete
+the invasive attack.
+For example, cutting certain
+internal interconnections can
+disable on-chip components
+such as encryption blocks.
+The cost to attack to low end chips such
+as old smart cards could be very low.
+But attacking modern chips
+requires expensive equipment and
+a very skillful attacking team.
+In addition,
+as the feature size keeps on shrinking for
+modern chips, and
+its design complexity keeps on increasing,
+the cost of invasive attacks
+also increases very fast.
+We have mentioned some equipment for
+invasive attacks.
+Here's the list for your reference.
+Next in the semi-invasive attack,
+the attackers also need to depackage
+the silicon to open up the chip.
+However, they will not need to create
+contacts with any internal signals.
+Therefore, the expensive
+microprobing station and
+the other equipment may not be
+required for semi-invasive attacks.
+Instead, the attackers
+will have to use other
+equipment to launch various
+semi-invasive attacks.
+For example, in the imaging attack,
+with the help from special cameras and
+the photon pro, probing,
+attackers can read the layout of the chip,
+localize the active regions, or read the
+logical state of certain CMOS transistors.
+In fault injection attacks,
+after locating the security fuses,
+the attacker can use UV light to reset
+these fuses to their unprotected states.
+In optical fault injection attack,
+the illumination of a transistor
+can make it conduct and
+thus introduce a transient fault or set to
+the value of a single bit in the memory.
+This can be done with some
+cheap laser pointers.
+Local heating can also permanently
+change some of the memory cells.
+With lasers,
+attackers can also write into SRAM or
+disable the write operation
+in the embedded flash memory.
+This is called memory masking.
+We will discuss side channel
+attacks in details next week.
+Optical equipment and
+techniques can make such analysis
+much more accurate and deadly.
+For example, laser can be pointed
+to a particular transistor.
+This allows the attacker to
+collect the power trace before and
+after using laser and then compare.
+These are the set of tools and
+equipment that might be useful for
+non-invasive attacks.
+There are four types of
+non-invasive attacks.
+Side channel analysis.
+This is the only passive attack as it
+only monitors the chip's execution and
+it collects some measurement.
+Brute force attack is a strategy for
+search information on the chip.
+It is normally an organized search,
+instead of a random search.
+For example, attackers can search for
+secret keys and password if they
+are not sufficiently long when
+their memory address can be predicted or
+are restricted to certain areas.
+They can also try to rebuild
+the truth table of the input or
+output pairs to reveal
+the functionality of the design.
+Of course, this will be limited
+to relatively small designs.
+By applying high voltage,
+normally it doesn't have to be very high,
+just about twice as the normal supply
+voltage or injecting random signals or
+commands, attackers may gain access to
+factory testing or programming mode.
+These access are known
+sometimes as backdoors.
+The other two types of non-invasive
+attacks are known as data
+remanence, remanence and fault injection.
+We will discuss them late, next.
+These last attacks all need
+interaction with the chip.
+And therefore they are all active attacks.
+When secret keys or data are stored
+in SRAM, they may leak in several
+ways because of the physical
+characteristics of, of SRAM.
+First.
+After power is down, SRAM will
+still retain the data for a short
+period of time, so the attacker can try
+to steal the data during this period.
+On the other hand, when data has
+been stored in the same location for
+a long time, it may appear after
+the chip is powered up again.
+This gives the attacker
+the chance to view the data.
+Finally, data in SRAM can be
+frozen in low temperature.
+Most commercial devices consider
+negative 20 degrees Celsius or
+below as tempering stage.
+But there are ways to make data freeze at
+higher temperature and then read it out.
+Data rem, remanence can also
+happen in EEPROM or flash memory.
+The threshold voltage will change after
+each write and then erase in such memory.
+It has been reported that data can be
+extracted after multiple write and
+erase cycles.
+The idea behind fault injection attacks
+is to manage the chip to run with
+faulty data or unexpected instructions,
+and then observe the execution
+to gain unauthorized access to systems or
+learn secret data.
+It is possible to input faulty signal
+directly from the input/output interface.
+But secure systems can easily detect such
+faulty input before the execution starts.
+So how can attackers inject faults?
+There are actually many ways to do that.
+We will talk about clock and voltage
+glitches in details on the next slides.
+By changing the temperature, or
+exposing the chip to white light or
+laser, the states of the transistor or
+of, or the flip flops may change.
+This can also be done by using X-ray,
+ion beams, or EM flux.
+A glitch is a fast,
+fast change in chip's supply signals,
+such as supplying voltage and
+the clock, clock signals.
+It may affect some random transistors or
+flip-flops.
+Although the attacker may not have control
+on which transistor or flip-flop will
+change, it is not very hard to do a
+systematic search to find security holes.
+For example, a shorter clock pulse
+cause incorrect instruction fetch
+in Motorola controllers.
+And power supply glitches can break 128
+bit AES key in 2 to the power 12 attempts.
+Which is about eight hours
+at a 100 millisecond cycle.
+If we do it selectively at carefully
+chosen time slots, not continuously,
+the number of attempts can be reduced
+to further to 2 to the power 7,
+or only about a couple of minutes.
+Fault injection attacks
+are based on faults.
+So fault-tolerant
+computing techniques can be
+used to defend both at software level and
+hardware level.
+However, this does come with overhead
+in hardware and performance.
+Also, sometimes,
+detecting fault injection attacks
+after the attack might be too late,
+the damage may have already been made.
+For example, attackers may have already
+learned information about sensitive data.
+It is preferred to detect the faulted
+condition before the system
+executes under such conditions.
+This is a very challenge problem.
+Now we talk about some of
+the countermeasures to invasive attacks.
+Some of them may also be applicable
+to semi-invasive attacks.
+First, recall that attackers can probe
+at a single base line to steal data.
+Almost all of the databases
+that connect the CPU and
+the memory are either in the increasing
+order from zero page to the highest page,
+or in the opposite order,
+from the highest page to page zero.
+This makes it easy for the attackers to
+locate the baseline they want to probe.
+We can change this order
+to confuse the attacker,
+which is known as bus scrambling.
+We can also encrypt sensitive data to
+prevent an attacker from probing it.
+Of course,
+the data of the encryption needs to
+be decrypted in a trusted
+zone before it can be used.
+Another way to defend invasive attack
+is the new glue logic design approach.
+In this design style, standard building
+blocks such as register files,
+instruction decoders, arithmetic and
+logical units, and input/output
+circuits are glued together like a ASIC
+instead of individual components.
+And this hides the data, the data bus, so
+it becomes impossible for
+attackers to find the signal to attack.
+To protect from invasive attacks,
+most of the smart card,
+smart cards have a sensor mesh
+implemented in the top metal layer.
+All the paths in the mesh
+are monitored continuously.
+Microprobing attempts will,
+will cause short circuits.
+This will trigger an alarm and
+the memory contents will be
+reset to protect sensitive data.
+

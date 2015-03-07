@@ -1,0 +1,213 @@
+After learning of physical attacks,
+and some counter measures,
+we discuss how temporary resistance
+levels are evaluated and
+also how to build
+an enhanced system security.
+The tamper resistance level or
+system security level have always
+been measured by the time,
+cost and the knowledge that the attacker
+has to have to break the system.
+From high to low a device
+tamper resistance can be
+put into six different levels.
+The lowest level is zero,
+where the attacker does
+not need any special equipment or
+tools to break the system.
+The attacker can be done in minutes or
+a couple of hours.
+These systems do not have
+any security features and
+all of their components are open.
+Examples include microcontrollers or
+FPGA chips with external memory.
+And the second lowest level is called low.
+This systems has some basic security
+features that are easy to break.
+The microcontroller with internal memory
+and proprietary programming algorithms,
+but no security mechanisms to protect
+the memory fall into this, this category.
+The attacker does need
+some basic equipment and
+tools to break these systems.
+It may take them several hours or
+a couple of days.
+The cost was under $1,000 in
+the original 1991 document.
+But the price of the equipment
+keeps on dropping.
+And nowadays an attacker can obtain all
+the necessary equipments
+with probably less of $500.
+The next level is called moderate low.
+These other systems that have security
+features designed against the low
+cost attacks.
+It will take more expensive equipment and
+longer time to break the security.
+System in the moderate temporary resist,
+resistance level normally are protected
+against most of the common attacks,
+special tools, skills, and the knowledge
+are needed to break such systems.
+Rather expensive equipment
+is also required.
+The time to break the systems
+can be several months.
+Finally, systems designed for security
+applications such as military chips,
+banking systems, complex ASIC and
+FPGAs with high or moderate high
+level of temporary resistance.
+They are supposed to be secure
+against all the known attacks.
+It is normally impossible or
+extremely difficult for
+any individual to break these systems.
+Sometimes, new attack models or
+new tools have to be invented
+to break these systems.
+As we have already seen, the cost for
+attacks drops as the price of
+equipment and the tools goes down.
+So the classification of
+these levels are relative.
+Some device with moderate to high
+tamper protection levels may one day
+become slow level low while
+a new low cost attack is found.
+Also technology advances such as the use
+of new materials with a new design
+process will increase the tamper
+resistance level of certain devices.
+The US Department of Commerce has
+also published its standards of
+how secure a crypto module is implemented.
+Level one is the lowest level.
+It must specify the basic security
+requirements for the crypto module.
+Level two improves level
+one by adding physical
+security mechanisms such as coating,
+seals or locks.
+Level three requires more advanced
+physical security to keep
+attackers away from critical security
+parameters in the crypto modules.
+Level four is the highest security level.
+It should ensure the security
+of the crypto module against all
+kinds of physical attacks.
+Here are some examples of
+the security failures.
+Your microchip PIC microcontroller,
+a security fuse bug is found,
+was found, where the security
+fuse could not be reset,
+could be reset without erasing the code or
+data.
+And this has been fixed in newer devices.
+In Hitachi smartcards, the information
+leak on a product CD was reported.
+Where the full data sheet about
+the smartcard is accidentally included
+in the CD.
+Actel secure FPGA chip, a programming
+software bug was, was reported.
+Of such chip, devices were always
+programmed with a specific passkey.
+A software update can fix the problem.
+Also a programming software bug
+was found on Xilinx secure CPLD.
+The security fuses is
+incorrectly programmed, and
+they need a software
+update to fix the problem.
+Finally, in the Dallas SHA-1
+secure memory,
+a factory initialization bug was reported.
+Some security features
+were not activated and
+it failed to provide
+the required protection.
+It ends up that batch of chips
+were all record, recalled.
+From this set of slides, we have learned
+that there are different types of
+attackers and
+the different ways to attack a system.
+Before you build your secure system,
+you have to
+ask yourself what will be the motivations
+for others to attack my system.
+Who might be the attackers, and
+how would they attack my system?
+More specifically, building a secure
+system start with understanding
+the attackers and to perform, a system
+security evaluation and threat estimation.
+You need to take into account
+the attacker's motivation to attack,
+the tools, equipment, skills, time, and
+money they need to break the system.
+And also,
+the probability they can be successful.
+A rule of thumb is that if
+the cost that they have to pay to
+break the system is higher
+than the benefit they can get,
+then a rational attacker will not attack,
+attempt to break the system.
+Once you find the weakest security
+link in your system and decided,
+decided to improve it, you may find that
+there are too many products on the market.
+Most of them, claim to be secure or
+with a security, sec,
+certific, cert, certification.
+However, claims and
+certification are not guarantees.
+In many cases,
+there's no security benchmark, and
+the attackers will always keep on
+bringing new and a powerful attacks.
+So we cannot test the system
+against all the possible
+scenarios to verify its security.
+Even worse,
+it may not make much sense to compare
+the security features of
+components from different vendors.
+Cheap manufacturers, they know more
+about the security of their products.
+However, they will only ad,
+advertise the good features.
+Just like most of the sales persons
+like car dealers and realtors will do.
+Good luck if you trust 'em.
+So you may find that sometimes
+you have to redesign for
+security and the trust of the system.
+This is clearly not what you want
+because of the cost of redesign.
+Particularly when you face
+the pressure of released deadlines.
+That is one of the reasons we have seen,
+and
+will continue to see,
+many products with defect on the market.
+In the worst case, when,
+when recall have to be made,
+and the cost of recall may
+be higher than redesign.
+This brings us to the conclusion that
+building secure system needs a sys,
+system engineer approach.
+And you have to build security and
+the trust into the system,
+not onto an already built system
+by adding security features.
+

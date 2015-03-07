@@ -1,0 +1,238 @@
+Through hardware security, it is important
+to understand how hardware is built first.
+In this set of slides,
+we will briefly reveal the fundamentals
+of digital logic design.
+We will talk about digital systems.
+And we'll talk about the design and
+the synthesis of such systems.
+We will start with how to specify such
+systems, how to implement digital systems,
+and how can we optimize such limitations.
+And we will use examples from
+both combinational logic and
+sequential circuit to demonstrate
+this procedures and concepts.
+And finally we'll talk about
+the don't care conditions.
+These are the conditions that have
+been played a crucial role in terms of
+the system synthesis and optimization.
+And don't care conditions you can
+also cause security vulnerabilities.
+However, when used properly,
+don't care conditions can also provide us
+a unique opportunity to build more secure,
+more trusted systems.
+A system can be viewed as a black box.
+Where we have the system here,
+it takes input and generates output.
+And the input output pair,
+what their relationship is,
+what we called the functionality.
+And the system is used to
+model the real world, and
+then trying to get reasoning
+behind all this phenomenas.
+So we know real world is analogue world.
+So which get captured by this figure here.
+Both the input and output signals,
+they are analog signals.
+And this captures precisely what
+happens in your real world and
+this x-axis is the time.
+However the computer doesn't
+like this continuous values.
+So what we have done is we,
+we digitalized all these signals.
+So this is a digital signal here, where
+the values take only discrete values.
+One level, two level, three level for
+this, this signal, and
+then two levels for the other signal.
+So this is a, becomes a digital signal.
+And also based on what these signals
+can change according to time t.
+We can put signal systems
+into two categories.
+The synchronized systems and
+asynchronized digital systems.
+In the synchronized systems the time,
+the signals can change its value only at
+the discrete time which is normally
+periodic which is what you call the clock.
+At each clock, they may or may not change.
+And then during the clock
+the signal stays at constant value.
+And in asynchronized version the value of
+input and output can change at anytime and
+Harvard they are restricted
+to these discreet values.
+The last accounts that I want
+to talk about is the difference between
+combinational logic and sequential logic.
+So in a combinational logic
+whenever you take an even
+input combination you always
+have the same output.
+No matter how many times
+you run this system and
+when you feed this input
+to the combinational logic.
+But for the sequential system, the input
+and output pair may not be unique,
+which means for the same input your output
+may not be the same, may be different.
+So why that is the case?
+That is because inside
+a sequential system,
+there is a unit called a memory element.
+The output depends both on the input, and
+the current value of the memory unit,
+which means the combinational logic
+inside the sequential circuit will take
+inputs from primary outputs, and
+also internally, from the memory units.
+And I use this to evaluate
+what will be the output.
+And then meanwhile, it's,
+it's going to update the memory units.
+So now we talk about how to
+specify a digital system.
+The specification of a system is
+a description of its functionality and
+other characteristics that is required for
+its, for its use.
+So, when people specify digital systems,
+normally they go from high level
+to low level, or binary-level.
+And we have mentioned about the systems.
+Normally they take inputs from real world.
+And real world is analog.
+And so the first step we need to do
+is we need to convert these analog
+signals to digital.
+And then for digital signals sometimes
+we still have to do encoding.
+So this is the input encoding and
+those are when the system output.
+An output will feed back to the real word.
+We also want to do encoding.
+So after the computation
+we got a binary output and
+then we need to convert
+it back to real word.
+It can be digital, can be analog.
+And in the middle, we need to determine
+how we can get output from the inputs.
+That is the one we call
+the Boolean function.
+This function determines, given inputs,
+what will be the outputs.
+And normally, these Boolean functions will
+be represented either as a truth table for
+combinational logic or
+as a finance state machine.
+Or sometimes we call the state transition
+table or state transition graph.
+These are used then to
+model syncrotion systems.
+So let's see a small example to see
+how we can specify a digital system.
+So we want to design a system that
+will tell you whether a month,
+a given month has 31 days or not.
+So we think about this.
+For this system,
+the input will be the 12 months of a year.
+So we write a high-level system spec.
+The input x can goes to
+from January to December.
+Which way will presented by
+decimal numbers from 1 to 12.
+Outputs will tell whether this
+month has 31 days or not.
+So we can represent this by
+a single bit z of 0 or 1, and
+1 means it has 31 days and
+0 means it doesn't have 31 days.
+And the functionality of this system
+can be represented by this step,
+step function.
+When x is 2, 4, 6, 9, or 11.
+This means when x is February,
+April, June, September, or
+November it won't, will,
+will not have 31 days.
+In other months, it will have 31 days.
+And we can easily draw a truce table
+to represent the same information.
+The input x goes from January
+all the way to December.
+And then the output z tells you
+that which months has 31 days.
+Which months doesn't has 31 days.
+And this is a high level system spec,
+and before we can design these systems,
+we need to convert a high-level system
+spec, to a low-level system specification.
+And by low level,
+we talk about the binary level.
+I mean, this system, we know that
+x input has 12 different values,
+12 different nonces.
+And to represent 12 different
+objects we need four bits.
+That is why the input bits will
+be go from x3, x2, x1, to x0.
+And output has only two possibilities,
+0 or 1.
+So there is only one bit for output.
+So now we can conv,
+convert the previous truth table to
+this truth table at the binary level.
+So this is x.
+At high level goes from
+January to December.
+This is output a z tells you whether
+it has 31 days or not 31 days.
+And in the middle we see
+the inputs encoding,
+where we used the Binary encoding.
+So January,
+which is 1 is encoded as 0, 0, 0, 1.
+And then April which is 4 is encoded as 0,
+1, 0, 0 which is the binary 4.
+So the next step we need
+to do here is trying to
+figure out what will be the functionality.
+And remember before we write
+a functionality as a step function.
+And now since we have moved down to lower
+levels, or binary level description.
+So, we need to think about how to relax
+this function at the Boolean level,
+at the lower level.
+So, what we do is we take a look at
+the input, the four bit input and output.
+And this is the design phase.
+So we want to express the output as
+a Boolean function of the input.
+And by observation or by later we
+do any kind of optimization technique we
+figure out in this case the output z.
+This x3 complements, times x0,
+plus x3, times x0 complements,
+which is the same as x3,
+exclusive or, with x0.
+Which means that whenever x3 and x0, they
+are different the output z will be a 1.
+Whenever they're the same,
+the output will be a 0.
+For example 0 1 give you a 1,
+0 0 give a 0, 0 1,
+give you a one, and the 1 0 give you a 1.
+Whenever they agree on each other,
+1 and 1, it give you a 0.
+Kay?
+

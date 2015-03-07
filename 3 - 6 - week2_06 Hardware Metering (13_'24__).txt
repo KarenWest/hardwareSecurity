@@ -1,0 +1,298 @@
+Which takes financial increase
+in the complexity and
+the cost of building
+a chip manufacturing line.
+Most chip makers are fabless now.
+In other words, today's design houses can
+not afford the in-house chip fabrication
+cost and that they have to outsource
+this fabrication to foundries elsewhere.
+This gives the foundries access to the
+details of the chips and the possibility
+of overbuilding them without the
+authorization from the, the design house.
+Integrated circuits metering, or
+hardware metering, is an effective method
+to defend against this IP infringement.
+Integrated circuit metering is
+a set of security protocols
+that enable the design house to achieve
+post-fabrication control over their ICs.
+IC metering techniques are developed to
+defend against IC overbuilding attacks.
+As we have mentioned earlier, in the
+integrated circuit fabrication process,
+these houses and
+foundries play asymmetric roles.
+These houses have to disclose
+the details of their IPs and
+pay the cost to build the mask in order
+to manufacture their, their chips.
+Once the IP is released and
+the mask is built, the design house
+will not have any control on them.
+However, a dishonest foundry can
+utilize this information and
+the facilities to reproduce
+the design with negligible cost.
+This is known as the IP overbuilding.
+Can we use digital watermarking
+techniques to protect a design,
+designer's right in this case?
+The answer is no.
+Watermark protects the authorship
+of an intellectual property.
+In IC overbuilding,
+the foundry just reproduce more
+copies of the IP than required.
+And then sells the extra
+copies to make profit.
+The foundry will not attempt to
+claim the authorship of the IP.
+How about digital fingerprint?
+Fingerprint enables the trace of
+intellectual properties back to
+the dishonest IP user who
+illegally distributed the IP.
+When the overbuilt ICs
+carry a fingerprint,
+the user who has this fingerprint will
+also become the victim of IC overbuilding.
+This is because this
+innocent user will be,
+now be considered as the source
+of these extra copies.
+How integrated circuits metering or
+hardware metering solves
+this problem then.
+Let's first see how meters
+work in our daily life.
+Why don't we talk about utility meters,
+like water meter or electricity meter?
+The meters are installed and
+maintained by the utility
+providers to monitor the users.
+However, in the case of
+the IC overbuilding,
+the foundry is the provider of the ICs.
+And the design house who receive
+these ICs will be the user.
+So what we need in, in our case
+is actually a reverse metering.
+Where the user wants to
+monitor the provider.
+The basic concept behind IC metering
+is to enable a unique tag to each copy
+of the IC and make sure that the tag is
+under the control of the design house,
+not the foundry.
+Over the years, many different types
+of tags have been proposed and used for
+hardware metering.
+They can be categorized
+based on various criterias.
+First, when the tag can only be used for
+cheap identification,
+it is called a passive metering.
+The tag in active metering can also
+do a lot of other functionalities,
+such as enable the chip,
+disable the chip, or control the chip.
+Active metering methods can be further
+classified as internal controlled or
+external controlled based on whether
+the control is part of the design or not.
+Intrinsic metering does not need help
+from additional hardware components,
+or the modification of the design.
+However, extrinsic metering methods do.
+Depending whether the tag interacts
+with the chip's functionality or
+not, we have non-functional metering and
+functional metering.
+Finally, some tags can be reproduced and
+some cannot.
+We call the latter unclonable tags, tags.
+Serial number is perhaps
+the most popular and
+one of the earliest of ways for
+device tagging.
+A serial number can be physically
+indented on the device or
+stored permanently in the memory.
+This image shows a Trusted Platform Module
+in storage on a motherboard.
+What we see here is,
+it has a couple of serial numbers.
+For example here, and here.
+These tags are passive, they are extrinsic
+because they do need additional,
+like this piece of paper or trying to be
+physically indented on the, on the device.
+And they are non-functional
+because they have nothing to do
+with the functionality of the chip, and
+most important, they are reproducible.
+You can use another tag or
+piece of paper to over, to cover this.
+Or you can change the numbers here.
+And it, it is the fact that
+this text can be reproduced
+make them unsuitable to
+countermeasure foundry overbuilding.
+The ICID tag was proposed around 2007.
+It is based on the silicon
+manufacturer variation.
+Because these variations occur
+during the chip fabrication process,
+and it is generally believed that
+they are random and uncontrollable.
+Therefore, ICID is considered
+as an unclonable tag,
+and thus can be used for
+anti-overbuilding.
+Depending whether the ID requires
+additional hardware components or
+not, IC Identification, or ICID, can be,
+can be either intrinsic or extrinsic.
+Let's first see an example of
+an intrinsic unclonable ICID
+based on leakage current.
+Consider a small subcircuit with
+four two-input NAND gate, G1,
+G2, G3 and G4, with five input signals,
+x1, x2, x3, x4, and x5.
+So here is the leakage of our
+ideal two-input NAND gate and
+the different input combinations.
+However, due to fabric,
+fabrication variation, the leakage on
+the NAND2 gates will almost for
+sure be different from these ideal values.
+For example,
+let's consider two ICs both have this two,
+have the structure of four
+two-input NAND gates.
+Their total leakage under four different
+input vectors are listed here in
+this table, and we see a dramatic
+difference between their leakage values.
+This leakage-based attack
+is intrinsic because it
+does not require any extra hardware.
+It is also unclonable because it is
+based on fabrication variations.
+It is will be very hard for any foundries
+to reproduce this manufactured variations.
+Now we show a functional
+passive tagging message.
+Recall that in the graph vertex coloring
+problem, we want to assign each node
+a color such that any pair of adjacent
+nodes will receive different colors.
+In this case, the IP is a solution
+to the graph coloring problem.
+Consider this graph and
+a coloring scheme, or an IP.
+We observe that node H, for example,
+can also be colored with red or yellow,
+because it has only two neighbors and
+they are both colored, colored with green.
+And similarly, we observe that F can
+also receive a color, which is brown.
+And finally, node E can also be
+colored by green instead of yellow.
+So, therefore,
+we can create 12 different tags by
+giving different colors to
+these three modes, H, E, and F.
+This is a functional tag, because the tag,
+which has the colors for node H, E, and F,
+is part of the solution or
+part of the functionality of the IP.
+Next, we see active integrated
+circuit metering methods.
+Most of the existing active metering
+methods follow the following steps.
+First, the design house will
+modify the design specification,
+most likely in the early design stage,
+to insert a lock.
+Then complete the design and
+ask the foundry to fabricate that design.
+The foundry will fabricate, and
+then, maybe, overbuild the chips.
+Due to manufacturer variations, each chip
+with each IC, will have a unique and
+unclonable identifier that can be
+used to authenticate the chip.
+In the active IC metering scheme,
+the design house can use this unique
+ID to actively meter or monitor the IC.
+For example, by enabling, disabling,
+locking, or unlocking the ICs.
+Here is an example of an internal
+active IC metering approach.
+The design house introduces
+additional flip-flops to
+build what is called a boosted
+finite state machine.
+Notice that each added flip-flop
+will double the number of states in
+the original finite state machine.
+Therefore, when we power up the chip and
+use the path data to select
+a random power up state.
+Most likely this state does not belong to
+any of the original final state machine.
+But for the chip to function properly, it
+has to start from certain initial state.
+The design house will provide a chip
+with power up states specific input
+sequence to direct the random power
+up state to the initial state,
+such that the chip can work properly.
+Without this correct input sequence,
+the, the,
+the IC will not be, it will be useless.
+This active IC metering approach
+uses internal finite state machine
+to control chips, to,
+to control the monitoring of chip.
+The additional flip-flops
+make it extr extrinsic.
+The use of PUF ensures
+that it is unclonable and
+thus can be used to countermeasure
+chip overbuilding attack.
+Finally, we show an external
+active IC metering approach.
+In this approach, the design house
+will add control signals and
+logical units such as exclusive or
+gate to non-critical parts of the design.
+Unless all the control signals
+receive the proper values,
+the chip or
+the fabricated ICs will be locked.
+The design house will then provide
+an external key to unlock each of
+the ICs based on some asymmetric
+cryptographic primitives, for
+example, the public key infrastructure.
+In this case,
+we see this is active metering scheme.
+Because it does involve
+the interaction between the,
+the design house and each fabricated ICs.
+It is an external method
+because the signal comes from
+the external value
+provided by design house.
+It is extrinsic because we do introduce
+additional control signals and
+logical gates.
+And finally, it is also unclonable,
+which means that it can also be used
+to countermeasure circuit overbuilding.
+

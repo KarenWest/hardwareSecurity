@@ -1,0 +1,411 @@
+Hardware Trojan is arguably the biggest
+concern for trusted IC Design.
+Today, we'll cover several practical
+techniques that help us to
+build trusted ICs by preventing or
+deterring hardware Trojan insertion.
+We start with pre-synthesis techniques.
+When we use third party IPs, we want to
+ensure they don't have hardware Trojan.
+Or they are trusted
+before we can use them.
+So typically there are two
+approach to do this.
+First, we can change,
+we can turn this problem into
+a formal verification problem.
+We can verify whether the IP
+meets the specification or not.
+This can be done by doing property check,
+model check, or equivalence check.
+For example, one way to check two
+combinational units that are equivalent,
+f equal to, f equal to g.
+Only thing we need to verify is.
+The function fx times g prime x plus f
+prime x times gx will be a constant 0.
+Where when we see times,
+this is a logical edge.
+When we see prime, this is the complement.
+When we see plus, that is the logical or.
+This can be verified by the Boolean
+satisfiability solvers trying to
+verify this entity is unsatisfiable,
+which means it is always a 0.
+And for sequential components we can do
+the final state machine equivalence check.
+This one can be done with the concept
+called a product machine which we'll show
+on the next slides.
+On the other hand,
+instead of doing this as a form of verif,
+verification problem, we can do
+this as a standard testing problem.
+We can test to make sure the delivered
+IP really meets all the specs.
+And the traditional testing
+methods can be used.
+And the more importantly, the,
+the hardware Trojan detection approaches
+we have just discussed can also be
+used here to ensure that the IPs
+do not have hardware Trojan.
+So now let's see what is the final
+state machine equivalence and
+what is the product machine.
+Two finite state machines they
+are stated to be equivalent if and
+only if they give the same
+output of any input sequence.
+For example, consider this four state,
+state machine, A, B,
+C, D, with A as the starting state.
+And, a three state Final State Machine,
+X, Y, Z with Y as the starting state.
+We consider that a link with 0 for
+both states when the first one start
+with A, is going to output a 0.
+On the second state machine, start from Y,
+input is 0, is also output of 0.
+So these agree on output 0 and 0.
+When they receive one from the same
+starting stage, Y, the second state of
+machine output of 1, while in the first
+state of machine, also output of 1.
+So they agree on their output.
+And for two bits input sequence we
+have four different choices, 00,
+01, 10, and the 11.
+For example, if we, if we receive
+a two bits input sequence 01.
+On the first state of machine,
+a 0, we output a 0, move to B.
+On the, on the second of B
+to 1 we follow this arc.
+We move to C, an output of 0.
+So the overall output will be 00.
+For the second state machine,
+starting from state Y,
+on the first of input of be to 0,
+we move to X, an output of 0.
+On the second repeat of 1,
+we move to Z, an output another 0.
+So the output will be 00 agree with
+the output from the first state machine.
+So by checking this one
+by one we know that for
+these two state machines any two bit input
+sequence they also agree on each other.
+And we are keep on checking this,
+until either they disagree or something.
+In that case, we call,
+they are not equivalent.
+Or eventually, they become the equivalent.
+Formally, this can be checked very easily,
+or
+automatically, by building the what,
+what people call the product machine.
+So consider the same two state machines.
+The four states, A, B, C,
+D with starting state A.
+And the three state finite state machine,
+X, Y, Z with starting state Y.
+So when we build the product machine,
+we first define their starting state.
+The starting state in the product machine
+will be any combination of the starting
+state from the first state machine and
+the second state machine.
+In this case because each state
+has one starting state, so
+the product machine starting
+state will be A and Y.
+If, for example,
+the first state machine has also A,
+B, as a potential starting state.
+Then for the product machine,
+it will have two starting states, A and
+a Y, or B and a Y.
+Let's come back to this example.
+So for the product machine,
+our initial state will A and Y.
+On the input of 1.
+On the first part, A goes to, stays at A.
+An output of 1.
+And the second part,
+Y stays at Y, output of 1.
+So as a, as a result,
+they move to the state,
+which is the same state A,Y and
+that they both output of 1.
+So I move to the 0,
+A will move to B and output of 0.
+Y will move to X and I'll put a 0.
+So they agree on their output and then the
+next state will be the pair of B and X.
+So this will be our new state for
+the product machine.
+So we have to evaluate what will be
+the next state of this new state when we
+receive different input.
+So start for it with the new state B,
+X if the input is 1.
+So for B it will move to C with output 0.
+For X an input at 1 it will
+move to Z without the 0.
+So again they agree on their output and
+then their next state will
+be a new state C and Z.
+So keep on this process, then we check
+what happens when the input is 0.
+In this case, for B, when the input is 0,
+the output of 1 moves to D.
+For X when input is 0 it remains at X and
+output of 1.
+So again they're agreeing
+on their output and
+their next state will be a new state D and
+X.
+So now we have two more new states C,
+Z and D, X and
+we're going to analyze them one by one.
+By checking what will be the their
+next state based on different input.
+And whether they agree on their output or
+not.
+So eventually we'll stop when there's
+no new states can be produced.
+And doing the way.
+They always agree on their output.
+So in this case with the M1 and M2, these
+two states machines still equivalent.
+However, if at certain point
+the two state machines,
+they disagree on their output, then by
+definition they are not equivalent,
+as I will can stop by claiming the two
+state machines, they are not equivalent.
+So this is a very systematic approach and
+it can be easily fully automated.
+Now let's go back to talk about
+hardware Trojan prevention.
+We finish about pre-synthesis so let's
+talk about post-synthesis techniques.
+So there are several post-synthesis
+techniques when the chip is built,
+when the layout is given.
+So first we can do this,
+what we call the removal of dead spaces.
+So when the layout is given,
+there are white space,
+the space that are not utilized.
+An those are the potential spots for
+hardware Trojan insertion.
+So we can add the Dami logic,
+trying to take away this white space to
+prevent direct hardware Trojan insertion.
+This is particular effective to
+prevent big hardware Trojans.
+We can also do circuit obfuscation trying
+to make reverse engineering harder.
+So the, the attackers will not be
+able to understand the circuit and
+then it will be hard for them to
+insert a functional hardware Trojan.
+And we can also do shielding of the wires,
+this will
+be able to prevent the hardware Trojan
+based on electrical magnetic radiations.
+And because most of the hardware Trojans,
+these require a trigger signal, so we can,
+we should pay special attention
+to interface protections.
+This interface includes the I/O pins
+of the system, the internal connections
+between modules, the power in the clock
+networks and also the scan chains.
+So once we will be able to control this,
+we can monitor this interface and then
+whatever, whenever there is a suspicious
+communication we can check whether
+there's required or they are the hardware
+Trojan's triggered, triggering signal.
+So, now let's talk about a couple of,
+I mean, a couple of specific
+techniques to prevent hardware Trojan.
+The first one is called
+a rare event removal.
+And, this is based on the observation
+that hardware Trojans use rare
+event as their triggers.
+If we can remove rare events
+it will be easier to detect or
+activate the hardware Trojans.
+So there's an approach proposed by Salmani
+Tehranipoor and Plusqellic in 2009.
+And this motivational
+example shows the basic idea.
+What we have here is we have
+a hierarchical two input and gate.
+Assume that all the primary inputs
+are equally likely to be 0 or 1.
+And the two input and gate will give
+one-quarter chance produce a 1 and
+three-quarter of the chance produce a 0.
+Because this will be 1 if and
+only if both signals will be 1.
+And if we keep on proceeds this for
+the second level, and
+the gate to produce the 1,
+it requires both input here to be 1?
+So that is one-quarter
+times another quarter.
+So one over 16 it will be a 1.
+Similarly, we have a identical
+structure at the bottom half.
+So now for these two input and the gate.
+For this one to be a 1, it will require
+both signals here and here to be 1.
+So this one would be considered a rare
+event, because the probability of
+this happening is 1 over 16th times
+1 over 16th, which is one over 256.
+So now let's see how we can
+remove this rare event.
+Make it much more frequent.
+So the idea is try to add a flip-flop and
+an OR gate to change this wire connection
+with a logical connection here.
+So this is a, this is a scan flip-flop
+which we can control its input.
+So, the output of the flip-flop, or
+the content of a flip-flop,
+will be equally likely to be 1 or 0.
+And then, it goes through this OR gate.
+For this OR gate to be 0, we need both
+active signals to this OR gate to be 0.
+Which is, 15th over 16th and one half.
+So, the chance for
+this to be 0 will be 15 over 32.
+And then the rest of
+the cases it will be a 1.
+So now we consider end gate.
+For this one to be 1 it used to be
+a rare event, happens with 1 over 256.
+Now for
+this signal to be 1 we need this one to
+be a 1 which happens with the chance
+slightly higher on the half.
+And then this one to be 1
+happens with 1 over 16th.
+So the product of this
+will be 17 over 512.
+Which is about eight and
+a half times higher than 1 over 256.
+So this rare event will
+not be that rare anymore.
+So this can facilitate the hardware
+Trojan activation and the detachment.
+And the next example is
+called Shadow Registers.
+So we have learned that this technique,
+called the path delay based
+hardware Trojan detection.
+It's going to measure the possible
+delay between two internal registers.
+Then trying to use this to detect whether
+a hardware Trojan was inserted or not.
+However, we mentioned the difficulty
+of this approach is sometimes we may
+not be able to measure
+the internal path delay.
+So the Shadow Register approach will be
+greatly facilitate this the measuring
+of the internal path delay.
+So what we have here is we
+have the source register here.
+We have the destination register here.
+To measure the parts that delay here it
+may not be easy because we may not be
+able to see this signals.
+So in this approach we we put a shadow
+register here which shares the,
+which has the same cog as the system cog.
+However, the face of
+the cog might be different.
+So, we call the cog 1, system cog.
+Cog 2 will be called the shadow cog, which
+is used to drive the shadow registers.
+So, initially, the shadow register and
+the destination register
+will have the same face.
+So, they will have the same content,
+the same value.
+So while we do a comp, comparison here,
+do I have the same value?
+And we can deliberately change
+the face of the shadow clock, and
+then eventually it will become different.
+So, and this can be monitored
+through the result bit.
+When they become different,
+the comparison result will be different.
+So this significantly improve
+the observability or visibility of this
+internal pass, and it can be used to
+facilitate the hardware Trojan detection.
+For details we can check
+the paper by Li and Lach in 2008.
+So there are many other approach and most
+of these are the best of research topics.
+So to end this discussion about
+hardware Trojan prevention, or
+how to build trusted integrated circuits,
+we list the several of these approaches.
+In 2009, Banga and Hsiao proposed
+this approach called the VITAMIN.
+Which is basically a reverse logical
+gates to the power supply and the ground.
+So this, basically, can turn a rare
+event into a frequently to happen event,
+which can facilitate hardware
+Trojan detection or activation.
+And Gu, Qu, and and Zhou, in 2009,
+proposed a information hiding-based
+approach to build trust in the system.
+The basic idea here is they tried
+to change the system specification
+deliberately such that if
+a hardware Trojan is inserted,
+it will change the system's
+performance dramatically and
+then this can be observed
+from the final system.
+In the same year, Chakraborty and Bhunia
+proposed to use circuit obfuscation,
+trying to make the circuit much
+harder to to be understand.
+And this will prevent or in some sense,
+deter the hardware Trojan insertion.
+In 2010 Potkonjak proposed measures how to
+build trusted circuits
+using untrusted CAD tools.
+So this is a very interesting approach and
+in particular consider effect most of the
+CAD tools will be considered untrusted.
+So this is a very interesting and
+very important topic.
+In 2011 Love, Jin and Makris proposed
+to use proof carrying hardware
+to build intellectual properties that
+has the proof of trustworthiness and
+I use this as the building block to
+build trusted integrated circuits.
+And more recently, Dunbar and, and a,
+and a Qu focused on final state machine
+model to discuss how to build sequential
+systems with the trust worthiness.
+And their basic idea is by adding
+a control signal into the building block
+which is a flip-flop.
+

@@ -1,0 +1,188 @@
+So now let's talk about the typical
+design procedure for a sequential system.
+This starts with how
+to specify the system.
+And then we try to build the state
+transition table sometimes with the help
+of the state transition diagram or graph.
+And then we minimize the number
+of states in the state table.
+And then we do we a state encoding,
+which is similar to input encoding.
+And then we select what type
+of flip-flop we want to use.
+Normally it's based on experience.
+And then we build excitation table and
+output table.
+And finally, we do a combination of
+logical design, so simplify the logic for
+flip-flopping the functions.
+And then draw the logical diagram.
+So now let's show this design
+process using an example here.
+So in this example we assume that we have
+already done the state transition graph
+here and we have already minimized the
+state, we have already encoded the state.
+So the states,
+they're not called s y s to s 4.
+They're called 0/0, 1/0,
+1/1, 0/1, et cetera, 'kay.
+And also we assume we have already
+decided we want to use T flip-flop.
+So I'm going to show you that how we can
+build the excitation and output the table
+based on the state transition graph and
+the flip-flops we are going to use.
+So what we do is,
+we start from the current state,
+and with different input values,
+these are zero or one.
+And then from this state transition table,
+we can figure out what is the next stage.
+So for example, start from 0 0.
+If input is 0, I move on to state 0 1.
+And hat is why I put 0 1 here.
+'Kay?
+And then for the next, for the next column
+here, the flip-flop input function.
+And I have the flip-flop input for
+A, and the flip-flop for B.
+So for A,
+what I see here is currently I'm zero and
+then next time I still want a zero.
+I go back to my excitation table,
+I see from zero to zero,
+the T input should be a zero, so
+that is why I put a zero here.
+And however for the second flip flop,
+B, it changes from zero to one.
+So from the excitation table we know
+that to enable the T flip-flop to
+go from zero to one I need
+to set the T input to a one.
+And that is why I put a one here.
+So this is the way we try to build this
+excitation table and output table.
+Once we have this table this becomes
+a combination of logical design problem.
+You have input kernel state and input.
+And then you want to determine
+these functions as a Boolean
+expression of the input.
+And these are the flip-flopping for the
+functions, is that output of the circuit.
+So now we have put excitation table and
+output table, so we can consider this two
+flip-flop input functions TA and TB, and
+an output of y as a function
+of the input signals.
+Current state A and B and the input x.
+And when we do a function
+simplification we find out TA equal to
+exclusive of A and B.
+And then TB equals the exclusive nor
+of A and x.
+And we can easily draw
+the logical diagram.
+So the previous example,
+actually in that case it is a completely
+specified state, state machine.
+Which means that from any state,
+for any input, possible input value
+we have a next state specified.
+What happens if the system
+is not completely specified?
+Which we called incomplete,
+incompletely specified.
+So consider this case.
+We want to have a system that
+generates the pattern 0, 1, 3, 5,
+7 in a row, in a circular way.
+And we can easily build a table
+here with 0, 1, 3, 5, 7.
+We do the binary numbers for
+three flip, flip flops A, B,
+C here with their binary value.
+So then the current state, the next state,
+current state, next state.
+And what happens with the,
+the design here?
+So when we use,
+want to use two flip-flops we say okay,
+you want to go from zero to zero,
+I'll give TA a zero.
+You want to go from zero to one for
+C, I'll give TC a one.
+So this is fairly easy to build, this is
+the one we called the excitation table.
+And however,
+what happens with these three other cases?
+One flip flop will be 2, 4, 6, which is,
+A happens to be zero, B happens to be one,
+C happens to be zero,
+that is the binary two.
+In this case, the system doesn't
+specify what will be the next stage, so
+this is what we will
+consider as don't cares.
+Because the output is the don't care, so
+the flip flop input function
+will also be don't cares.
+So now when we have all these don't cares,
+it will
+help us to simplify the Boolean function
+for these flip flop input functions.
+In this particular case we find out
+TA equal to B, TB equal to C and
+TC equal to C prime plus AB.
+And we had drawn a logical
+diagram in this way.
+Now the question is,
+once you have a digital circuit here,
+these circuit they are not going to
+produce don't cares for the system.
+Whenever the system has
+a determinist value,
+they are going to produce
+a deterministic output.
+So when we do a circuit analysis,
+we realize that in these three cases here,
+and their next state, at first to
+figure out the TA, TB, TC value.
+either from this equation or
+from this circuit here, from this input.
+And it happens to be
+these three values here.
+And then based on the functionalities
+of the T flip-flop.
+once I have a 1 I need to flip.
+So I got a 1, 1, and I have a 0,
+that's still no change.
+So that is how I figure out this,
+do this circular analysis.
+And in this particular case,
+I know the kernel stage.
+I know the next stage.
+I know the kernel stage.
+I know the next stage.
+I know the kernel stage.
+I know the next stage.
+For these three,
+you completely specified the cases.
+What happens to the original system spec?
+When the system is at 2, it goes to 7.
+When the system is at 4, it goes to 5.
+When it is at 6, it goes to 3.
+So this is a good case because
+if the system starts with
+one of these unspecified system, after
+one clock cycle, it comes to this loop.
+And then it will stay in the loop forever.
+So in that sense we call this
+system is self-correcting.
+And later on we are going to see that
+by not specify the systems completely,
+we are going to introduce
+security vulnerabilities.
+
